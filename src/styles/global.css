@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@import "@fontsource/shrikhand";
+@import "@fontsource/titan-one";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource/dm-mono";
+
+@theme {
+  --color-ink: #121210;
+  --color-cream: #f3e9d2;
+  --color-mustard: #e0ae2e;
+  --color-green: #3d5541;
+  --color-green-deep: #2a3b2d;
+  --color-brown: #2b1a10;
+  --color-bread: #b7782f;
+  --color-meat: #4a2c1a;
+  --color-rim: #7a4a2a;
+
+  --font-display: "Shrikhand", cursive;
+  --font-label: "Titan One", sans-serif;
+  --font-body: "DM Sans Variable", sans-serif;
+  --font-mono: "DM Mono", monospace;
+
+  --color-stone: #c9bfa6;
+  --color-ash: #7f7a6e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-brown);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Drips / scallops along section edges: full width, but never thinner than
+   the mobile design's chunky version. */
+.edge-art {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: max(100%, 820px);
+  max-width: none;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,120 @@
+---
+import owlMark from '../assets/figma/nav/logo-owl-mark.svg';
+import wordmark from '../assets/figma/nav/logo-wordmark.svg';
+import PillButton from './PillButton.astro';
+import { NAV_LINKS, ORDER_URL } from '../data/site';
+---
+
+<header class="site-nav sticky top-0 z-50 bg-ink">
+  <nav class="flex items-center justify-between px-5 py-4 md:px-14 lg:py-[18px]" aria-label="Main">
+    <a href="#top" class="flex items-center gap-3" aria-label="The Hut — home">
+      <img src={owlMark.src} alt="" width="58" height="52.9" class="h-[38px] w-auto lg:h-[52.9px]" />
+      <img src={wordmark.src} alt="" width="120" height="26.3" class="h-[19px] w-auto lg:h-[26.3px]" />
+    </a>
+
+    <ul class="hidden items-center gap-10 font-label text-[18px] uppercase tracking-[0.36px] text-cream lg:flex">
+      {
+        NAV_LINKS.map((link) => (
+          <li>
+            <a href={link.href} class="nav-link">{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <PillButton href={ORDER_URL} variant="mustard" size="lg" external class="max-lg:hidden">Order Now</PillButton>
+
+    <button
+      type="button"
+      class="menu-toggle grid size-[42px] place-items-center rounded-full border-3 border-ink bg-mustard lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <span class="burger" aria-hidden="true"></span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="mobile-menu lg:hidden" hidden>
+    <ul class="flex flex-col items-center gap-5 px-5 pt-4 pb-8 font-label text-[22px] uppercase text-cream">
+      {
+        NAV_LINKS.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+      <li class="mt-2">
+        <PillButton href={ORDER_URL} variant="mustard" size="lg" external>Order Now</PillButton>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    const set = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu.hidden = !open;
+    };
+    toggle.addEventListener('click', () => set(toggle.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) set(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') set(false);
+    });
+  }
+</script>
+
+<style>
+  .nav-link {
+    background: linear-gradient(var(--color-mustard), var(--color-mustard)) no-repeat 0 100% / 0 3px;
+    padding-bottom: 4px;
+    transition: background-size 200ms ease-out, color 200ms ease-out;
+  }
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    background-size: 100% 3px;
+    color: var(--color-mustard);
+  }
+
+  /* Three-bar burger that turns into an X when open. */
+  .burger,
+  .burger::before,
+  .burger::after {
+    display: block;
+    width: 18px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--color-ink);
+    transition: transform 200ms ease-out, opacity 200ms ease-out;
+  }
+  .burger {
+    position: relative;
+  }
+  .burger::before,
+  .burger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+  .burger::before {
+    top: -6px;
+  }
+  .burger::after {
+    top: 6px;
+  }
+  .menu-toggle[aria-expanded='true'] .burger {
+    background: transparent;
+  }
+  .menu-toggle[aria-expanded='true'] .burger::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded='true'] .burger::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+</style>

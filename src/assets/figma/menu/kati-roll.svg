@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="260" height="90" viewBox="0 0 260 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<rect id="Rectangle" x="1.5" y="1.5" width="247" height="87" rx="43.5" fill="#F3E9D2" stroke="#121210" stroke-width="3"/>
+<ellipse id="Ellipse" cx="190.09" cy="70.3539" rx="9.6618" ry="3.28212" fill="#B7782F"/>
+<ellipse id="Ellipse_2" cx="143.276" cy="27.7202" rx="9.30746" ry="5.86273" fill="#B7782F"/>
+<ellipse id="Ellipse_3" cx="125.453" cy="56.0248" rx="5.3523" ry="4.69025" fill="#B7782F"/>
+<ellipse id="Ellipse_4" cx="48.7832" cy="55.9714" rx="5.51237" ry="3.94987" fill="#B7782F"/>
+<ellipse id="Ellipse_5" cx="150.796" cy="63.0414" rx="9.54074" ry="5.71566" fill="#B7782F"/>
+<ellipse id="Ellipse_6" cx="72.1712" cy="14.8274" rx="7.00534" ry="4.61726" fill="#B7782F"/>
+<ellipse id="Ellipse_7" cx="67.8467" cy="47.3666" rx="8.39997" ry="5.50651" fill="#B7782F"/>
+<ellipse id="Ellipse_8" cx="111.465" cy="72.4736" rx="9.58884" ry="4.12415" fill="#B7782F"/>
+<ellipse id="Ellipse_9" cx="73.1483" cy="31.0745" rx="9.5843" ry="5.76649" fill="#B7782F"/>
+<path id="Ellipse_10" d="M235 1.5C241.111 1.5 246.96 5.97639 251.366 13.9082C255.745 21.7895 258.5 32.7794 258.5 45C258.5 57.2206 255.745 68.2105 251.366 76.0918C246.96 84.0236 241.111 88.5 235 88.5C228.889 88.5 223.04 84.0236 218.634 76.0918C214.255 68.2105 211.5 57.2206 211.5 45C211.5 32.7794 214.255 21.7895 218.634 13.9082C223.04 5.97639 228.889 1.5 235 1.5Z" fill="#8FAE7E" stroke="#121210" stroke-width="3"/>
+<ellipse id="Ellipse_11" cx="235" cy="45" rx="12.5" ry="25" fill="#E0AE2E"/>
+</g>
+</svg>

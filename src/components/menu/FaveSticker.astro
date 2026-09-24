@@ -1,0 +1,49 @@
+---
+import type { Sticker } from '../../data/site';
+import fireOg from '../../assets/figma/menu/sticker-fire-og.svg';
+import grandaddyPurp from '../../assets/figma/menu/sticker-grandaddy-purp.svg';
+import whiteWidow from '../../assets/figma/menu/sticker-white-widow.svg';
+import pineappleExpress from '../../assets/figma/menu/sticker-pineapple-express.svg';
+
+interface Props {
+  name: string;
+  flavor: string;
+  price: string;
+  sticker: Sticker;
+  text: string;
+  tilt: number;
+  delay?: number;
+}
+
+const { name, flavor, price, sticker, text, tilt, delay = 0 } = Astro.props;
+
+// Sticker body geometry inside its 260×260 frame (Figma), plus shadow bleed.
+const shapes: Record<Sticker, { src: string; x: number; y: number; w: number; h: number; bleed: string }> = {
+  'fire-og': { src: fireOg.src, x: 6.35, y: 6.35, w: 247.303, h: 247.303, bleed: '-0.81% -4.04% -4.04% -0.81%' },
+  'grandaddy-purp': { src: grandaddyPurp.src, x: 5.65, y: 9.19, w: 248.709, h: 241.623, bleed: '-0.83% -4.02% -4.14% -0.8%' },
+  'white-widow': { src: whiteWidow.src, x: 5.4, y: 9.59, w: 249.202, h: 240.817, bleed: '-0.83% -4.01% -4.15% -0.8%' },
+  'pineapple-express': { src: pineappleExpress.src, x: 6.22, y: 6.45, w: 247.563, h: 247.103, bleed: '-0.81% -4.04% -4.05% -0.81%' },
+};
+const s = shapes[sticker];
+---
+
+<li data-reveal="pop" data-delay={delay} class="fave list-none" style={`--tilt:${tilt}deg`}>
+  <div class="fave-inner relative size-[260px]">
+    <div class="absolute" style={`left:${s.x}px;top:${s.y}px;width:${s.w}px;height:${s.h}px`}>
+      <div class="absolute" style={`inset:${s.bleed}`}>
+        <img src={s.src} alt="" class="block size-full max-w-none" />
+      </div>
+      <div class:list={['absolute inset-0 flex flex-col items-center justify-center gap-1.5 px-7 text-center', text]}>
+        <h3 class="font-display text-[30px] leading-[0.95]">{name}</h3>
+        <p class="font-label text-[13px] uppercase tracking-[0.52px]">{flavor}</p>
+        <p class="font-label text-[16px]">{price}</p>
+      </div>
+    </div>
+  </div>
+</li>
+
+<style>
+  .fave-inner {
+    transform: rotate(var(--tilt));
+  }
+</style>

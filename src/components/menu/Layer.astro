@@ -1,0 +1,25 @@
+---
+// One positioned piece of a Figma illustration. `bleed` is Figma's negative
+// inset for strokes/shadows that spill past the layer bounds (CSS inset order).
+interface Props {
+  src: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  bleed?: string;
+  rotate?: number;
+  class?: string;
+}
+
+const { src, x, y, w, h, bleed = '0', rotate, class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={['absolute', className]}
+  style={`left:${x}px;top:${y}px;width:${w}px;height:${h}px;${rotate ? `transform:rotate(${rotate}deg);` : ''}`}
+>
+  <div class="absolute" style={`inset:${bleed}`}>
+    <img src={src} alt="" class="block size-full max-w-none" />
+  </div>
+</div>

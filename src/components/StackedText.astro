@@ -1,0 +1,36 @@
+---
+// Retro extruded headline: the design stacks copies of the text at 0.9px steps.
+// We get the same look with one element and a text-shadow stack in em units,
+// so the depth scales with the font size on smaller screens.
+// `outline` adds the 5px ink keyline the big section headings use; their
+// extrusion layers are also keylined, which reads as a solid ink extrusion.
+interface Props {
+  [attr: `data-${string}`]: unknown;
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
+  designSize: number; // font size in the Figma frame, px
+  layers: number;
+  outline?: boolean;
+  class?: string;
+  id?: string;
+}
+
+const { as: Tag = 'h2', designSize, layers, outline = false, class: className = '', id, ...rest } = Astro.props;
+const step = 0.9 / designSize;
+const depthColor = outline ? 'var(--color-ink)' : 'var(--color-brown)';
+const shadow = Array.from({ length: layers }, (_, i) => {
+  const d = ((i + 1) * step).toFixed(4);
+  return `${d}em ${d}em 0 ${depthColor}`;
+}).join(', ');
+const stroke = outline ? `-webkit-text-stroke: ${(10 / designSize).toFixed(4)}em var(--color-ink); paint-order: stroke fill;` : '';
+---
+
+<Tag {...rest} id={id} class:list={['stacked font-display', className]} style={`text-shadow: ${shadow}; ${stroke}`}>
+  <slot />
+</Tag>
+
+<style>
+  .stacked {
+    font-synthesis: none;
+    line-height: 1.1;
+  }
+</style>

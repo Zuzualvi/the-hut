@@ -1,0 +1,79 @@
+---
+// Crossing marquees (Figma 16:93). Sized in em off the band font (32px on desktop)
+// so the whole section scales by changing one font-size.
+import heroDrips from '../../assets/figma/marquee/hero-drips.svg';
+import sparkle from '../../assets/figma/menu/sparkle-pill.svg';
+
+const bands = [
+  { text: 'The Hut ‘Toasted’ Subs', tone: 'bg-cream text-green', tilt: -4, top: 4.1206, dir: 'left' },
+  { text: 'Late-night munchies', tone: 'bg-mustard text-ink', tilt: 4, top: 6.6291, dir: 'right' },
+];
+const REPEAT = 8;
+---
+
+<section class="marquees relative overflow-hidden bg-brown" aria-label="The Hut ‘Toasted’ Subs · Late-night munchies">
+  {
+    bands.map((b) => (
+      <div
+        class:list={['band absolute border-y-3 border-ink', b.tone]}
+        style={`top:${b.top}em;transform:rotate(${b.tilt}deg)`}
+        aria-hidden="true"
+      >
+        <div class:list={['track flex w-max items-center', b.dir === 'right' && 'track-reverse']}>
+          {[0, 1].map(() => (
+            <div class="flex shrink-0 items-center">
+              {Array.from({ length: REPEAT }, () => (
+                <span class="unit flex shrink-0 items-center">
+                  <span class="font-label uppercase whitespace-nowrap">{b.text}</span>
+                  <img src={sparkle.src} alt="" class="band-sparkle" />
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+  <img src={heroDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-10" />
+</section>
+
+<style>
+  .marquees {
+    font-size: 22px;
+    height: 11.5em;
+  }
+  @media (min-width: 768px) {
+    .marquees {
+      font-size: min(32px, calc(100vw / 45));
+      height: 10.625em;
+    }
+  }
+  .band {
+    left: -4.9375em;
+    width: max(115.75em, 160vw);
+    height: 2.34375em;
+    transform-origin: 0 0;
+    display: flex;
+    align-items: center;
+  }
+  .unit {
+    letter-spacing: 0.05em;
+  }
+  .band-sparkle {
+    width: 0.8125em;
+    height: 0.8125em;
+    margin: 0 0.75em;
+  }
+  .track {
+    padding-left: 1.0625em;
+    animation: marquee 60s linear infinite;
+  }
+  .track-reverse {
+    animation-direction: reverse;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+interface Props {
+  href: string;
+  variant?: 'cream' | 'mustard' | 'ink';
+  size?: 'md' | 'lg' | 'xl';
+  external?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'cream', size = 'md', external = false, class: className = '' } = Astro.props;
+
+const variants = {
+  cream: 'bg-cream text-ink',
+  mustard: 'bg-mustard text-ink',
+  ink: 'bg-ink text-mustard',
+};
+const sizes = {
+  md: 'px-[22px] py-[11px] text-[15px] tracking-[0.45px]',
+  lg: 'px-[26px] py-3 text-[18px] tracking-[0.54px]',
+  xl: 'px-8 py-4 text-[22px] tracking-[0.66px]',
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    'pill inline-flex items-center justify-center rounded-full border-3 border-ink font-label uppercase whitespace-nowrap',
+    variants[variant],
+    sizes[size],
+    className,
+  ]}
+  {...external && { target: '_blank', rel: 'noopener' }}
+>
+  <slot />
+</a>
+
+<style>
+  /* Chunky offset shadow that the button "presses" into. */
+  .pill {
+    box-shadow: 0 6px 0 var(--color-ink);
+    transition:
+      transform 120ms ease-out,
+      box-shadow 120ms ease-out;
+  }
+  .pill:hover {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 var(--color-ink);
+  }
+  .pill:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 var(--color-ink);
+  }
+  .pill:focus-visible {
+    outline: 3px solid var(--color-cream);
+    outline-offset: 4px;
+  }
+</style>

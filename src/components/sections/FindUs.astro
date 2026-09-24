@@ -1,0 +1,100 @@
+---
+// Find Us (Figma 19:121).
+import StackedText from '../StackedText.astro';
+import PillButton from '../PillButton.astro';
+import { HOURS, ORDER_URL, MAPS_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from '../../data/site';
+
+import scallop from '../../assets/figma/findus/scallop.svg';
+import mapBlob from '../../assets/figma/findus/map-blob.svg';
+---
+
+<section id="find-us" class="findus relative overflow-hidden bg-mustard">
+  <img src={scallop.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art" />
+
+  <div class="relative mx-auto grid max-w-[1200px] items-center gap-10 px-5 lg:grid-cols-[680px_440px] lg:gap-20 lg:px-0">
+    <div class="contents lg:block" data-reveal-group>
+      <StackedText data-reveal designSize={92} layers={9} outline class="heading text-cream lg:whitespace-nowrap">Hit up<br class="lg:hidden" /> The Hut</StackedText>
+
+      <dl data-reveal class="info order-3 grid gap-7 sm:grid-cols-[auto_auto_auto] sm:gap-11 lg:order-none">
+        <div>
+          <dt class="label">Address</dt>
+          <dd class="value">709 N. Main St.<br />Glassboro, NJ 08028</dd>
+        </div>
+        <div>
+          <dt class="label">Hours</dt>
+          <dd class="value grid grid-cols-[auto_1fr] gap-x-3">
+            {
+              HOURS.map((h) => (
+                <Fragment>
+                  <span>{h.days}</span>
+                  <span class="whitespace-nowrap">{h.time}</span>
+                </Fragment>
+              ))
+            }
+          </dd>
+        </div>
+        <div>
+          <dt class="label">Follow</dt>
+          <dd class="value">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="underline-offset-4 hover:underline">@{INSTAGRAM_HANDLE}</a>
+          </dd>
+        </div>
+      </dl>
+
+      <div data-reveal class="ctas order-4 flex flex-col gap-4 sm:flex-row lg:order-none">
+        <PillButton href={ORDER_URL} variant="ink" size="xl" external class="sm:min-w-[213px]">Order Now</PillButton>
+        <PillButton href={MAPS_URL} size="xl" external class="sm:min-w-[213px]">Directions</PillButton>
+      </div>
+    </div>
+
+    <a href={MAPS_URL} target="_blank" rel="noopener" data-reveal="pop" class="map order-2 mx-auto block lg:order-none" aria-label="Open directions in Google Maps">
+      <img src={mapBlob.src} alt="" class="block size-full" />
+    </a>
+  </div>
+</section>
+
+<style>
+  .findus {
+    padding-top: clamp(110px, 12.9vw, 186px);
+    padding-bottom: clamp(80px, 10vw, 150px);
+  }
+  .findus :global(.heading) {
+    font-size: clamp(52px, 6.4vw, 92px);
+    line-height: 1.46;
+  }
+  @media (max-width: 1023px) {
+    .findus :global(.heading) {
+      line-height: 1.05;
+    }
+  }
+  .info {
+    margin-top: 30px;
+  }
+  .label {
+    font-family: var(--font-label);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-brown);
+  }
+  .value {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    color: var(--color-ink);
+  }
+  .ctas {
+    margin-top: 30px;
+  }
+  .ctas :global(.pill) {
+    font-size: clamp(16px, 1.5vw, 22px);
+  }
+  .map {
+    width: min(454px, calc(100vw - 40px));
+    transition: transform 300ms ease-out;
+  }
+  .map:hover {
+    transform: rotate(-3deg) scale(1.02);
+  }
+</style>

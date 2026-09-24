@@ -1,0 +1,79 @@
+---
+// Footer (Figma 19:167).
+import Art from '../Art.astro';
+import { NAV_LINKS, INSTAGRAM_URL } from '../../data/site';
+
+import goldDrips from '../../assets/figma/footer/gold-drips.svg';
+import owl from '../../assets/figma/footer/owl.svg';
+import smokeA from '../../assets/figma/footer/smoke-a.svg';
+import smokeB from '../../assets/figma/footer/smoke-b.svg';
+import smokeC from '../../assets/figma/footer/smoke-c.svg';
+import wordmark from '../../assets/figma/footer/wordmark.svg';
+import tagline from '../../assets/figma/footer/tagline.svg';
+---
+
+<footer class="footer relative overflow-hidden bg-ink text-center">
+  <img src={goldDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art" />
+
+  <div class="owl-frame relative mx-auto" aria-hidden="true" data-reveal>
+    <Art src={smokeA.src} x={66} y={-54} w={62} h={168} unit="--fu" class="smoke" />
+    <Art src={smokeB.src} x={121} y={-94} w={62} h={198} unit="--fu" class="smoke" />
+    <Art src={smokeC.src} x={186} y={-54} w={62} h={168} unit="--fu" class="smoke" />
+    <Art src={owl.src} x={30} y={60} w={239.35} h={218.9} unit="--fu" class="owl" />
+  </div>
+
+  <img data-reveal src={wordmark.src} alt="The Hut" class="wordmark mx-auto block h-auto" />
+  <img data-reveal src={tagline.src} alt="Toasted Subs · Late-night · Munchies" class="tagline mx-auto block h-auto" />
+
+  <nav aria-label="Footer">
+    <ul class="links flex flex-col items-center font-label uppercase text-stone md:flex-row md:justify-center">
+      {
+        NAV_LINKS.map((l) => (
+          <li>
+            <a href={l.href} class="hover:text-mustard">{l.label}</a>
+          </li>
+        ))
+      }
+      <li><a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="hover:text-mustard">Instagram</a></li>
+    </ul>
+  </nav>
+
+  <p class="legal text-ash">© 2026 The Hut Glassboro · 100% Halal · Order via DoorDash</p>
+
+  <div class="checks" aria-hidden="true"></div>
+</footer>
+
+<style>
+  .footer {
+    --fu: clamp(0.6px, calc(100vw / 1440), 1px);
+    padding-top: calc(170 * var(--fu));
+  }
+  .owl-frame {
+    width: calc(300 * var(--fu));
+    height: calc(280 * var(--fu));
+  }
+  .wordmark {
+    width: clamp(250px, 33.3vw, 480px);
+    margin-top: calc(44 * var(--fu));
+  }
+  .tagline {
+    width: clamp(260px, 36.1vw, 520px);
+    margin-top: calc(45 * var(--fu));
+  }
+  .links {
+    margin-top: 44px;
+    gap: 14px 40px;
+    font-size: clamp(14px, 1.25vw, 18px);
+  }
+  .legal {
+    margin-top: 44px;
+    padding: 0 20px;
+    font-size: clamp(12px, 1vw, 15px);
+  }
+  .checks {
+    max-width: 1200px;
+    margin: 44px auto 0;
+    height: 64px;
+    background: repeating-conic-gradient(var(--color-mustard) 0 25%, var(--color-brown) 0 50%) 0 0 / 64px 64px;
+  }
+</style>

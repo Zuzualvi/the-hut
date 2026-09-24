@@ -1,0 +1,109 @@
+---
+// Our Vibe / About (Figma 19:82).
+import Art from '../Art.astro';
+import StackedText from '../StackedText.astro';
+
+import rays from '../../assets/figma/vibe/rays.svg';
+import photoBlob from '../../assets/figma/vibe/photo-blob.svg';
+import smokeA from '../../assets/figma/vibe/smoke-a.svg';
+import smokeB from '../../assets/figma/vibe/smoke-b.svg';
+import estBadge from '../../assets/figma/vibe/est-badge.svg';
+import badgeMustard from '../../assets/figma/vibe/badge-mustard.svg';
+import badgeCream from '../../assets/figma/vibe/badge-cream.svg';
+import badgeBrown from '../../assets/figma/vibe/badge-brown.svg';
+
+const badges = [
+  { src: badgeMustard.src, alt: '100% Halal', w: 162.4, h: 163.61, dy: 1.2 },
+  { src: badgeCream.src, alt: 'Open till 2AM', w: 161.64, h: 162.9, dy: 0 },
+  { src: badgeBrown.src, alt: 'Garlic butter’d', w: 161.87, h: 163.15, dy: -0.35 },
+];
+---
+
+<section id="our-vibe" class="vibe relative overflow-hidden bg-green">
+  <div class="checks h-[72px]" aria-hidden="true"></div>
+  <img src={rays.src} alt="" aria-hidden="true" class="rays absolute block max-w-none" />
+
+  <div class="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 lg:grid-cols-[520px_minmax(0,590px)] lg:gap-[90px] lg:px-0">
+    <div class="photo relative mx-auto" aria-hidden="true" data-reveal>
+      <Art src={smokeB.src} x={146} y={-44} w={68} h={168} unit="--pu" class="smoke" />
+      <Art src={smokeA.src} x={316} y={-74} w={68} h={188} unit="--pu" class="smoke" />
+      <Art src={photoBlob.src} x={0} y={0} w={534} h={534} unit="--pu" class="photo-blob" />
+      <p class="caption absolute font-mono whitespace-nowrap text-stone">[ PHOTO — THE CREW ]</p>
+      <Art src={estBadge.src} x={399.05} y={-10.95} w={121.91} h={121.91} unit="--pu" class="est-badge" />
+    </div>
+    <p class="sr-only">Est. 2026</p>
+
+    <div class="text-center lg:text-left" data-reveal-group>
+      <StackedText data-reveal designSize={66} layers={9} outline class="heading text-cream lg:whitespace-nowrap">
+        Rowan-grown.<br />Late-night raised.
+      </StackedText>
+      <p data-reveal class="blurb mx-auto text-cream lg:mx-0">
+        Glassboro goes quiet after midnight. Brothers Faizan and Riyyan — both Rowan grads — weren’t having it. So they
+        opened The Hut on North Main: toasted subs, kati rolls with mint chutney, and a munchies menu made for the hours
+        your meal plan forgot.
+      </p>
+      <ul class="badges flex justify-center lg:justify-start">
+        {
+          badges.map((b) => (
+            <li class="badge" style={`--w:${b.w};--h:${b.h};--dy:${b.dy}`}>
+              <img data-reveal="pop" src={b.src} alt={b.alt} class="block size-full" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vibe {
+    --bu: max(0.62px, min(1px, calc(100vw / 1440)));
+    padding-bottom: clamp(80px, 10.8vw, 156px);
+  }
+  .checks {
+    background: repeating-conic-gradient(var(--color-mustard) 0 25%, var(--color-brown) 0 50%) 0 0 / 72px 72px;
+  }
+  .rays {
+    left: calc(76.39% - 1100 * var(--bu));
+    top: 72px;
+    width: calc(2200 * var(--bu));
+    height: calc(2200 * var(--bu));
+  }
+  .photo {
+    --pu: min(1px, calc((100vw - 40px) / 560));
+    width: calc(534 * var(--pu));
+    height: calc(534 * var(--pu));
+    margin-top: clamp(90px, 8.3vw, 120px);
+  }
+  .caption {
+    left: calc(174 * var(--pu));
+    top: calc(422 * var(--pu));
+    font-size: max(9px, calc(13 * var(--pu)));
+    letter-spacing: 0.12em;
+  }
+  .vibe :global(.heading) {
+    font-size: clamp(34px, 4.6vw, 66px);
+    line-height: 1;
+  }
+  .blurb {
+    margin-top: clamp(24px, 2.3vw, 33px);
+    max-width: 590px;
+    font-size: clamp(15px, 1.4vw, 20px);
+    line-height: 1.5;
+  }
+  .badges {
+    margin-top: clamp(24px, 2.3vw, 26px);
+    gap: clamp(8px, 1.8vw, 26px);
+  }
+  .badge {
+    --bs: clamp(0.58px, calc(100vw / 1110), 1px);
+    width: calc(var(--w) * var(--bs));
+    height: calc(var(--h) * var(--bs));
+    transform: translateY(calc(var(--dy) * var(--bs)));
+  }
+  @media (min-width: 1024px) {
+    .vibe :global(.photo) {
+      margin-left: 0;
+    }
+  }
+</style>

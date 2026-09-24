@@ -1,0 +1,83 @@
+---
+import StackedText from '../StackedText.astro';
+import MenuCard from '../menu/MenuCard.astro';
+import MenuArt from '../menu/MenuArt.astro';
+import FaveSticker from '../menu/FaveSticker.astro';
+import drips from '../../assets/figma/menu/marquee-drips.svg';
+import pillSparkle from '../../assets/figma/menu/sparkle-pill.svg';
+import bgSparkle from '../../assets/figma/menu/bg-sparkle.svg';
+import owlMark from '../../assets/figma/menu/owl-mark.svg';
+import { MENU_CATEGORIES, FAN_FAVES, ORDER_URL } from '../../data/site';
+
+// Background sparkles: [left, top, size] in the 1440×2172 Figma frame.
+// Positioned as percentages so they spread across any screen size.
+const W = 1440;
+const H = 2171.748;
+const sparkles: [number, number, number][] = [
+  [505.91, 2082.23, 18.711], [1073.05, 1594.39, 27.914], [1400.24, 1773.68, 19.575], [659.14, 1336.76, 19.195],
+  [861.42, 1200.31, 16.273], [1178.74, 2280.99, 18.309], [782.78, 1095.46, 14.804], [265.2, 760.39, 13.257],
+  [217.67, 2192.46, 21.168], [1231.85, 1908.32, 10.038], [1059.41, 824.65, 23.366], [292.01, 2058.1, 14.652],
+  [941.33, 2125.35, 27.397], [759.03, 1943.06, 15.1], [336.77, 227.91, 21.261], [266.23, 2296.55, 17.381],
+  [1139.06, 265.65, 10.959], [706.94, 1651.88, 27.495], [981.54, 771.91, 20.49], [1134.51, 742.4, 15.443],
+  [337.54, 280.02, 19.854], [602.27, 301.44, 23.224], [1100.38, 1723.32, 15.052], [1003.54, 1062.33, 20.839],
+  [903.42, 1435.13, 12.083], [1391.67, 1558.4, 14.286], [219.97, 148.8, 16.948], [819.98, 323, 27.567],
+  [943.37, 797.65, 17.645], [1181.81, 289.44, 12.682], [706.96, 1915.03, 20.176], [110.49, 2191.07, 11.629],
+  [1404.07, 2034.25, 12.541], [919.36, 161.22, 12.41], [668.03, 1888.66, 18.738], [1241.75, 1533.22, 21.025],
+  [392.17, 2211.58, 26.769], [130.98, 440.41, 25.472], [1049.84, 1536.36, 24.634], [900.4, 2016.11, 13.753],
+];
+---
+
+<section id="menu" class="relative overflow-hidden bg-cream px-5 pt-[clamp(90px,11.8vw,170px)] pb-[clamp(80px,9.7vw,140px)] md:px-[clamp(20px,8.3vw,120px)]">
+  <div aria-hidden="true">
+    {
+      sparkles.map(([x, y, s]) => (
+        <img
+          src={bgSparkle.src}
+          alt=""
+          class="bg-sparkle absolute"
+          style={`left:${((x / W) * 100).toFixed(2)}%;top:${((y / H) * 100).toFixed(2)}%;width:${s}px;height:${s}px`}
+        />
+      ))
+    }
+    <img src={drips.src} alt="" data-reveal="drip" class="edge-art" />
+  </div>
+
+  <div class="relative mx-auto flex max-w-[1200px] flex-col items-center gap-16">
+    <header class="flex flex-col items-center gap-[22px] text-center" data-reveal-group>
+      <p data-reveal class="flex items-center gap-2.5 rounded-full border-3 border-ink bg-mustard px-[18px] py-2 font-label text-[16px] uppercase tracking-[0.64px] text-ink">
+        <img src={pillSparkle.src} alt="" width="16" height="16" />
+        The Menu
+        <img src={pillSparkle.src} alt="" width="16" height="16" />
+      </p>
+      <StackedText data-reveal designSize={92} layers={9} class="text-[clamp(44px,6.4vw,92px)] text-green">
+        Every sub gets toasted.
+      </StackedText>
+      <p data-reveal class="max-w-[700px] text-[clamp(17px,1.4vw,20px)] leading-normal text-brown">
+        Then brushed with our house garlic butter &amp; parmesan. Subs, steaks, kati rolls, cozy classics and munchies —
+        if you can crave it at 1AM, it’s on here.
+      </p>
+    </header>
+
+    <div class="grid w-full grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-16">
+      {
+        MENU_CATEGORIES.map((c, i) => (
+          <MenuCard delay={(i % 3) * 0.09} title={c.title} price={c.price} cta={c.cta} href={ORDER_URL}>
+            <MenuArt art={c.art} />
+          </MenuCard>
+        ))
+      }
+      <MenuCard title="Can’t Decide?" price="Hit the button" cta="Order Now" href={ORDER_URL} tone="mustard" delay={0.18}>
+        <div class="relative h-[190px] w-[200px] overflow-hidden">
+          <img src={owlMark.src} alt="" width="190" height="173" class="owl absolute top-[6px] left-[5px]" />
+        </div>
+      </MenuCard>
+    </div>
+
+    <div class="flex w-full flex-col items-center gap-9 pt-[30px]">
+      <StackedText data-reveal designSize={72} layers={8} class="text-[clamp(48px,5vw,72px)] text-mustard">Fan Faves</StackedText>
+      <ul class="flex flex-wrap items-center justify-center gap-x-9 gap-y-4">
+        {FAN_FAVES.map((f, i) => <FaveSticker {...f} delay={i * 0.08} />)}
+      </ul>
+    </div>
+  </div>
+</section>

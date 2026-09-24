@@ -1,0 +1,130 @@
+---
+// Munchie Hour / specials (Figma 19:28).
+import StackedText from '../StackedText.astro';
+import PillButton from '../PillButton.astro';
+import { SPECIALS, ORDER_URL } from '../../data/site';
+
+import menuDrips from '../../assets/figma/munchie/menu-drips.svg';
+import dazed from '../../assets/figma/munchie/dazed-hungry.svg';
+import blobGreenTl from '../../assets/figma/munchie/blob-green-tl.svg';
+import blobMustardTr from '../../assets/figma/munchie/blob-mustard-tr.svg';
+import blobRustBr from '../../assets/figma/munchie/blob-rust-br.svg';
+import blobMustardBl from '../../assets/figma/munchie/blob-mustard-bl.svg';
+import blobGreenBc from '../../assets/figma/munchie/blob-green-bc.svg';
+import burst from '../../assets/figma/hero/star-mustard.svg';
+
+// Lava blobs: x as % of width, y/size in scaled px (Figma 1440 frame).
+const blobs = [
+  { src: blobGreenTl.src, x: -100, y: 160, w: 490.5, h: 469.08 },
+  { src: blobMustardTr.src, x: 1030, y: 80, w: 440.47, h: 440.47 },
+  { src: blobRustBr.src, x: 880, y: 680, w: 572.37, h: 581.91 },
+  { src: blobMustardBl.src, x: 70, y: 870, w: 320.54, h: 308.59 },
+  { src: blobGreenBc.src, x: 520, y: 960, w: 358.92, h: 358.92 },
+];
+
+const tones = {
+  cream: { card: 'bg-cream', shadow: 'var(--color-mustard)', title: 'text-brown', body: 'text-brown' },
+  mustard: { card: 'bg-mustard', shadow: 'var(--color-green)', title: 'text-ink', body: 'text-ink' },
+  green: { card: 'bg-green', shadow: 'var(--color-mustard)', title: 'text-cream', body: 'text-cream' },
+};
+---
+
+<section id="munchie-hour" class="munchie relative overflow-hidden bg-ink">
+  <div aria-hidden="true">
+    {
+      blobs.map((b, i) => (
+        <img
+          src={b.src}
+          alt=""
+          class="lava absolute block max-w-none"
+          style={`left:${((b.x / 1440) * 100).toFixed(2)}%;top:calc(${b.y} * var(--bu));width:calc(${b.w} * var(--bu));height:calc(${b.h} * var(--bu));--i:${i}`}
+        />
+      ))
+    }
+  </div>
+  <img src={menuDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-10" />
+
+  <div class="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center px-5">
+    <StackedText data-reveal designSize={120} layers={12} outline class="title text-center text-cream">Munchie Hour</StackedText>
+    <img data-reveal data-delay="0.15" src={dazed.src} alt="deals for the dazed & hungry" class="dazed block h-auto" />
+
+    <ul class="specials grid w-full grid-cols-1 lg:grid-cols-3">
+      {
+        SPECIALS.map((s, i) => {
+          const t = tones[s.tone];
+          return (
+            <li class="special-wrap" style={`--tilt:${s.tilt}deg`}>
+              <article
+                data-reveal
+                data-delay={i * 0.1}
+                class:list={['special relative flex flex-col rounded-[36px] border-4 border-ink', t.card]}
+                style={`--shadow:${t.shadow}`}
+              >
+                <p class="self-start rounded-full bg-ink px-3 py-1.5 font-label text-[13px] uppercase tracking-[0.52px] text-mustard">
+                  {s.tag}
+                </p>
+                <h3 class:list={['mt-2 font-display text-[clamp(34px,3vw,44px)] leading-[1.1]', t.title]}>{s.title}</h3>
+                <p class:list={['mt-2 text-[16px] leading-[1.7]', t.body]}>{s.body}</p>
+                <div class="mt-auto flex items-center justify-between gap-3 pt-4">
+                  <p class:list={['font-display text-[clamp(40px,3.6vw,52px)] leading-none whitespace-nowrap', t.title]}>{s.price}</p>
+                  <PillButton href={ORDER_URL} external>Order</PillButton>
+                </div>
+                {i === 2 && (
+                  <div class="burst absolute" aria-hidden="true">
+                    <img src={burst.src} alt="" class="absolute top-0 left-0 size-[34px]" />
+                    <img src={burst.src} alt="" class="absolute top-[22px] left-[16px] size-[28px]" />
+                  </div>
+                )}
+              </article>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .munchie {
+    --bu: max(0.62px, min(1px, calc(100vw / 1440)));
+    padding-top: clamp(110px, 13.2vw, 190px);
+    padding-bottom: clamp(90px, 10vw, 150px);
+  }
+  .munchie :global(.title) {
+    font-size: clamp(64px, 8.33vw, 120px);
+    line-height: 1.02;
+  }
+  .dazed {
+    width: clamp(280px, 41.5vw, 597px);
+    margin-top: clamp(16px, 2vw, 30px);
+  }
+  .specials {
+    margin-top: clamp(44px, 4.5vw, 64px);
+    gap: 36px;
+  }
+  @media (min-width: 1024px) {
+    .specials {
+      gap: 28px;
+      align-items: start;
+    }
+  }
+  .special-wrap {
+    transform: rotate(var(--tilt));
+  }
+  .special {
+    padding: 30px 30px 32px;
+    min-height: 100%;
+    box-shadow: 12px 12px 0 var(--shadow);
+  }
+  @media (min-width: 1024px) {
+    .special {
+      padding: 30px;
+    }
+  }
+  .burst {
+    top: -26px;
+    right: -18px;
+    width: 50px;
+    height: 56px;
+  }
+</style>

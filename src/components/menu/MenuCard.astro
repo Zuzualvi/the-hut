@@ -1,0 +1,42 @@
+---
+import StackedText from '../StackedText.astro';
+import PillButton from '../PillButton.astro';
+import sparkleLg from '../../assets/figma/menu/card-sparkle-lg.svg';
+import sparkleSm from '../../assets/figma/menu/card-sparkle-sm.svg';
+
+interface Props {
+  title: string;
+  price: string;
+  cta: string;
+  href: string;
+  tone?: 'green' | 'mustard';
+  delay?: number;
+}
+
+const { title, price, cta, href, tone = 'green', delay = 0 } = Astro.props;
+---
+
+<article
+  data-reveal
+  data-delay={delay}
+  class:list={[
+    'menu-card relative flex flex-col items-center gap-4 rounded-[36px] border-4 border-ink px-[18px] pt-[18px] pb-[26px]',
+    tone === 'green' ? 'bg-green' : 'justify-center bg-mustard',
+  ]}
+>
+  <slot />
+  <StackedText as="h3" designSize={40} layers={5} class="text-center text-[40px] text-cream">{title}</StackedText>
+  <p class:list={['font-label text-[17px] uppercase tracking-[0.34px]', tone === 'green' ? 'text-mustard' : 'text-ink']}>
+    {price}
+  </p>
+  <PillButton href={href} external>{cta}</PillButton>
+
+  <img src={sparkleLg.src} alt="" width="34" height="34" class="card-sparkle absolute top-[-20px] right-5" />
+  <img src={sparkleSm.src} alt="" width="20" height="20" class="card-sparkle absolute top-[10px] right-[60px]" />
+</article>
+
+<style>
+  .menu-card {
+    filter: drop-shadow(10px 10px 0 var(--color-ink));
+  }
+</style>
