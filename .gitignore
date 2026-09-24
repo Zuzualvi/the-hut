@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 # Figma exports (large, reference only)
 design/
+.vercel
+.env*
