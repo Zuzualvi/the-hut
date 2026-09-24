@@ -11,8 +11,7 @@
    and with any static tilt an element already has. */
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Hero: rings breathe, owls float. The big sunbursts stay still on purpose:
-     rotating a 3000px layer costs ~60MB of GPU memory on a retina phone. */
+  /* Hero: rings breathe, owls float. */
   .wobble-outer {
     animation: sway-sm 14s ease-in-out infinite alternate;
   }
@@ -96,6 +95,17 @@
   }
 }
 
+/* Hero sunburst sway (all screen sizes; on trial for mobile smoothness). */
+@media (prefers-reduced-motion: no-preference) {
+  .sunburst-wrap {
+    animation: sway 34s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes sway {
+  from { rotate: -7deg; }
+  to { rotate: 7deg; }
+}
 @keyframes sway-sm {
   from { rotate: -2.5deg; }
   to { rotate: 2.5deg; }

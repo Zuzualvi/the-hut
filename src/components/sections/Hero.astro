@@ -33,8 +33,14 @@ import tagline from '../../assets/figma/hero/tagline.svg';
   <div class="canvas relative mx-auto">
     <!-- Stage: sunburst + wobble rings + owl, all in stage coords (origin = outer ring's top-left). -->
     <div class="stage absolute" aria-hidden="true" data-reveal="fade">
-      <div class="sunburst-wrap absolute" style="left:calc(-1054 * var(--su));top:calc(-1070 * var(--su));width:calc(3000 * var(--su));height:calc(3000 * var(--su))">
-        <img src={sunburst.src} alt="" class="sunburst block size-full max-w-none" />
+      <!-- Circular window onto the 3000px sunburst, centered on the ray origin (stage 446,430).
+           Radius 1150 covers the hero's farthest corner while keeping the rotating layer small.
+           Rays are wedges, so scaling about the center (--sbu) changes reach, not look. -->
+      <div
+        class="sunburst-wrap absolute overflow-hidden rounded-full"
+        style="left:calc(446 * var(--su) - 1150 * var(--sbu));top:calc(430 * var(--su) - 1150 * var(--sbu));width:calc(2300 * var(--sbu));height:calc(2300 * var(--sbu))"
+      >
+        <img src={sunburst.src} alt="" class="sunburst absolute block max-w-none" style="left:calc(-350 * var(--sbu));top:calc(-350 * var(--sbu));width:calc(3000 * var(--sbu));height:calc(3000 * var(--sbu))" />
       </div>
       <Art src={ringOuter.src} x={-4} y={-4} w={900} h={889.52} class="wobble wobble-outer" />
       <Art src={ringMid.src} x={58.68} y={34.73} w={783.65} h={785.76} class="wobble wobble-mid" />
@@ -93,6 +99,7 @@ import tagline from '../../assets/figma/hero/tagline.svg';
   /* ---------- Mobile / tablet: stage on top, copy below ---------- */
   .canvas {
     --su: calc(100cqw / 900);
+    --sbu: calc(100cqw / 440);
     --cu: min(0.62px, calc(100cqw / 880));
     padding-top: calc(170 * var(--su));
     padding-bottom: 56px;
@@ -154,6 +161,7 @@ import tagline from '../../assets/figma/hero/tagline.svg';
     .canvas {
       --u: min(1px, calc(100cqw / 1440));
       --su: var(--u);
+      --sbu: var(--u);
       --cu: var(--u);
       width: calc(1440 * var(--u));
       height: calc(900 * var(--u));
