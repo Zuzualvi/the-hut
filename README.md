@@ -20,6 +20,10 @@ npm run check    # type-check
 npm run build
 ```
 
+## Deploy
+
+Pushes to `main` deploy to production on Vercel (project `the-hut`, https://the-hut-kappa.vercel.app/hut). Other branches get preview deployments.
+
 ## Edit content
 
 Prices, specials, hours, and links are in `src/data/site.ts`.
