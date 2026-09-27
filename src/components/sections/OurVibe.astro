@@ -28,7 +28,6 @@ const badges = [
       <Art src={smokeB.src} x={146} y={-44} w={68} h={168} unit="--pu" class="smoke" />
       <Art src={smokeA.src} x={316} y={-74} w={68} h={188} unit="--pu" class="smoke" />
       <Art src={photoBlob.src} x={0} y={0} w={534} h={534} unit="--pu" class="photo-blob" />
-      <p class="caption absolute font-mono whitespace-nowrap text-stone">[ PHOTO — THE CREW ]</p>
       <Art src={estBadge.src} x={399.05} y={-10.95} w={121.91} h={121.91} unit="--pu" class="est-badge" />
     </div>
     <p class="sr-only">Est. 2026</p>
@@ -74,12 +73,6 @@ const badges = [
     width: calc(534 * var(--pu));
     height: calc(534 * var(--pu));
     margin-top: clamp(90px, 8.3vw, 120px);
-  }
-  .caption {
-    left: calc(174 * var(--pu));
-    top: calc(422 * var(--pu));
-    font-size: max(9px, calc(13 * var(--pu)));
-    letter-spacing: 0.12em;
   }
   .vibe :global(.heading) {
     font-size: clamp(34px, 4.6vw, 66px);

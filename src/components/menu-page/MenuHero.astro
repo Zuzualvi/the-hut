@@ -1,0 +1,130 @@
+---
+// Menu page hero: green sunburst, "Got Munchies?" and jump links to each section.
+import StackedText from '../StackedText.astro';
+import navDrips from '../../assets/figma/hero/nav-drips.svg';
+import sunburst from '../../assets/figma/hero/sunburst.svg';
+import pillSparkle from '../../assets/figma/menu/sparkle-pill.svg';
+import sparkleMustard from '../../assets/figma/hero/sparkle-mustard.svg';
+import sparkleCreamSm from '../../assets/figma/hero/sparkle-cream-sm.svg';
+import sparkleMustardSm from '../../assets/figma/hero/sparkle-mustard-sm.svg';
+
+const jumps = [
+  { label: 'Toasted Subs', href: '#subs' },
+  { label: 'Kati Rolls', href: '#rolls' },
+  { label: 'Cheesesteaks', href: '#steaks' },
+  { label: 'Classics', href: '#classics' },
+  { label: 'Munchies', href: '#munchies' },
+  { label: 'Drinks', href: '#drinks' },
+];
+---
+
+<section class="mhero relative overflow-hidden bg-green" aria-labelledby="menu-title">
+  <img src={sunburst.src} alt="" aria-hidden="true" class="burst absolute block max-w-none" />
+  <img src={sparkleMustard.src} alt="" aria-hidden="true" class="twinkle absolute top-[26%] left-[14%] size-[34px] max-md:top-[24%] max-md:left-[8%] max-md:size-[24px]" />
+  <img src={sparkleCreamSm.src} alt="" aria-hidden="true" class="twinkle absolute top-[22%] right-[18%] size-[22px] max-md:right-[10%]" />
+  <img src={sparkleMustardSm.src} alt="" aria-hidden="true" class="twinkle absolute top-[62%] right-[14%] size-[28px] max-md:hidden" />
+  <img src={navDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-20" />
+
+  <div class="relative z-10 mx-auto flex max-w-[980px] flex-col items-center px-5 text-center" data-reveal-group>
+    <p data-reveal class="flex items-center gap-2.5 rounded-full border-3 border-ink bg-mustard px-[18px] py-2 font-label text-[16px] uppercase tracking-[0.64px] text-ink">
+      <img src={pillSparkle.src} alt="" width="16" height="16" />
+      The Full Menu
+      <img src={pillSparkle.src} alt="" width="16" height="16" />
+    </p>
+    <StackedText as="h1" id="menu-title" data-reveal designSize={120} layers={12} outline class="title text-cream">
+      Got Munchies?
+    </StackedText>
+    <p data-reveal class="blurb max-w-[700px] text-cream">
+      Every sub is toasted and brushed with our house garlic butter &amp; parm. 100% halal.{' '}
+      <span class="max-md:hidden">Order ahead on DoorDash or pull up to the counter.</span>
+    </p>
+
+    <nav data-reveal aria-label="Menu sections" class="jump">
+      <span class="shrink-0 font-label text-[15px] whitespace-nowrap uppercase tracking-[0.6px] text-mustard max-md:hidden">Jump to</span>
+      <ul class="jump-list flex items-center gap-2 md:gap-3">
+        {
+          jumps.map((j) => (
+            <li class="shrink-0">
+              <a href={j.href} class="jump-pill inline-block rounded-full border-3 border-ink bg-cream font-label uppercase text-ink">
+                {j.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<style>
+  .mhero {
+    padding-top: clamp(110px, 10.4vw, 150px);
+    padding-bottom: clamp(100px, 13.2vw, 190px);
+  }
+  .burst {
+    width: 3000px;
+    height: 3000px;
+    left: calc(50% - 1500px);
+    top: -1250px;
+  }
+  @media (max-width: 767px) {
+    .burst {
+      width: 1400px;
+      height: 1400px;
+      left: calc(50% - 700px);
+      top: -520px;
+    }
+  }
+  .mhero :global(.title) {
+    margin-top: clamp(18px, 1.8vw, 26px);
+    font-size: clamp(54px, 8vw, 116px);
+    line-height: 0.98;
+  }
+  .blurb {
+    margin-top: clamp(18px, 1.8vw, 26px);
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.5;
+  }
+  .jump {
+    margin-top: clamp(22px, 1.8vw, 26px);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 100%;
+  }
+  .jump-pill {
+    padding: 9px 16px;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 0 var(--color-ink);
+    transition:
+      transform 120ms ease-out,
+      box-shadow 120ms ease-out;
+  }
+  .jump-pill:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--color-ink);
+  }
+  @media (min-width: 768px) {
+    .jump-pill {
+      padding: 10px 20px;
+      font-size: 15px;
+    }
+  }
+  /* Phones: the pills scroll sideways, bleeding off the right edge. */
+  @media (max-width: 767px) {
+    .jump {
+      width: calc(100% + 20px);
+      margin-right: -20px;
+      align-self: flex-start;
+    }
+    .jump-list {
+      overflow-x: auto;
+      padding: 0 20px 8px 0;
+      scrollbar-width: none;
+    }
+    .jump-list::-webkit-scrollbar {
+      display: none;
+    }
+  }
+</style>

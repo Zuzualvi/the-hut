@@ -1,0 +1,109 @@
+---
+// Kati Rolls + Cheesesteaks on the dark lava-lamp background (Figma "Section/Rolls & Steaks").
+import StackedText from '../StackedText.astro';
+import menuDrips from '../../assets/figma/munchie/menu-drips.svg';
+import blobGreenTl from '../../assets/figma/munchie/blob-green-tl.svg';
+import blobMustardTr from '../../assets/figma/munchie/blob-mustard-tr.svg';
+import blobRustBr from '../../assets/figma/munchie/blob-rust-br.svg';
+import blobGreenBc from '../../assets/figma/munchie/blob-green-bc.svg';
+import { KATI_ROLLS, CHEESESTEAKS } from '../../data/site';
+
+// Lava blobs: x as % of width, y/size in scaled px (like Munchie Hour).
+const blobs = [
+  { src: blobGreenTl.src, x: -170, y: 260, w: 490.5, h: 469.08 },
+  { src: blobMustardTr.src, x: 1110, y: 120, w: 440.47, h: 440.47 },
+  { src: blobRustBr.src, x: 900, y: 560, w: 572.37, h: 581.91 },
+  { src: blobGreenBc.src, x: 380, y: 700, w: 358.92, h: 358.92 },
+];
+
+// Card tones match the Munchie Hour specials.
+const tones = {
+  mustard: { card: 'bg-mustard text-ink', shadow: 'var(--color-green)' },
+  cream: { card: 'bg-cream text-brown', shadow: 'var(--color-mustard)' },
+  green: { card: 'bg-green text-cream', shadow: 'var(--color-mustard)' },
+} as const;
+
+const columns = [
+  { id: 'rolls', title: 'Kati Rolls', sub: 'Rolled in paratha', items: KATI_ROLLS.map((i) => ({ ...i, tone: 'mustard' as const })) },
+  {
+    id: 'steaks',
+    title: 'Cheesesteaks',
+    sub: 'Beef or chicken',
+    items: CHEESESTEAKS.map((i, n) => ({ ...i, choices: undefined, tone: n === 0 ? ('cream' as const) : ('green' as const) })),
+  },
+];
+---
+
+<section class="rolls relative overflow-hidden bg-ink px-5 md:px-[clamp(20px,8.3vw,120px)]">
+  <div aria-hidden="true">
+    {
+      blobs.map((b, i) => (
+        <img
+          src={b.src}
+          alt=""
+          class="lava absolute block max-w-none"
+          style={`left:${((b.x / 1440) * 100).toFixed(2)}%;top:calc(${b.y} * var(--bu));width:calc(${b.w} * var(--bu));height:calc(${b.h} * var(--bu));--i:${i}`}
+        />
+      ))
+    }
+  </div>
+  <img src={menuDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-10" />
+
+  <div class="relative z-10 mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-2 lg:gap-16">
+    {
+      columns.map((col) => (
+        <div id={col.id} class="flex scroll-mt-24 flex-col gap-6 md:gap-7" data-reveal-group>
+          <div class="flex flex-col gap-1.5">
+            <StackedText data-reveal designSize={120} layers={12} outline class="title text-cream">{col.title}</StackedText>
+            <p data-reveal class="font-label text-[13px] uppercase tracking-[0.52px] text-mustard md:text-[16px]">{col.sub}</p>
+          </div>
+          {col.items.map((it) => (
+            <article
+              data-reveal
+              class:list={['card flex flex-col gap-2.5 rounded-[30px] border-4 border-ink md:gap-3 md:rounded-[36px]', tones[it.tone].card]}
+              style={`--shadow:${tones[it.tone].shadow}`}
+            >
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="font-display text-[28px] leading-[1.15] md:text-[40px]">{it.name}</h3>
+                <p class="shrink-0 font-label text-[22px] md:text-[30px]">{it.price}</p>
+              </div>
+              <p class="text-[16px] leading-normal md:text-[19px]">{it.desc}</p>
+              {it.choices && (
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="font-label text-[13px] uppercase tracking-[0.4px] md:text-[15px]">Pick one:</p>
+                  {it.choices.map((c) => (
+                    <span class="rounded-full border-3 border-ink bg-cream px-3.5 py-[7px] font-label text-[13px] uppercase tracking-[0.26px] text-ink md:px-4 md:py-2 md:text-[15px]">
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .rolls {
+    --bu: max(0.62px, min(1px, calc(100vw / 1440)));
+    padding-top: clamp(130px, 13.9vw, 200px);
+    padding-bottom: clamp(90px, 10.4vw, 150px);
+  }
+  .rolls :global(.title) {
+    font-size: clamp(46px, 5.3vw, 76px);
+    line-height: 1.05;
+  }
+  .card {
+    padding: 22px 24px 24px;
+    box-shadow: 8px 8px 0 var(--shadow);
+  }
+  @media (min-width: 768px) {
+    .card {
+      padding: 30px 32px 32px;
+      box-shadow: 12px 12px 0 var(--shadow);
+    }
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+// Classics + Munchies lists and the Drinks strip (Figma "Section/Classics & Munchies").
+import StackedText from '../StackedText.astro';
+import navDrips from '../../assets/figma/hero/nav-drips.svg';
+import sunburst from '../../assets/figma/hero/sunburst.svg';
+import sparkleMustard from '../../assets/figma/hero/sparkle-mustard.svg';
+import sparkleCreamSm from '../../assets/figma/hero/sparkle-cream-sm.svg';
+import { CLASSICS, MUNCHIES, DRINKS } from '../../data/site';
+
+type Item = { name: string; price: string; desc?: string };
+const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
+  { id: 'classics', title: 'Classics', sub: 'Cozy classics', items: CLASSICS },
+  { id: 'munchies', title: 'Munchies', sub: 'Sides & snacks', items: MUNCHIES },
+];
+---
+
+<section class="classics relative overflow-hidden bg-green px-5 md:px-[clamp(20px,8.3vw,120px)]">
+  <img src={sunburst.src} alt="" aria-hidden="true" class="burst absolute block max-w-none opacity-50" />
+  <img src={sparkleMustard.src} alt="" aria-hidden="true" class="twinkle absolute top-[14%] right-[8%] size-[34px] max-md:hidden" />
+  <img src={sparkleCreamSm.src} alt="" aria-hidden="true" class="twinkle absolute top-[22%] left-[5%] size-[22px] max-md:hidden" />
+  <img src={navDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-10" />
+
+  <div class="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-12 md:gap-14">
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-12">
+      {
+        lists.map((l) => (
+          <div id={l.id} class="flex scroll-mt-24 flex-col gap-6" data-reveal-group>
+            <div class="flex flex-col gap-1.5">
+              <StackedText data-reveal designSize={40} layers={5} class="title text-cream">{l.title}</StackedText>
+              <p data-reveal class="font-label text-[13px] uppercase tracking-[0.52px] text-mustard md:text-[16px]">{l.sub}</p>
+            </div>
+            <ul data-reveal class="list flex flex-1 flex-col gap-5 rounded-[30px] border-4 border-ink bg-paper md:gap-[26px] md:rounded-[36px]">
+              {l.items.map((it) => (
+                <li class="flex flex-col gap-1">
+                  <div class="flex items-baseline gap-2.5 md:gap-3.5">
+                    <h3 class="font-display text-[20px] leading-[1.2] text-green min-[400px]:text-[22px] md:text-[30px]">{it.name}</h3>
+                    <span class="leader text-brown" aria-hidden="true" />
+                    <p class="shrink-0 font-label text-[17px] text-brown min-[400px]:text-[18px] md:text-[24px]">{it.price}</p>
+                  </div>
+                  {it.desc && <p class="max-w-[440px] text-[15px] leading-normal text-brown md:text-[18px]">{it.desc}</p>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div id="drinks" data-reveal class="drinks flex scroll-mt-24 flex-col gap-3.5 rounded-[30px] border-4 border-ink bg-mustard text-ink md:rounded-[36px] lg:flex-row lg:items-center lg:gap-10">
+      <h3 class="font-display text-[38px] leading-[1.2] lg:text-[52px]">Drinks</h3>
+      <ul class="flex flex-1 flex-col gap-2.5 lg:flex-row lg:items-center lg:justify-between lg:gap-7">
+        {
+          DRINKS.map((d, i) => (
+            <Fragment>
+              <li class="flex items-baseline gap-2.5 lg:flex-col lg:items-start lg:gap-0.5">
+                <p class="font-label text-[14px] uppercase tracking-[0.3px] min-[400px]:text-[15px] lg:text-[18px]">{d.name}</p>
+                <span class="leader lg:hidden" aria-hidden="true" />
+                <p class="font-label text-[18px] lg:font-display lg:text-[34px] lg:leading-[1.2]">{d.price}</p>
+              </li>
+              {i < DRINKS.length - 1 && <li class="size-2.5 shrink-0 rounded-full bg-ink max-lg:hidden" aria-hidden="true" />}
+            </Fragment>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .classics {
+    padding-top: clamp(110px, 13.2vw, 190px);
+    padding-bottom: clamp(100px, 11.8vw, 170px);
+  }
+  .burst {
+    width: 3000px;
+    height: 3000px;
+    left: calc(50% - 1500px);
+    top: -900px;
+  }
+  .classics :global(.title) {
+    font-size: clamp(46px, 5.3vw, 76px);
+    line-height: 1.05;
+  }
+  .list {
+    padding: 24px 22px 26px;
+    box-shadow: 8px 8px 0 var(--color-ink);
+  }
+  .drinks {
+    padding: 22px 24px 24px;
+    box-shadow: 8px 8px 0 var(--color-ink);
+  }
+  @media (min-width: 768px) {
+    .list {
+      padding: 34px;
+      box-shadow: 10px 10px 0 var(--color-ink);
+    }
+    .drinks {
+      padding: 28px 44px 30px 40px;
+      box-shadow: 10px 10px 0 var(--color-ink);
+    }
+  }
+</style>

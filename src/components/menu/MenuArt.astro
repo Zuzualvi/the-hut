@@ -13,7 +13,8 @@ import blobClassics from '../../assets/figma/menu/blob-classics.svg';
 import blobMunchies from '../../assets/figma/menu/blob-munchies.svg';
 import lettuce from '../../assets/figma/menu/lettuce.svg';
 import cheeseSubs from '../../assets/figma/menu/cheese-subs.svg';
-import cheeseSteaks from '../../assets/figma/menu/cheese-steaks.svg';
+import steakCheese from '../../assets/figma/menu/steak-cheese.svg';
+import steakDrips from '../../assets/figma/menu/steak-drips.svg';
 import seedA from '../../assets/figma/menu/seed-a.svg';
 import seedB from '../../assets/figma/menu/seed-b.svg';
 import katiRoll from '../../assets/figma/menu/kati-roll.svg';
@@ -65,14 +66,10 @@ const fries: [number, number, number, number, number, number][] = [
     <Layer src={blob.src} x={blob.x} y={blob.y} w={blob.s} h={blob.s} bleed={blob.bleed} class="blob" />
 
     {
-      (art === 'subs' || art === 'steaks') && (
+      art === 'subs' && (
         <Fragment>
           <Layer src={lettuce.src} x={51.4} y={119.7} w={239.2} h={16.2} bleed="-9.26% -0.63%" />
-          {art === 'subs' ? (
-            <Layer src={cheeseSubs.src} x={65.2} y={112.8} w={211.6} h={23.925} bleed="-6.27% -0.71%" />
-          ) : (
-            <Layer src={cheeseSteaks.src} x={65.2} y={112.8} w={211.6} h={44.65} bleed="-3.36% -0.71%" />
-          )}
+          <Layer src={cheeseSubs.src} x={65.2} y={112.8} w={211.6} h={23.925} bleed="-6.27% -0.71%" />
           <div class="absolute rounded-[7px] border-3 border-ink bg-meat" style="left:60.6px;top:105.9px;width:220.8px;height:14px" />
           <div class="absolute rounded-[27.6px] border-3 border-ink bg-bread" style="left:56px;top:62.2px;width:230px;height:52.9px" />
           {seeds.map(([x, y, deg]) => (
@@ -84,8 +81,24 @@ const fries: [number, number, number, number, number, number][] = [
     }
 
     {
+      art === 'steaks' && (
+        <Fragment>
+          {/* No lettuce: a solid layer of melted cheese with onion slivers, dripping over the bottom bun. */}
+          <Layer src={steakCheese.src} x={51.5} y={119.67} w={239} h={25} />
+          <div class="absolute rounded-[7px] border-3 border-ink bg-meat" style="left:60.6px;top:112.18px;width:220.8px;height:14px" />
+          <div class="absolute rounded-[27.6px] border-3 border-ink bg-bread" style="left:56px;top:68.47px;width:230px;height:52.9px" />
+          {seeds.map(([x, y, deg]) => (
+            <Layer src={deg > 0 ? seedA.src : seedB.src} x={x + 0.473} y={y + 1.0765 + 6.27} w={7} h={4} rotate={deg} />
+          ))}
+          <div class="absolute rounded-[18.4px] border-3 border-ink bg-bread" style="left:58.3px;top:138.72px;width:225.4px;height:36.8px" />
+          <Layer src={steakDrips.src} x={101.5} y={137.23} w={152} h={23} />
+        </Fragment>
+      )
+    }
+
+    {
       art === 'rolls' && (
-        <Layer src={katiRoll.src} x={31.4} y={125.9} w={250} h={90} bleed="0 -4% 0 0" rotate={14} />
+        <Layer src={katiRoll.src} x={46} y={77} w={250} h={90} bleed="0 -4% 0 0" rotate={14} />
       )
     }
 

@@ -11,9 +11,10 @@ interface Props {
   href: string;
   tone?: 'green' | 'mustard';
   delay?: number;
+  external?: boolean;
 }
 
-const { title, price, cta, href, tone = 'green', delay = 0 } = Astro.props;
+const { title, price, cta, href, tone = 'green', delay = 0, external = false } = Astro.props;
 ---
 
 <article
@@ -29,7 +30,7 @@ const { title, price, cta, href, tone = 'green', delay = 0 } = Astro.props;
   <p class:list={['font-label text-[17px] uppercase tracking-[0.34px]', tone === 'green' ? 'text-mustard' : 'text-ink']}>
     {price}
   </p>
-  <PillButton href={href} external>{cta}</PillButton>
+  <PillButton href={href} external={external}>{cta}</PillButton>
 
   <img src={sparkleLg.src} alt="" width="34" height="34" class="card-sparkle absolute top-[-20px] right-5" />
   <img src={sparkleSm.src} alt="" width="20" height="20" class="card-sparkle absolute top-[10px] right-[60px]" />

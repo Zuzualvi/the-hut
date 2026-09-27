@@ -3,11 +3,16 @@
 export const ORDER_URL =
   'https://www.doordash.com/store/the-hut-glassboro-51518273/120066347/?pickup=true';
 
+// Internal links carry the base path (/hut on the preview) so they work from any page.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+export const HOME_URL = `${BASE}/`;
+export const MENU_URL = `${BASE}/menu/`;
+
 export const NAV_LINKS = [
-  { label: 'Menu', href: '#menu' },
-  { label: 'Munchie Hour', href: '#munchie-hour' },
-  { label: 'Our Vibe', href: '#our-vibe' },
-  { label: 'Find Us', href: '#find-us' },
+  { label: 'Menu', href: MENU_URL },
+  { label: 'Munchie Hour', href: `${HOME_URL}#munchie-hour` },
+  { label: 'Our Vibe', href: `${HOME_URL}#our-vibe` },
+  { label: 'Find Us', href: `${HOME_URL}#find-us` },
 ];
 
 export type MenuArt = 'subs' | 'steaks' | 'rolls' | 'classics' | 'munchies';
@@ -17,12 +22,13 @@ export const MENU_CATEGORIES: {
   price: string;
   cta: string;
   art: MenuArt;
+  href: string;
 }[] = [
-  { title: 'Toasted Subs', price: '8.99 half · 15.99 whole', cta: 'View Subs', art: 'subs' },
-  { title: 'Cheesesteaks', price: '12.99', cta: 'View Steaks', art: 'steaks' },
-  { title: 'Kati Rolls', price: '6.99', cta: 'View Rolls', art: 'rolls' },
-  { title: 'Cozy Classics', price: 'From 2.99', cta: 'View Classics', art: 'classics' },
-  { title: 'Munchies', price: 'From 1.99', cta: 'View Munchies', art: 'munchies' },
+  { title: 'Toasted Subs', price: '8.99 half · 15.99 whole', cta: 'View Subs', art: 'subs', href: `${MENU_URL}#subs` },
+  { title: 'Cheesesteaks', price: '15.99', cta: 'View Steaks', art: 'steaks', href: `${MENU_URL}#steaks` },
+  { title: 'Kati Rolls', price: '6.99', cta: 'View Rolls', art: 'rolls', href: `${MENU_URL}#rolls` },
+  { title: 'Cozy Classics', price: 'From 2.99', cta: 'View Classics', art: 'classics', href: `${MENU_URL}#classics` },
+  { title: 'Munchies', price: 'From 1.99', cta: 'View Munchies', art: 'munchies', href: `${MENU_URL}#munchies` },
 ];
 
 export type Sticker = 'fire-og' | 'grandaddy-purp' | 'white-widow' | 'pineapple-express';
@@ -46,14 +52,14 @@ export const INSTAGRAM_HANDLE = 'thehutglassboro';
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 
 export const HOURS = [
-  { days: 'Mon–Thu', time: '11AM – 12AM' },
-  { days: 'Fri–Sat', time: '11AM – 2AM' },
-  { days: 'Sunday', time: '12PM – 12AM' },
+  { days: 'Mon–Thu', time: '4PM – 11PM' },
+  { days: 'Fri–Sat', time: '4PM – 2AM' },
+  { days: 'Sunday', time: 'Closed' },
 ];
 
 export const SPECIALS = [
   {
-    tag: 'Sun–Thu · after 10PM',
+    tag: 'Mon–Thu · after 10PM',
     title: 'The Night Owl',
     body: 'Any half toasted sub, fries and a brownie. The 1AM trifecta.',
     price: '$13.99',
@@ -77,3 +83,68 @@ export const SPECIALS = [
     tilt: -1.5,
   },
 ] as const;
+
+// ---------------------------------------------------------------------------
+// Full menu (from the in-store menu board). Sub prices are per size, so they
+// live on SUB_SIZES and the group headers rather than on every item.
+
+export const SUB_SIZES = [
+  { size: 'Half', inches: '6"', nickname: 'Quick Hit', price: '$8.99' },
+  { size: 'Full', inches: '12"', nickname: 'Heavy Hands', price: '$15.99' },
+];
+export const ALL_THE_WAY = ['Lettuce', 'Red Onion', 'Tomato', 'Shake', 'House Dressing'];
+export const SHAKE = 'Our house seasoning: parmesan, oregano, basil, onion powder, parsley, salt & pepper.';
+
+type Sub = { name: string; style: string; desc: string };
+const FAVE_NAMES = new Set(FAN_FAVES.map((f) => f.name));
+const withFaves = (items: Sub[]) => items.map((i) => ({ ...i, fave: FAVE_NAMES.has(i.name) }));
+
+export const SUB_GROUPS = [
+  {
+    title: 'Chicken',
+    items: withFaves([
+      { name: 'Fire OG', style: 'Buffalo', desc: 'Cheddar, jalapeño, green bell pepper, black olives' },
+      { name: 'Mediterranean Kush', style: 'Greek', desc: 'Feta, olives, banana peppers, spring mix' },
+      { name: 'Grandaddy Purp', style: 'BBQ', desc: 'Swiss' },
+      { name: 'White Widow', style: 'Chicken Bacon Ranch', desc: 'Provolone, ranch, beef bacon' },
+      { name: 'Marinara Haze', style: 'Chicken Parm', desc: 'Mozzarella, marinara' },
+      { name: 'Pineapple Express', style: 'Teriyaki', desc: 'Pepper jack, pineapple, green bell peppers' },
+    ]),
+  },
+  {
+    title: 'Turkey & Veggie',
+    items: withFaves([
+      { name: 'Turkey Trainwreck', style: 'Turkey', desc: 'Provolone, mayo, beef bacon' },
+      { name: 'Green Crack', style: 'Veggie', desc: 'Feta cheese, guacamole, spring mix, cucumbers, mushrooms, olives, green pepper' },
+    ]),
+  },
+];
+
+export const KATI_ROLLS = [
+  { name: 'Chicken or Paneer', price: '6.99', desc: 'Paratha, red onions, white sauce, mint chutney', choices: ['Chicken', 'Paneer'] },
+];
+
+export const CHEESESTEAKS = [
+  { name: 'Beef', price: '15.99', desc: 'Provolone, grilled onions, green bell peppers' },
+  { name: 'Chicken', price: '15.99', desc: 'American, grilled onions, buffalo sauce' },
+];
+
+export const CLASSICS = [
+  { name: 'Grilled Cheese', price: '4.99' },
+  { name: 'Tomato Soup', price: '2.99' },
+  { name: 'Wake and Bake', price: '7.99', desc: 'Bagel, turkey sausage, egg, cheese' },
+  { name: 'Grilled PB&J', price: '2.99' },
+];
+
+export const MUNCHIES = [
+  { name: 'Not’so Nachos', price: '5.99 / 12.99', desc: 'Doritos, colby jack, jalapeño, red onions, black olives, hot sauce, ranch' },
+  { name: 'Fries', price: '3.99', desc: 'Add cajun' },
+  { name: 'Mac & Cheese Bites', price: '5.99' },
+  { name: 'Chips / Brownies', price: '1.99' },
+];
+
+export const DRINKS = [
+  { name: 'Soda Cans', price: '1.99' },
+  { name: 'Water', price: '1.50' },
+  { name: 'Red Bull & Glass Bottles', price: '2.99' },
+];

@@ -1,0 +1,48 @@
+---
+// Closing call to action on the menu page (Figma "Section/Hungry yet").
+import StackedText from '../StackedText.astro';
+import PillButton from '../PillButton.astro';
+import scallop from '../../assets/figma/findus/scallop.svg';
+import { HOURS, ORDER_URL, MAPS_URL } from '../../data/site';
+---
+
+<section class="hungry relative overflow-hidden bg-mustard px-5 text-center">
+  <img src={scallop.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art" />
+
+  <div class="relative mx-auto flex max-w-[900px] flex-col items-center gap-[18px] md:gap-6" data-reveal-group>
+    <StackedText data-reveal designSize={92} layers={9} class="title text-green">Hungry yet?</StackedText>
+    <p data-reveal class="text-[16px] leading-normal text-ink md:text-[21px]">
+      Order ahead on DoorDash or pull up to 709 N. Main St., Glassboro.
+    </p>
+    <ul data-reveal class="flex flex-col items-center gap-1 font-label text-[15px] uppercase tracking-[0.45px] text-ink md:flex-row md:gap-3.5 md:text-[17px]">
+      {
+        HOURS.map((h, i) => (
+          <Fragment>
+            <li>{h.days} {h.time}</li>
+            {i < HOURS.length - 1 && <li class="size-[7px] rounded-full bg-ink max-md:hidden" aria-hidden="true" />}
+          </Fragment>
+        ))
+      }
+    </ul>
+    <div data-reveal class="ctas flex w-full flex-col gap-3.5 pt-2 md:w-auto md:flex-row md:gap-[18px] md:pt-3.5">
+      <PillButton href={ORDER_URL} variant="ink" size="lg" external>Order on DoorDash</PillButton>
+      <PillButton href={MAPS_URL} size="lg" external>Get Directions</PillButton>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hungry {
+    padding-top: clamp(100px, 11.8vw, 170px);
+    padding-bottom: clamp(120px, 12.5vw, 180px);
+  }
+  .hungry :global(.title) {
+    font-size: clamp(54px, 7.2vw, 104px);
+    line-height: 1.05;
+  }
+  @media (max-width: 767px) {
+    .ctas :global(.pill) {
+      padding-block: 16px;
+    }
+  }
+</style>

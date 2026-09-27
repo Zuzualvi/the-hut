@@ -1,0 +1,26 @@
+---
+// Full menu page (Figma "Desktop — Menu (1440)" 45:43 / "Mobile — Menu (390)" 50:48).
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import MenuHero from '../components/menu-page/MenuHero.astro';
+import SubsSection from '../components/menu-page/SubsSection.astro';
+import RollsSteaks from '../components/menu-page/RollsSteaks.astro';
+import ClassicsMunchies from '../components/menu-page/ClassicsMunchies.astro';
+import HungryYet from '../components/menu-page/HungryYet.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+
+<Layout
+  title="Menu — The Hut · Toasted Subs & Late-Night Munchies · Glassboro, NJ"
+  description="The full Hut menu: toasted subs, kati rolls, cheesesteaks, classics, munchies and drinks. 100% halal."
+>
+  <Nav current="Menu" />
+  <main id="top">
+    <MenuHero />
+    <SubsSection />
+    <RollsSteaks />
+    <ClassicsMunchies />
+    <HungryYet />
+  </main>
+  <Footer />
+</Layout>

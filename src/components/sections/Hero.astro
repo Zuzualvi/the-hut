@@ -4,7 +4,7 @@
 import Art from '../Art.astro';
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
-import { ORDER_URL } from '../../data/site';
+import { ORDER_URL, MENU_URL } from '../../data/site';
 
 import navDrips from '../../assets/figma/hero/nav-drips.svg';
 import sunburst from '../../assets/figma/hero/sunburst.svg';
@@ -68,9 +68,9 @@ import tagline from '../../assets/figma/hero/tagline.svg';
         <StackedText as="h1" id="hero-title" designSize={150} layers={12} outline class="headline-text text-cream">
           Get<br />Toasted.
         </StackedText>
-        <img src={drip1.src} alt="" aria-hidden="true" data-reveal="drip" class="drip absolute -z-10" style="left:0.9833em;top:1.4333em;width:0.2133em;height:0.875em" />
-        <img src={drip2.src} alt="" aria-hidden="true" data-reveal="drip" class="drip absolute -z-10" style="left:2.7867em;top:1.4333em;width:0.1867em;height:0.5983em" />
-        <img src={drip3.src} alt="" aria-hidden="true" data-reveal="drip" class="drip absolute -z-10" style="left:3.86em;top:1.4333em;width:0.24em;height:1.09em" />
+        <img src={drip1.src} alt="" aria-hidden="true" data-reveal="drip" class="drip absolute -z-10" style="left:0.99em;top:1.44em;width:0.22em;height:0.8667em" />
+        <img src={drip2.src} alt="" aria-hidden="true" data-reveal="drip" class="drip absolute -z-10" style="left:2.7933em;top:1.44em;width:0.1867em;height:0.5867em" />
+        <img src={drip3.src} alt="" aria-hidden="true" data-reveal="drip" class="drip absolute -z-10" style="left:3.8667em;top:1.44em;width:0.2467em;height:1.08em" />
       </div>
 
       <img data-reveal src={tagline.src} alt="Toasted Subs · Late-night · Munchies" class="tagline block" />
@@ -82,7 +82,7 @@ import tagline from '../../assets/figma/hero/tagline.svg';
 
       <div class="ctas relative" data-reveal>
         <PillButton href={ORDER_URL} variant="mustard" size="xl" external>Order Now</PillButton>
-        <PillButton href="#menu" size="xl">Peep the Menu</PillButton>
+        <PillButton href={MENU_URL} size="xl">Peep the Menu</PillButton>
         <img src={sparkleCreamSm.src} alt="" aria-hidden="true" class="twinkle cta-sparkle absolute" />
       </div>
     </div>
@@ -133,7 +133,7 @@ import tagline from '../../assets/figma/hero/tagline.svg';
   }
   .tagline {
     margin-top: calc(114 * var(--cu));
-    width: min(290px, 74vw);
+    width: min(253px, 72vw);
     height: auto;
   }
   .blurb {
@@ -192,7 +192,7 @@ import tagline from '../../assets/figma/hero/tagline.svg';
       height: calc(16 * var(--u));
     }
     .tagline {
-      width: calc(470 * var(--u));
+      width: calc(360 * var(--u));
     }
     .blurb {
       margin-top: calc(34 * var(--u));

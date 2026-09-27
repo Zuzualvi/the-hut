@@ -14,6 +14,7 @@
   --color-bread: #b7782f;
   --color-meat: #4a2c1a;
   --color-rim: #7a4a2a;
+  --color-paper: #fff9ec;
 
   --font-display: "Shrikhand", cursive;
   --font-label: "Titan One", sans-serif;
@@ -47,6 +48,15 @@ body {
   height: auto;
   transform: translateX(-50%);
   pointer-events: none;
+}
+
+/* Dotted leader between a menu item and its price, like the in-store board. */
+.leader {
+  flex: 1 1 24px;
+  min-width: 16px;
+  height: 3px;
+  margin-bottom: 0.2em; /* sits on the text baseline inside baseline-aligned rows */
+  background: radial-gradient(circle, currentColor 1.4px, transparent 1.6px) 0 50% / 10px 3px repeat-x;
 }
 
 @media (prefers-reduced-motion: reduce) {
