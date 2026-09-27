@@ -6,7 +6,8 @@ import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
 import { ORDER_URL, MENU_URL } from '../../data/site';
 
-import navDrips from '../../assets/figma/hero/nav-drips.svg';
+import DripBand from '../DripBand.astro';
+import navDrips from '../../data/drips/nav-drips.json';
 import sunburst from '../../assets/figma/hero/sunburst.svg';
 import ringOuter from '../../assets/figma/hero/ring-outer.svg';
 import ringMid from '../../assets/figma/hero/ring-mid.svg';
@@ -88,7 +89,7 @@ import tagline from '../../assets/figma/hero/tagline.svg';
     </div>
   </div>
 
-  <img src={navDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-20" />
+  <DripBand data={navDrips} class="z-20" />
 </section>
 
 <style>

@@ -3,14 +3,15 @@
 import Art from '../Art.astro';
 import { NAV_LINKS, INSTAGRAM_URL } from '../../data/site';
 
-import goldDrips from '../../assets/figma/footer/gold-drips.svg';
+import DripBand from '../DripBand.astro';
+import goldDrips from '../../data/drips/gold-drips.json';
 import owl from '../../assets/figma/footer/owl.svg';
 import wordmark from '../../assets/figma/footer/wordmark.svg';
 import tagline from '../../assets/figma/footer/tagline.svg';
 ---
 
 <footer class="footer relative overflow-hidden bg-ink text-center">
-  <img src={goldDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art" />
+  <DripBand data={goldDrips} />
 
   <div class="owl-frame relative mx-auto" aria-hidden="true" data-reveal>
     <Art src={owl.src} x={30} y={60} w={239.35} h={218.9} unit="--fu" class="owl" />

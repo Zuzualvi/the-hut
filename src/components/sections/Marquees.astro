@@ -1,7 +1,8 @@
 ---
 // Crossing marquees (Figma 16:93). Sized in em off the band font (32px on desktop)
 // so the whole section scales by changing one font-size.
-import heroDrips from '../../assets/figma/marquee/hero-drips.svg';
+import DripBand from '../DripBand.astro';
+import heroDrips from '../../data/drips/hero-drips.json';
 import sparkle from '../../assets/figma/menu/sparkle-pill.svg';
 
 const bands = [
@@ -34,7 +35,7 @@ const REPEAT = 8;
       </div>
     ))
   }
-  <img src={heroDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-10" />
+  <DripBand data={heroDrips} class="z-10" />
 </section>
 
 <style>

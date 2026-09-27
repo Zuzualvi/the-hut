@@ -1,7 +1,8 @@
 ---
 // Kati Rolls + Cheesesteaks on the dark lava-lamp background (Figma "Section/Rolls & Steaks").
 import StackedText from '../StackedText.astro';
-import menuDrips from '../../assets/figma/munchie/menu-drips.svg';
+import DripBand from '../DripBand.astro';
+import menuDrips from '../../data/drips/menu-drips.json';
 import blobGreenTl from '../../assets/figma/munchie/blob-green-tl.svg';
 import blobMustardTr from '../../assets/figma/munchie/blob-mustard-tr.svg';
 import blobRustBr from '../../assets/figma/munchie/blob-rust-br.svg';
@@ -47,7 +48,7 @@ const columns = [
       ))
     }
   </div>
-  <img src={menuDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-10" />
+  <DripBand data={menuDrips} class="z-10" />
 
   <div class="relative z-10 mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-2 lg:gap-16">
     {

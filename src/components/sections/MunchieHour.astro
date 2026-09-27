@@ -4,7 +4,8 @@ import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
 import { SPECIALS, ORDER_URL } from '../../data/site';
 
-import menuDrips from '../../assets/figma/munchie/menu-drips.svg';
+import DripBand from '../DripBand.astro';
+import menuDrips from '../../data/drips/menu-drips.json';
 import dazed from '../../assets/figma/munchie/dazed-hungry.svg';
 import blobGreenTl from '../../assets/figma/munchie/blob-green-tl.svg';
 import blobMustardTr from '../../assets/figma/munchie/blob-mustard-tr.svg';
@@ -42,7 +43,7 @@ const tones = {
       ))
     }
   </div>
-  <img src={menuDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-10" />
+  <DripBand data={menuDrips} class="z-10" />
 
   <div class="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center px-5">
     <StackedText data-reveal designSize={120} layers={12} outline class="title text-center text-cream">Munchie Hour</StackedText>

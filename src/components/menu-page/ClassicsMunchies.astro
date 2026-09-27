@@ -1,7 +1,8 @@
 ---
 // Classics + Munchies lists and the Drinks strip (Figma "Section/Classics & Munchies").
 import StackedText from '../StackedText.astro';
-import navDrips from '../../assets/figma/hero/nav-drips.svg';
+import DripBand from '../DripBand.astro';
+import navDrips from '../../data/drips/nav-drips.json';
 import sunburst from '../../assets/figma/hero/sunburst.svg';
 import sparkleMustard from '../../assets/figma/hero/sparkle-mustard.svg';
 import sparkleCreamSm from '../../assets/figma/hero/sparkle-cream-sm.svg';
@@ -18,7 +19,7 @@ const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
   <img src={sunburst.src} alt="" aria-hidden="true" class="burst absolute block max-w-none opacity-50" />
   <img src={sparkleMustard.src} alt="" aria-hidden="true" class="twinkle absolute top-[14%] right-[8%] size-[34px] max-md:hidden" />
   <img src={sparkleCreamSm.src} alt="" aria-hidden="true" class="twinkle absolute top-[22%] left-[5%] size-[22px] max-md:hidden" />
-  <img src={navDrips.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art z-10" />
+  <DripBand data={navDrips} class="z-10" />
 
   <div class="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-12 md:gap-14">
     <div class="grid gap-10 lg:grid-cols-2 lg:gap-12">

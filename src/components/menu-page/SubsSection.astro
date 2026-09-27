@@ -1,7 +1,8 @@
 ---
 // Toasted Subs: sizing guide + sub groups (Figma "Section/Toasted Subs").
 import StackedText from '../StackedText.astro';
-import heroDrips from '../../assets/figma/marquee/hero-drips.svg';
+import DripBand from '../DripBand.astro';
+import heroDrips from '../../data/drips/hero-drips.json';
 import bgSparkle from '../../assets/figma/menu/bg-sparkle.svg';
 import { SUB_SIZES, ALL_THE_WAY, SHAKE, SUB_GROUPS } from '../../data/site';
 
@@ -13,7 +14,7 @@ const sparkles: [string, string, number][] = [
 <section id="subs" class="subs relative scroll-mt-20 overflow-hidden bg-cream px-5 md:px-[clamp(20px,8.3vw,120px)]">
   <div aria-hidden="true">
     {sparkles.map(([x, y, s]) => <img src={bgSparkle.src} alt="" class="absolute" style={`left:${x};top:${y};width:${s}px;height:${s}px`} />)}
-    <img src={heroDrips.src} alt="" data-reveal="drip" class="edge-art" />
+    <DripBand data={heroDrips} />
   </div>
 
   <div class="relative mx-auto flex max-w-[1200px] flex-col gap-7 md:gap-10">
