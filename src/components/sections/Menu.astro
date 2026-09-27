@@ -3,7 +3,8 @@ import StackedText from '../StackedText.astro';
 import MenuCard from '../menu/MenuCard.astro';
 import MenuArt from '../menu/MenuArt.astro';
 import FaveSticker from '../menu/FaveSticker.astro';
-import drips from '../../assets/figma/menu/marquee-drips.svg';
+import DripBand from '../DripBand.astro';
+import marqueeDrips from '../../data/drips/marquee-drips.json';
 import pillSparkle from '../../assets/figma/menu/sparkle-pill.svg';
 import bgSparkle from '../../assets/figma/menu/bg-sparkle.svg';
 import owlMark from '../../assets/figma/menu/owl-mark.svg';
@@ -39,7 +40,7 @@ const sparkles: [number, number, number][] = [
         />
       ))
     }
-    <img src={drips.src} alt="" data-reveal="drip" class="edge-art" />
+    <DripBand data={marqueeDrips} />
   </div>
 
   <div class="relative mx-auto flex max-w-[1200px] flex-col items-center gap-16">

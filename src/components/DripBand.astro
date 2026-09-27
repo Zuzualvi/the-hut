@@ -1,0 +1,26 @@
+---
+// A drip band drawn inline so each drip can squash and stretch on scroll
+// (see src/scripts/drips.ts). Geometry comes from scripts/split-drips.mjs.
+interface Props {
+  data: { width: number; height: number; band: number; fill: string; drips: { d: string; len: number }[] };
+  class?: string;
+}
+const { data, class: className = '' } = Astro.props;
+// Headroom below the art so the longest drip can stretch without being clipped.
+const H = +(data.height * 1.3).toFixed(2);
+const maxLen = Math.max(...data.drips.map((d) => d.len));
+---
+
+<svg
+  class:list={['edge-art drip-band', className]}
+  viewBox={`0 0 ${data.width} ${H}`}
+  width={data.width}
+  height={H}
+  fill={data.fill}
+  aria-hidden="true"
+  data-reveal="drip"
+  data-band={data.band}
+>
+  <rect width={data.width} height={data.band} />
+  {data.drips.map((d) => <path d={d.d} data-len={(d.len / maxLen).toFixed(3)} />)}
+</svg>

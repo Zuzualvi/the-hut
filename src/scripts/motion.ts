@@ -2,6 +2,7 @@
 // Everything here is skipped when the visitor prefers reduced motion; the
 // `motion` class on <html> (set inline in <head>) gates the hidden start states.
 import { animate, inView } from 'motion';
+import { initDrips } from './drips';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -62,3 +63,5 @@ if (document.documentElement.classList.contains('motion')) {
     { passive: true },
   );
 }
+
+initDrips();
