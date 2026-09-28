@@ -27,3 +27,6 @@ pnpm-debug.log*
 design/
 .vercel
 .env*
+
+# Personal Claude Code notes (local only)
+CLAUDE.local.md

@@ -1,8 +1,8 @@
 # The Hut
 
-Marketing site for The Hut, a late-night sub shop in Glassboro, NJ. Built from the Figma file "Website" → page "The Hut — Trippy v2".
+Marketing site for The Hut, a late-night sub shop in Glassboro, NJ: a home page and a full menu page. Built from the Figma file "Website" → page "The Hut — Trippy v2".
 
-Preview: https://www.zuhayr.io/hut
+Preview: https://www.zuhayr.io/hut · menu: https://www.zuhayr.io/hut/menu
 
 ## Stack
 
@@ -26,7 +26,7 @@ Pushes to `main` deploy to production on Vercel (project `the-hut`, https://the-
 
 ## Edit content
 
-Prices, specials, hours, and links are in `src/data/site.ts`.
+The full menu, prices, specials, hours, and links are in `src/data/site.ts`.
 
 ## Moving to the restaurant's own domain
 

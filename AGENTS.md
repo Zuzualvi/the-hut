@@ -1,30 +1,29 @@
 # The Hut: agent notes
 
-Marketing site for The Hut, a friend's late-night sub shop in Glassboro, NJ. The owner (Zuhayr) is a product manager building coding experience, so explain architectural choices briefly and ask before committing or pushing.
+Marketing site for The Hut, a late-night sub shop in Glassboro, NJ: a home page and a full menu page, built from the Figma designs.
 
 ## Where things live
 
-- **Live preview:** https://www.zuhayr.io/hut (shared with the restaurant owners for review).
-- **Repo:** github.com/Zuzualvi/the-hut (private). Pushes to `main` auto-deploy to production.
+- **Live preview:** https://www.zuhayr.io/hut (home) and https://www.zuhayr.io/hut/menu.
+- **Repo:** github.com/Zuzualvi/the-hut (private). Pushes to `main` auto-deploy to production in about 30 seconds; other branches get Vercel preview URLs.
 - **Vercel:** project `the-hut` (team `zuhayr-alvis-projects`), production alias https://the-hut-kappa.vercel.app/hut.
-- **The `/hut` proxy:** lives in the main site repo, github.com/Zuzualvi/Website (Vercel project `zuhayr-portfolio`, local clone `~/Claude/projects/website`). `next.config.ts` rewrites `/hut/*` to the-hut-kappa. This repo's `vercel.json` also maps `/hut/*` to `/` so the Vercel URL works directly.
-- **Design:** Figma file `72Oe1dgJOTnV3NcJuHebFC` ("Website"), page "The Hut — Trippy v2" (node `15:22`); desktop frame `16:22`, mobile frame `20:33`.
+- **The `/hut` proxy:** lives in the main site repo, github.com/Zuzualvi/Website (Vercel project `zuhayr-portfolio`, local clone `~/Claude/projects/website`). `next.config.ts` rewrites `/hut/*` to the-hut-kappa. This repo's `vercel.json` also maps `/hut/*` to `/` so the Vercel URL works directly. The proxy drops trailing slashes (`/hut/menu/` redirects to `/hut/menu`); that's fine.
+- **Design:** Figma file `72Oe1dgJOTnV3NcJuHebFC` ("Website"), page "The Hut — Trippy v2" (node `15:22`). Frames: home desktop `16:22`, home mobile `20:33`, menu desktop `45:43`, menu mobile `50:48`.
 
-## Status and open items
+## Status
 
-- All 8 sections are built to match the desktop and mobile designs. Scroll reveals and ambient motion are done.
-- **On trial:** the hero sunburst sway runs on all screen sizes, and the owner is testing phone smoothness. If it stutters on mobile, wrap the `.sunburst-wrap` rule in `src/styles/motion.css` in `@media (min-width: 1024px)`.
-- **Confirmed hours (2026-09-26):** Mon–Thu 4–11PM, Fri–Sat 4PM–2AM, Sunday closed.
-- **Not yet confirmed with the owners:** address, prices, specials, and the Instagram handle `@thehutglassboro`. All were copied from the design.
-- **Menu page:** `src/pages/menu.astro` (served at `/hut/menu/`), built from Figma frames "Desktop — Menu (1440)" `45:43` and "Mobile — Menu (390)" `50:48`. Menu content comes from the in-store board and lives in `src/data/site.ts`. "View …" and "Menu" links go to the menu page; only "Order" buttons go to DoorDash.
+- Home and menu pages are built to match the desktop and mobile designs and are live. Scroll reveals, ambient motion and scroll-driven drips are done.
+- Menu content comes from the restaurant's in-store menu board and lives in `src/data/site.ts`. "View …" and "Menu" links go to the menu page; only "Order" buttons go to DoorDash.
+- The Find Us map is a lo-fi street map (Mullica Hill Rd, Delsea Dr, N Main St, Carpenter St, Bowe Blvd, Heston Rd, Rowan campus) exported from Figma as one SVG.
 - **Later:** move to the restaurant's own domain (steps in README).
 
-## Figma access
+## Figma
 
-- The Figma MCP is on a Full seat (Pro plan) as of 2026-09-26, so the old 6-reads-per-month cap no longer applies. Read and edit the file directly with `use_figma`.
+- Read and edit the file directly with the Figma MCP (`use_figma`); design changes happen in Figma first, then get built.
 - Shared brand pieces are components in the "Brand kit" frame on the "The Hut — Website v1" page (e.g. `Logo/Tagline` `5:2`). Editing one changes every instance on both pages.
-- `Logo/Tagline` is traced from the real sign lettering (source: a PNG from the owners). Its "Late night" is stacked on two lines at about half the cap height of "Toasted Subs".
-- The older `design/desktop.svg` and `design/mobile.svg` exports are out of date. Pull art straight from Figma instead.
+- `Logo/Tagline` is traced from the real sign lettering; "Late-night" sits on one line at about half the cap height of "Toasted Subs".
+- To get art out of Figma, prefer `download_assets` (saves a file, keeps big SVGs out of context) or `exportAsync` for small pieces. Its exports can include parent-frame background rects; strip them.
+- The older `design/desktop.svg` and `design/mobile.svg` exports are out of date.
 
 ## Commands
 
@@ -38,7 +37,8 @@ Marketing site for The Hut, a friend's late-night sub shop in Glassboro, NJ. The
 - `src/pages/menu.astro`: the full menu; sections live in `src/components/menu-page/`.
 - `src/data/site.ts`: all content (full menu, specials, hours, links, DoorDash URL). Internal links use `HOME_URL`/`MENU_URL` so they carry the `/hut` base path.
 - `src/assets/figma/`: SVG art exported from Figma. Don't redraw or hand-edit it; re-export instead.
-- `src/styles/global.css`: color and font tokens. `src/styles/motion.css`: ambient CSS animation. `src/scripts/motion.ts`: Motion scroll reveals and marquee speed-up.
+- Drip bands are inline SVGs (`src/components/DripBand.astro`) built from `src/data/drips/*.json`; `src/scripts/drips.ts` springs each drip on scroll (tuning constants `MAX`, `GAIN`, `DAMPING` at the top). Regenerate a band with `node scripts/split-drips.mjs <name> <original Figma SVG>`; the originals are in git history at `aa53908` under `src/assets/figma/`.
+- `src/styles/global.css`: color and font tokens, `.edge-art`, `.leader`. `src/styles/motion.css`: ambient CSS animation. `src/scripts/motion.ts`: Motion scroll reveals and marquee speed-up.
 
 ## Conventions
 
@@ -49,10 +49,11 @@ Marketing site for The Hut, a friend's late-night sub shop in Glassboro, NJ. The
 - Keep animated layers small. The hero sunburst sways through a clipped circular window sized to just cover the hero; the Our Vibe rays stay still.
 - Tailwind utility names collide with plain class names (e.g. `ring`), so pick distinctive class names.
 - Scoped styles don't reach child components; use `.parent :global(.child)`.
-- `CLAUDE.md` is a symlink to this file; edit this file, not the link.
+- `CLAUDE.md` is a symlink to this file; edit this file, not the link. Personal, non-shared notes go in the gitignored `CLAUDE.local.md`.
 
 ## Visual testing gotchas
 
 - Headless Chrome has a 500px minimum viewport. For phone widths, screenshot a page that iframes the site at 390px.
-- `--virtual-time-budget` doesn't advance Motion animations reliably, so reveals look half-finished. Use `--timeout=5000` (real time) to judge animation end states.
+- `--virtual-time-budget` doesn't advance Motion animations reliably, so reveals look half-finished. Use `--timeout=5000` (real time), or `--force-prefers-reduced-motion` to see end states.
 - Background browser tabs pause animation frames, so frame-rate checks in a non-visible tab are meaningless.
+- To test scroll-driven motion, drive headless Chrome over the DevTools protocol (`--remote-debugging-port`, Node 24 for the built-in `WebSocket`). The site sets `scroll-behavior: smooth`, so scripted scrolling must use `scrollBy({ top, behavior: 'instant' })`. `Page.captureScreenshot` clip coordinates are page coordinates, not viewport.
