@@ -22,7 +22,7 @@ npm run build
 
 ## Deploy
 
-Pushes to `main` deploy to production on Vercel (project `the-hut`, https://thehutglassboro.com). Other branches get preview deployments.
+Changes go through a pull request to `main`, squash-merged so each PR becomes one commit. Merging deploys to production on Vercel (project `the-hut`, https://thehutglassboro.com) in about 30 seconds.
 
 The domain is registered through Vercel, which also runs its DNS. `www.thehutglassboro.com` redirects to the bare domain. Old `zuhayr.io/hut` links redirect here (set in the zuhayr.io repo's `next.config.ts`).
 
