@@ -5,7 +5,7 @@ Marketing site for The Hut, a late-night sub shop in Glassboro, NJ: a home page 
 ## Where things live
 
 - **Live site:** https://thehutglassboro.com (home) and https://thehutglassboro.com/menu.
-- **Repo:** github.com/Zuzualvi/the-hut (private). Pushes to `main` auto-deploy to production in about 30 seconds; other branches get Vercel preview URLs.
+- **Repo:** github.com/Zuzualvi/the-hut (public, so any collaborator's commits deploy without a paid Vercel seat). Pushes to `main` auto-deploy to production in about 30 seconds; other branches get Vercel preview URLs. A ruleset ("Protect main") blocks force-pushes and deleting `main`; PRs aren't required. Vercel fork protection is on, so outside PRs don't build until approved. Never commit secrets; there are none today.
 - **Vercel:** project `the-hut` (team `zuhayr-alvis-projects`), production domain `thehutglassboro.com` (registered through Vercel, Vercel DNS, auto-renew on; `www.` redirects to the bare domain). Also served at https://the-hut-kappa.vercel.app.
 - **Old preview links:** the site used to be proxied at zuhayr.io/hut. The main site repo, github.com/Zuzualvi/Website (Vercel project `zuhayr-portfolio`, local clone `~/Claude/projects/website`), now permanently redirects `/hut/*` to thehutglassboro.com in `next.config.ts`.
 - **DNS records** (e.g. for email or Google verification) are added in Vercel under the domain, or with `vercel dns add thehutglassboro.com <name> <type> <value>`.
