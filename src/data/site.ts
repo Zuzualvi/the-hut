@@ -3,7 +3,7 @@
 export const ORDER_URL =
   'https://www.doordash.com/store/the-hut-glassboro-51518273/120066347/?pickup=true';
 
-// Internal links carry the base path (/hut on the preview) so they work from any page.
+// Internal links carry Astro's base path so they keep working if the site moves under a subpath.
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
 export const HOME_URL = `${BASE}/`;
 export const MENU_URL = `${BASE}/menu/`;

@@ -4,10 +4,11 @@ Marketing site for The Hut, a late-night sub shop in Glassboro, NJ: a home page 
 
 ## Where things live
 
-- **Live preview:** https://www.zuhayr.io/hut (home) and https://www.zuhayr.io/hut/menu.
+- **Live site:** https://thehutglassboro.com (home) and https://thehutglassboro.com/menu.
 - **Repo:** github.com/Zuzualvi/the-hut (private). Pushes to `main` auto-deploy to production in about 30 seconds; other branches get Vercel preview URLs.
-- **Vercel:** project `the-hut` (team `zuhayr-alvis-projects`), production alias https://the-hut-kappa.vercel.app/hut.
-- **The `/hut` proxy:** lives in the main site repo, github.com/Zuzualvi/Website (Vercel project `zuhayr-portfolio`, local clone `~/Claude/projects/website`). `next.config.ts` rewrites `/hut/*` to the-hut-kappa. This repo's `vercel.json` also maps `/hut/*` to `/` so the Vercel URL works directly. The proxy drops trailing slashes (`/hut/menu/` redirects to `/hut/menu`); that's fine.
+- **Vercel:** project `the-hut` (team `zuhayr-alvis-projects`), production domain `thehutglassboro.com` (registered through Vercel, Vercel DNS, auto-renew on; `www.` redirects to the bare domain). Also served at https://the-hut-kappa.vercel.app.
+- **Old preview links:** the site used to be proxied at zuhayr.io/hut. The main site repo, github.com/Zuzualvi/Website (Vercel project `zuhayr-portfolio`, local clone `~/Claude/projects/website`), now permanently redirects `/hut/*` to thehutglassboro.com in `next.config.ts`.
+- **DNS records** (e.g. for email or Google verification) are added in Vercel under the domain, or with `vercel dns add thehutglassboro.com <name> <type> <value>`.
 - **Design:** Figma file `72Oe1dgJOTnV3NcJuHebFC` ("Website"), page "The Hut — Trippy v2" (node `15:22`). Frames: home desktop `16:22`, home mobile `20:33`, menu desktop `45:43`, menu mobile `50:48`.
 
 ## Status
@@ -15,7 +16,6 @@ Marketing site for The Hut, a late-night sub shop in Glassboro, NJ: a home page 
 - Home and menu pages are built to match the desktop and mobile designs and are live. Scroll reveals, ambient motion and scroll-driven drips are done.
 - Menu content comes from the restaurant's in-store menu board and lives in `src/data/site.ts`. "View …" and "Menu" links go to the menu page; only "Order" buttons go to DoorDash.
 - The Find Us map is a lo-fi street map (Mullica Hill Rd, Delsea Dr, N Main St, Carpenter St, Bowe Blvd, Heston Rd, Rowan campus) exported from Figma as one SVG.
-- **Later:** move to the restaurant's own domain (steps in README).
 
 ## Figma
 
@@ -28,14 +28,14 @@ Marketing site for The Hut, a late-night sub shop in Glassboro, NJ: a home page 
 ## Commands
 
 - Node 24 via `fnm` (`.nvmrc`). Prefix commands with `fnm exec --using=24` if the shell isn't switched; the system default is Node 20.
-- `npm run dev` (serves at `/hut/`), `npm run check`, `npm run build`, `npx astro preview` (serves `dist/` at `/hut/`).
+- `npm run dev`, `npm run check`, `npm run build`, `npx astro preview` (serves `dist/`). All serve at http://localhost:4321/.
 - Stop servers when done: `lsof -nP -tiTCP:4321 -sTCP:LISTEN | xargs kill`.
 
 ## Structure
 
 - `src/pages/index.astro`: the home page; sections live in `src/components/sections/`.
 - `src/pages/menu.astro`: the full menu; sections live in `src/components/menu-page/`.
-- `src/data/site.ts`: all content (full menu, specials, hours, links, DoorDash URL). Internal links use `HOME_URL`/`MENU_URL` so they carry the `/hut` base path.
+- `src/data/site.ts`: all content (full menu, specials, hours, links, DoorDash URL). Internal links use `HOME_URL`/`MENU_URL` so they carry Astro's base path.
 - `src/assets/figma/`: SVG art exported from Figma. Don't redraw or hand-edit it; re-export instead.
 - Drip bands are inline SVGs (`src/components/DripBand.astro`) built from `src/data/drips/*.json`; `src/scripts/drips.ts` springs each drip on scroll (tuning constants `MAX`, `GAIN`, `DAMPING` at the top). Regenerate a band with `node scripts/split-drips.mjs <name> <original Figma SVG>`; the originals are in git history at `aa53908` under `src/assets/figma/`.
 - `src/styles/global.css`: color and font tokens, `.edge-art`, `.leader`. `src/styles/motion.css`: ambient CSS animation. `src/scripts/motion.ts`: Motion scroll reveals and marquee speed-up.
