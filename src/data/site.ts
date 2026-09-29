@@ -38,13 +38,19 @@ export const FAN_FAVES: {
   { name: 'Pineapple Express', flavor: 'Teriyaki', price: SUB_PRICE_PAIR, sticker: 'pineapple-express', text: 'text-cream', tilt: -7 },
 ];
 
-export const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=709+N+Main+St+Glassboro+NJ+08028';
+export const SITE_NAME = 'The Hut';
+export const ADDRESS = { street: '709 N. Main St.', city: 'Glassboro', region: 'NJ', zip: '08028' };
+export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${ADDRESS.street} ${ADDRESS.city} ${ADDRESS.region} ${ADDRESS.zip}`,
+)}`;
 export const INSTAGRAM_HANDLE = 'thehutglassboro';
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 
-export const HOURS = [
-  { days: 'Mon–Thu', time: '4PM – 11PM' },
-  { days: 'Fri–Sat', time: '4PM – 2AM' },
+// `days` and `time` are what the site shows. `open` is the same thing for Google
+// (24-hour times; a close earlier than the open means after midnight). Update both.
+export const HOURS: { days: string; time: string; open?: { days: string[]; opens: string; closes: string } }[] = [
+  { days: 'Mon–Thu', time: '4PM – 11PM', open: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '16:00', closes: '23:00' } },
+  { days: 'Fri–Sat', time: '4PM – 2AM', open: { days: ['Friday', 'Saturday'], opens: '16:00', closes: '02:00' } },
   { days: 'Sunday', time: 'Closed' },
 ];
 

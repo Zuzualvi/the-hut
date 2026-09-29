@@ -3,7 +3,7 @@
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
 import scallop from '../../assets/art/findus/scallop.svg';
-import { HOURS, ORDER_URL, MAPS_URL } from '../../data/site';
+import { ADDRESS, HOURS, ORDER_URL, MAPS_URL } from '../../data/site';
 ---
 
 <section class="hungry relative overflow-hidden bg-mustard px-5 text-center">
@@ -12,7 +12,7 @@ import { HOURS, ORDER_URL, MAPS_URL } from '../../data/site';
   <div class="relative mx-auto flex max-w-[900px] flex-col items-center gap-[18px] md:gap-6" data-reveal-group>
     <StackedText data-reveal designSize={92} layers={9} class="title text-green">Hungry yet?</StackedText>
     <p data-reveal class="text-[16px] leading-normal text-ink md:text-[21px]">
-      Order ahead on DoorDash or pull up to 709 N. Main St., Glassboro.
+      Order ahead on DoorDash or pull up to {ADDRESS.street}, {ADDRESS.city}.
     </p>
     <ul data-reveal class="flex flex-col items-center gap-1 font-label text-[15px] uppercase tracking-[0.45px] text-ink md:flex-row md:gap-3.5 md:text-[17px]">
       {
