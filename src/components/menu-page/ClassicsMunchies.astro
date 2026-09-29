@@ -47,18 +47,18 @@ const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
       }
     </div>
 
-    <div id="drinks" data-reveal class="drinks flex scroll-mt-24 flex-col gap-3.5 rounded-[30px] border-4 border-ink bg-mustard text-ink md:rounded-[36px] lg:flex-row lg:items-center lg:gap-10">
+    <div id="drinks" data-reveal class="drinks flex scroll-mt-24 flex-col gap-3.5 rounded-[30px] border-4 border-ink bg-mustard text-ink md:rounded-[36px] lg:gap-2 xl:flex-row xl:items-center xl:gap-10">
       <h3 class="font-display text-[38px] leading-[1.2] lg:text-[52px]">Drinks</h3>
-      <ul class="flex flex-1 flex-col gap-2.5 lg:flex-row lg:items-center lg:justify-between lg:gap-7">
+      <ul class="flex flex-1 flex-col gap-2.5 lg:flex-row lg:justify-between lg:gap-4">
         {
           DRINKS.map((d, i) => (
             <Fragment>
-              <li class="flex items-baseline gap-2.5 lg:flex-col lg:items-start lg:gap-0.5">
-                <p class="font-label text-[14px] uppercase tracking-[0.3px] min-[400px]:text-[15px] lg:text-[18px]">{d.name}</p>
+              <li class="flex items-baseline-last gap-2.5 lg:shrink-0 lg:flex-col lg:items-start lg:justify-end lg:gap-0.5">
+                <p class="max-w-[11.5em] font-label text-[14px] uppercase tracking-[0.3px] min-[400px]:text-[15px] lg:text-[18px] min-[1400px]:max-w-none">{d.name}</p>
                 <span class="leader lg:hidden" aria-hidden="true" />
                 <p class="font-label text-[18px] lg:font-display lg:text-[34px] lg:leading-[1.2]">{d.price}</p>
               </li>
-              {i < DRINKS.length - 1 && <li class="size-2.5 shrink-0 rounded-full bg-ink max-lg:hidden" aria-hidden="true" />}
+              {i < DRINKS.length - 1 && <li class="size-2.5 shrink-0 self-center rounded-full bg-ink max-lg:hidden" aria-hidden="true" />}
             </Fragment>
           ))
         }

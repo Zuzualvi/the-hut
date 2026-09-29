@@ -25,7 +25,7 @@ export const MENU_CATEGORIES: {
   href: string;
 }[] = [
   { title: 'Toasted Subs', price: '8.99 half · 15.99 whole', cta: 'View Subs', art: 'subs', href: `${MENU_URL}#subs` },
-  { title: 'Cheesesteaks', price: '15.99', cta: 'View Steaks', art: 'steaks', href: `${MENU_URL}#steaks` },
+  { title: 'Cheesesteaks', price: '12.99', cta: 'View Steaks', art: 'steaks', href: `${MENU_URL}#steaks` },
   { title: 'Kati Rolls', price: '6.99', cta: 'View Rolls', art: 'rolls', href: `${MENU_URL}#rolls` },
   { title: 'Cozy Classics', price: 'From 2.99', cta: 'View Classics', art: 'classics', href: `${MENU_URL}#classics` },
   { title: 'Munchies', price: 'From 1.99', cta: 'View Munchies', art: 'munchies', href: `${MENU_URL}#munchies` },
@@ -125,8 +125,8 @@ export const KATI_ROLLS = [
 ];
 
 export const CHEESESTEAKS = [
-  { name: 'Beef', price: '15.99', desc: 'Provolone, grilled onions, green bell peppers' },
-  { name: 'Chicken', price: '15.99', desc: 'American, grilled onions, buffalo sauce' },
+  { name: 'Beef', price: '12.99', desc: 'Provolone, grilled onions, green bell peppers' },
+  { name: 'Chicken', price: '12.99', desc: 'American, grilled onions, buffalo sauce' },
 ];
 
 export const CLASSICS = [
@@ -134,6 +134,7 @@ export const CLASSICS = [
   { name: 'Tomato Soup', price: '2.99' },
   { name: 'Wake and Bake', price: '7.99', desc: 'Bagel, turkey sausage, egg, cheese' },
   { name: 'Grilled PB&J', price: '2.99' },
+  { name: 'Chicken Nuggets', price: '5.99', desc: '6 pieces' },
 ];
 
 export const MUNCHIES = [
@@ -146,5 +147,6 @@ export const MUNCHIES = [
 export const DRINKS = [
   { name: 'Soda Cans', price: '1.99' },
   { name: 'Water', price: '1.50' },
-  { name: 'Red Bull & Glass Bottles', price: '2.99' },
+  { name: 'Energy Drinks & Glass Bottles', price: '2.99' },
+  { name: 'Can + Chip Combo', price: '2.99' },
 ];
