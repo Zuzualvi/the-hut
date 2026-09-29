@@ -10,8 +10,8 @@ All prices live only in `src/data/site.ts`. Everything that shows a price (menu 
 |---|---|
 | Sub prices (half / whole) | `SUB_PRICES` only |
 | Any other price | That item in `site.ts` only. The home page cards work out their own price ("12.99", or "From 2.99" for the cheapest item). |
-| Hours | `HOURS`. "Open till 2AM" also appears in the hero sticker art, the hero's screen-reader text (`sections/Hero.astro`), and the Our Vibe badge (`sections/OurVibe.astro`, art + alt text). |
-| Address | `MAPS_URL`, `sections/FindUs.astro`, `menu-page/HungryYet.astro` |
+| Hours | `HOURS` (both the display text and the `open` times for Google). "Open till 2AM" also appears in the hero sticker art, the hero's screen-reader text (`sections/Hero.astro`), and the Our Vibe badge (`sections/OurVibe.astro`, art + alt text). |
+| Address | `ADDRESS` only (Find Us, Hungry Yet, the map link and Google's business details all read it) |
 | DoorDash link | `ORDER_URL` (every Order button uses it) |
 | Instagram | `INSTAGRAM_HANDLE` |
 | Copyright year | `sections/Footer.astro` |
@@ -32,8 +32,8 @@ Text that's part of an illustration (the "Open till 2AM" sticker and badge, "Est
 
 ## Change hours
 
-1. Edit `HOURS` in `src/data/site.ts`. Format: `{ days: 'Mon–Thu', time: '4PM – 11PM' }`.
-2. Hours show in Find Us (home) and Hungry Yet (menu page).
+1. Edit `HOURS` in `src/data/site.ts`. Each entry has what the site shows (`days: 'Mon–Thu'`, `time: '4PM – 11PM'`) and the same hours for Google (`open`: full day names and 24-hour `opens` / `closes`; a close earlier than the open means after midnight). Update both. A closed day has no `open`.
+2. Hours show in Find Us (home) and Hungry Yet (menu page), and in search results via the business details in `src/layouts/Layout.astro`.
 3. If the late-night closing time changes, the "Open till 2AM" art and its text need updating too (see the table above).
 
 ## Change the Munchie Hour specials
@@ -47,7 +47,16 @@ Text that's part of an illustration (the "Open till 2AM" sticker and badge, "Est
 
 ## Change the page title or search description
 
-The home page defaults are in `src/layouts/Layout.astro` (`title`, `description`). The menu page passes its own in `src/pages/menu.astro`.
+The home page defaults are in `src/layouts/Layout.astro` (`title`, `SITE_DESCRIPTION`). The menu page passes its own in `src/pages/menu.astro`. The same title and description appear in link previews when someone shares the page.
+
+## Update the link-preview image
+
+When someone shares a link in iMessage, WhatsApp, Instagram and similar apps, the preview shows `public/og.jpg`. That image is a screenshot of `src/pages/share-card.astro`, a 1200×630 page built from the hero's art.
+
+1. Edit `src/pages/share-card.astro`. Keep important text away from the edges; some apps crop the preview to a square.
+2. `npm run build && npm run share-image`. This needs Chrome (set `CHROME_PATH` if it isn't found), and also regenerates the iPhone home-screen icon from `public/favicon.svg`.
+3. Look at `public/og.jpg`. It must stay under about 300 KB, or WhatsApp won't show it.
+4. Apps cache previews per link, so links that were already shared keep the old preview.
 
 ## Edit copy
 

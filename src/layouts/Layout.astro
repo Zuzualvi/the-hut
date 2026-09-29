@@ -1,15 +1,51 @@
 ---
 import '../styles/global.css';
 import '../styles/motion.css';
+import { SITE_NAME, ADDRESS, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER_URL } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
+const SITE_DESCRIPTION =
+  'Toasted subs dunked in house garlic butter & parm, kati rolls, and munchies for when the night gets weird. Halal. Open late.';
 const {
   title = 'The Hut — Toasted Subs & Late-Night Munchies · Glassboro, NJ',
-  description = 'Toasted subs dunked in house garlic butter & parm, kati rolls, and munchies for when the night gets weird. Halal. Open late.',
+  description = SITE_DESCRIPTION,
+  noindex = false,
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const abs = (path: string) => new URL(path, Astro.site).href;
+const canonical = abs(Astro.url.pathname);
+const shareImage = abs(`${base}/og.jpg`);
+
+// Business details for search engines (schema.org), built from src/data/site.ts.
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  url: abs(HOME_URL),
+  image: shareImage,
+  menu: abs(MENU_URL),
+  servesCuisine: ['Sandwiches', 'Cheesesteaks', 'Kati rolls', 'Halal'],
+  priceRange: '$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: ADDRESS.street,
+    addressLocality: ADDRESS.city,
+    addressRegion: ADDRESS.region,
+    postalCode: ADDRESS.zip,
+    addressCountry: 'US',
+  },
+  openingHoursSpecification: HOURS.flatMap((h) =>
+    h.open ? [{ '@type': 'OpeningHoursSpecification', dayOfWeek: h.open.days, opens: h.open.opens, closes: h.open.closes }] : [],
+  ),
+  potentialAction: { '@type': 'OrderAction', target: ORDER_URL },
+  sameAs: [INSTAGRAM_URL],
+};
 ---
 
 <html lang="en">
@@ -19,6 +55,22 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#121210" />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+
+    <!-- Link previews (iMessage, WhatsApp, Instagram, Slack, X…). The image is public/og.jpg. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Hut: Get Toasted. Glassboro’s late-night sub shack." />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <script is:inline>
       // Opt in to scroll reveals only if the visitor hasn't asked for reduced motion.
       // If the motion script never loads, drop the class so nothing stays hidden.
@@ -27,7 +79,9 @@ const {
         setTimeout(() => window.__motionReady || document.documentElement.classList.remove('motion'), 4000);
       }
     </script>
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`.replace('//', '/')} />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(business)} />}
   </head>
   <body>
     <slot />

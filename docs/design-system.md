@@ -87,6 +87,12 @@ Typical sizes (phone → desktop):
   - Two prices are written "5.99 / 12.99".
   - Use typographic apostrophes (’), en dashes for ranges ("Mon–Thu", "4PM – 11PM") and a middle dot (·) as a separator.
 
+## Share image and icons
+
+- **Link preview:** `public/og.jpg` (1200×630), a screenshot of `src/pages/share-card.astro`: the green sunburst, the ring-and-owl stage, the "Get Toasted." headline with drips, the tagline and the domain. Regenerate with `npm run share-image` (see `docs/common-tasks.md`).
+- **Favicon:** `public/favicon.svg`, the cream owl mark.
+- **iPhone icon:** `public/apple-touch-icon.png`, the cream owl on ink, generated from the favicon.
+
 ## Code gotchas
 
 - Tailwind utility names can collide with plain class names (e.g. `ring`). Give custom classes distinctive names.

@@ -2,7 +2,7 @@
 // Find Us: address, hours, contact links and the street map.
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
-import { HOURS, ORDER_URL, MAPS_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from '../../data/site';
+import { ADDRESS, HOURS, ORDER_URL, MAPS_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from '../../data/site';
 
 import scallop from '../../assets/art/findus/scallop.svg';
 import mapBlob from '../../assets/art/findus/map-blob.svg';
@@ -18,7 +18,7 @@ import mapBlob from '../../assets/art/findus/map-blob.svg';
       <dl data-reveal class="info order-3 grid gap-7 sm:grid-cols-[auto_auto_auto] sm:gap-11 lg:order-none">
         <div>
           <dt class="label">Address</dt>
-          <dd class="value">709 N. Main St.<br />Glassboro, NJ 08028</dd>
+          <dd class="value">{ADDRESS.street}<br />{ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}</dd>
         </div>
         <div>
           <dt class="label">Hours</dt>
