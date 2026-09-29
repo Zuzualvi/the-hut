@@ -1,28 +1,27 @@
 ---
-// Card illustrations, positioned from the Figma "Art" frames (Menu section, node 18:27).
-// Every piece sits on a fixed 340×230 stage (Figma's frame coords, border included)
+// Card illustrations. Every piece sits on a fixed 340×230 stage (design px, border included)
 // that stays centered as the card resizes.
 import Layer from './Layer.astro';
 import type { MenuArt } from '../../data/site';
 
-import rays from '../../assets/figma/menu/rays.svg';
-import blobSubs from '../../assets/figma/menu/blob-subs.svg';
-import blobSteaks from '../../assets/figma/menu/blob-steaks.svg';
-import blobRolls from '../../assets/figma/menu/blob-rolls.svg';
-import blobClassics from '../../assets/figma/menu/blob-classics.svg';
-import blobMunchies from '../../assets/figma/menu/blob-munchies.svg';
-import lettuce from '../../assets/figma/menu/lettuce.svg';
-import cheeseSubs from '../../assets/figma/menu/cheese-subs.svg';
-import steakCheese from '../../assets/figma/menu/steak-cheese.svg';
-import steakDrips from '../../assets/figma/menu/steak-drips.svg';
-import seedA from '../../assets/figma/menu/seed-a.svg';
-import seedB from '../../assets/figma/menu/seed-b.svg';
-import katiRoll from '../../assets/figma/menu/kati-roll.svg';
-import steamA from '../../assets/figma/menu/steam-a.svg';
-import steamB from '../../assets/figma/menu/steam-b.svg';
-import bowl from '../../assets/figma/menu/bowl.svg';
-import carton from '../../assets/figma/menu/carton.svg';
-import cartonDot from '../../assets/figma/menu/carton-dot.svg';
+import rays from '../../assets/art/menu/rays.svg';
+import blobSubs from '../../assets/art/menu/blob-subs.svg';
+import blobSteaks from '../../assets/art/menu/blob-steaks.svg';
+import blobRolls from '../../assets/art/menu/blob-rolls.svg';
+import blobClassics from '../../assets/art/menu/blob-classics.svg';
+import blobMunchies from '../../assets/art/menu/blob-munchies.svg';
+import lettuce from '../../assets/art/menu/lettuce.svg';
+import cheeseSubs from '../../assets/art/menu/cheese-subs.svg';
+import steakCheese from '../../assets/art/menu/steak-cheese.svg';
+import steakDrips from '../../assets/art/menu/steak-drips.svg';
+import seedA from '../../assets/art/menu/seed-a.svg';
+import seedB from '../../assets/art/menu/seed-b.svg';
+import katiRoll from '../../assets/art/menu/kati-roll.svg';
+import steamA from '../../assets/art/menu/steam-a.svg';
+import steamB from '../../assets/art/menu/steam-b.svg';
+import bowl from '../../assets/art/menu/bowl.svg';
+import carton from '../../assets/art/menu/carton.svg';
+import cartonDot from '../../assets/art/menu/carton-dot.svg';
 
 interface Props {
   art: MenuArt;
@@ -38,7 +37,7 @@ const blobs = {
 };
 const blob = blobs[art];
 
-// Sesame seeds: [left, top, tilt] of each 7.946×6.153 slot in Figma.
+// Sesame seeds: [left, top, tilt] of each 7.946×6.153 slot, in design px.
 const seeds: [number, number, number][] = [
   [82.23, 68.2, 20], [111.2, 72.81, -20], [137.43, 68.2, 20], [166.4, 72.81, -20],
   [192.63, 68.2, 20], [221.6, 72.81, -20], [247.83, 68.2, 20],

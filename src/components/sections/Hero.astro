@@ -1,5 +1,5 @@
 ---
-// Hero (Figma 16:36). The art is a 892×881 "stage" built from Figma coords and
+// Hero. The art is a 892×881 "stage" built from design px and
 // scaled with --su; on desktop the whole 1440×900 frame scales with --u.
 import Art from '../Art.astro';
 import StackedText from '../StackedText.astro';
@@ -8,26 +8,26 @@ import { ORDER_URL, MENU_URL } from '../../data/site';
 
 import DripBand from '../DripBand.astro';
 import navDrips from '../../data/drips/nav-drips.json';
-import sunburst from '../../assets/figma/hero/sunburst.svg';
-import ringOuter from '../../assets/figma/hero/ring-outer.svg';
-import ringMid from '../../assets/figma/hero/ring-mid.svg';
-import ringInner from '../../assets/figma/hero/ring-inner.svg';
-import smokeLeft from '../../assets/figma/hero/smoke-left.svg';
-import smokeRight from '../../assets/figma/hero/smoke-right.svg';
-import smokeTop from '../../assets/figma/hero/smoke-top.svg';
-import owl from '../../assets/figma/hero/owl-duo.svg';
-import starMustard from '../../assets/figma/hero/star-mustard.svg';
-import starCream from '../../assets/figma/hero/star-cream.svg';
-import sparkleMustard from '../../assets/figma/hero/sparkle-mustard.svg';
-import burstCream from '../../assets/figma/hero/burst-cream.svg';
-import sparkleMustardSm from '../../assets/figma/hero/sparkle-mustard-sm.svg';
-import sparkleCreamSm from '../../assets/figma/hero/sparkle-cream-sm.svg';
-import openSticker from '../../assets/figma/hero/open-sticker.svg';
-import pillSparkle from '../../assets/figma/hero/sparkle-pill.svg';
-import drip1 from '../../assets/figma/hero/drip-1.svg';
-import drip2 from '../../assets/figma/hero/drip-2.svg';
-import drip3 from '../../assets/figma/hero/drip-3.svg';
-import tagline from '../../assets/figma/hero/tagline.svg';
+import sunburst from '../../assets/art/hero/sunburst.svg';
+import ringOuter from '../../assets/art/hero/ring-outer.svg';
+import ringMid from '../../assets/art/hero/ring-mid.svg';
+import ringInner from '../../assets/art/hero/ring-inner.svg';
+import smokeLeft from '../../assets/art/hero/smoke-left.svg';
+import smokeRight from '../../assets/art/hero/smoke-right.svg';
+import smokeTop from '../../assets/art/hero/smoke-top.svg';
+import owl from '../../assets/art/hero/owl-duo.svg';
+import starMustard from '../../assets/art/hero/star-mustard.svg';
+import starCream from '../../assets/art/hero/star-cream.svg';
+import sparkleMustard from '../../assets/art/hero/sparkle-mustard.svg';
+import burstCream from '../../assets/art/hero/burst-cream.svg';
+import sparkleMustardSm from '../../assets/art/hero/sparkle-mustard-sm.svg';
+import sparkleCreamSm from '../../assets/art/hero/sparkle-cream-sm.svg';
+import openSticker from '../../assets/art/hero/open-sticker.svg';
+import pillSparkle from '../../assets/art/hero/sparkle-pill.svg';
+import drip1 from '../../assets/art/hero/drip-1.svg';
+import drip2 from '../../assets/art/hero/drip-2.svg';
+import drip3 from '../../assets/art/hero/drip-3.svg';
+import tagline from '../../assets/art/hero/tagline.svg';
 ---
 
 <section class="hero relative overflow-hidden bg-green" aria-labelledby="hero-title">
@@ -157,7 +157,7 @@ import tagline from '../../assets/figma/hero/tagline.svg';
     display: none;
   }
 
-  /* ---------- Desktop: the 1440×900 Figma frame, scaled to fit ---------- */
+  /* ---------- Desktop: the 1440×900 design, scaled to fit ---------- */
   @media (min-width: 1024px) {
     .canvas {
       --u: min(1px, calc(100cqw / 1440));

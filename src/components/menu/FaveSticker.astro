@@ -1,9 +1,9 @@
 ---
 import type { Sticker } from '../../data/site';
-import fireOg from '../../assets/figma/menu/sticker-fire-og.svg';
-import grandaddyPurp from '../../assets/figma/menu/sticker-grandaddy-purp.svg';
-import whiteWidow from '../../assets/figma/menu/sticker-white-widow.svg';
-import pineappleExpress from '../../assets/figma/menu/sticker-pineapple-express.svg';
+import fireOg from '../../assets/art/menu/sticker-fire-og.svg';
+import grandaddyPurp from '../../assets/art/menu/sticker-grandaddy-purp.svg';
+import whiteWidow from '../../assets/art/menu/sticker-white-widow.svg';
+import pineappleExpress from '../../assets/art/menu/sticker-pineapple-express.svg';
 
 interface Props {
   name: string;
@@ -17,7 +17,7 @@ interface Props {
 
 const { name, flavor, price, sticker, text, tilt, delay = 0 } = Astro.props;
 
-// Sticker body geometry inside its 260×260 frame (Figma), plus shadow bleed.
+// Sticker body geometry inside its 260×260 frame, plus shadow bleed.
 const shapes: Record<Sticker, { src: string; x: number; y: number; w: number; h: number; bleed: string }> = {
   'fire-og': { src: fireOg.src, x: 6.35, y: 6.35, w: 247.303, h: 247.303, bleed: '-0.81% -4.04% -4.04% -0.81%' },
   'grandaddy-purp': { src: grandaddyPurp.src, x: 5.65, y: 9.19, w: 248.709, h: 241.623, bleed: '-0.83% -4.02% -4.14% -0.8%' },

@@ -7,7 +7,7 @@
 interface Props {
   [attr: `data-${string}`]: unknown;
   as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
-  designSize: number; // font size in the Figma frame, px
+  designSize: number; // font size at full desktop size (1440px wide), px
   layers: number;
   outline?: boolean;
   class?: string;
