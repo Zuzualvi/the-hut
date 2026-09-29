@@ -23,7 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Figma exports (large, reference only)
+# Local design exports (large, not tracked)
 design/
 .vercel
 .env*

@@ -1,7 +1,7 @@
-// Splits a Figma drip band into a flat band + one path per drip, reshaped with the
-// same flare / neck / teardrop math used in Figma. Output feeds DripBand.astro,
+// Splits a drip band SVG into a flat band + one path per drip, reshaped with the
+// same flare / neck / teardrop math used in the original art. Output feeds DripBand.astro,
 // which lets each drip squash and stretch on scroll.
-// Usage: node scripts/split-drips.mjs <name> <svg exported from Figma (original shapes)>
+// Usage: node scripts/split-drips.mjs <name> <svg of the original drip band shapes>
 import fs from 'node:fs';
 
 const [name, file] = process.argv.slice(2);

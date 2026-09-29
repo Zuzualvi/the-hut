@@ -1,10 +1,10 @@
 ---
-// Toasted Subs: sizing guide + sub groups (Figma "Section/Toasted Subs").
+// Toasted Subs: sizing guide + sub groups.
 import StackedText from '../StackedText.astro';
 import DripBand from '../DripBand.astro';
 import heroDrips from '../../data/drips/hero-drips.json';
-import bgSparkle from '../../assets/figma/menu/bg-sparkle.svg';
-import { SUB_SIZES, ALL_THE_WAY, SHAKE, SUB_GROUPS } from '../../data/site';
+import bgSparkle from '../../assets/art/menu/bg-sparkle.svg';
+import { SUB_SIZES, SUB_PRICES, ALL_THE_WAY, SHAKE, SUB_GROUPS } from '../../data/site';
 
 const sparkles: [string, string, number][] = [
   ['4%', '22%', 22], ['95%', '17%', 18], ['96%', '70%', 26], ['3.5%', '85%', 16],
@@ -26,7 +26,7 @@ const sparkles: [string, string, number][] = [
         </p>
       </div>
       <p data-reveal class="price-sticker self-start rounded-full border-3 border-ink bg-mustard font-label uppercase text-ink md:self-auto">
-        Half 8.99 &nbsp;·&nbsp; Full 15.99
+        Half {SUB_PRICES.half} &nbsp;·&nbsp; Full {SUB_PRICES.full}
       </p>
     </header>
 
@@ -73,7 +73,7 @@ const sparkles: [string, string, number][] = [
             </h3>
             <span class="leader text-brown" aria-hidden="true" />
             <p class="shrink-0 font-label text-[16px] text-brown md:text-[20px]">
-              <span class="max-md:hidden">Half </span>8.99 / <span class="max-md:hidden">Full </span>15.99
+              <span class="max-md:hidden">Half </span>{SUB_PRICES.half} / <span class="max-md:hidden">Full </span>{SUB_PRICES.full}
             </p>
           </div>
           <ul class="grid gap-[18px] md:grid-cols-2 md:gap-7" data-reveal-group>

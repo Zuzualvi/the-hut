@@ -1,20 +1,20 @@
 ---
-// Munchie Hour / specials (Figma 19:28).
+// Munchie Hour / specials.
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
 import { SPECIALS, ORDER_URL } from '../../data/site';
 
 import DripBand from '../DripBand.astro';
 import menuDrips from '../../data/drips/menu-drips.json';
-import dazed from '../../assets/figma/munchie/dazed-hungry.svg';
-import blobGreenTl from '../../assets/figma/munchie/blob-green-tl.svg';
-import blobMustardTr from '../../assets/figma/munchie/blob-mustard-tr.svg';
-import blobRustBr from '../../assets/figma/munchie/blob-rust-br.svg';
-import blobMustardBl from '../../assets/figma/munchie/blob-mustard-bl.svg';
-import blobGreenBc from '../../assets/figma/munchie/blob-green-bc.svg';
-import burst from '../../assets/figma/hero/star-mustard.svg';
+import dazed from '../../assets/art/munchie/dazed-hungry.svg';
+import blobGreenTl from '../../assets/art/munchie/blob-green-tl.svg';
+import blobMustardTr from '../../assets/art/munchie/blob-mustard-tr.svg';
+import blobRustBr from '../../assets/art/munchie/blob-rust-br.svg';
+import blobMustardBl from '../../assets/art/munchie/blob-mustard-bl.svg';
+import blobGreenBc from '../../assets/art/munchie/blob-green-bc.svg';
+import burst from '../../assets/art/hero/star-mustard.svg';
 
-// Lava blobs: x as % of width, y/size in scaled px (Figma 1440 frame).
+// Lava blobs: x as % of width, y/size in scaled px (1440px desktop design).
 const blobs = [
   { src: blobGreenTl.src, x: -100, y: 160, w: 490.5, h: 469.08 },
   { src: blobMustardTr.src, x: 1030, y: 80, w: 440.47, h: 440.47 },
