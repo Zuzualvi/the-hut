@@ -8,7 +8,7 @@ This repo is the single source of truth for the site: content, code and design. 
 
 1. **Never push to `main`.** Work on a branch, open a pull request, squash-merge it. Merging to `main` puts the change live in about 30 seconds. Read `docs/workflow.md` before your first commit.
 2. **Ask before merging.** Show the person what changed, and merge only when they say so. After merging, check the live site.
-3. **Content lives in `src/data/site.ts`.** Menu items, prices, hours, specials and links are all there. Some facts are also written into page copy or art; `docs/common-tasks.md` lists every place each one appears.
+3. **Content lives in `src/data/site.ts`.** Menu items, prices, hours, specials and links are all there, and every price is set only there. A few other facts are also written into page copy or art; `docs/common-tasks.md` lists every place each one appears.
 4. **Match the existing look.** Before adding or restyling anything, read `docs/design-system.md` and reuse its colors, fonts and components. Don't invent new colors, fonts or effects.
 5. **Don't draw new illustrations or hand-edit the SVGs in `src/assets/art/`.** Reuse existing art. If a change needs new art, say so and leave a note in the PR.
 6. **Nothing secret goes in this repo.** It's public. There are no API keys or environment variables, and there shouldn't be.

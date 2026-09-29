@@ -17,19 +17,10 @@ export const NAV_LINKS = [
 
 export type MenuArt = 'subs' | 'steaks' | 'rolls' | 'classics' | 'munchies';
 
-export const MENU_CATEGORIES: {
-  title: string;
-  price: string;
-  cta: string;
-  art: MenuArt;
-  href: string;
-}[] = [
-  { title: 'Toasted Subs', price: '8.99 half · 15.99 whole', cta: 'View Subs', art: 'subs', href: `${MENU_URL}#subs` },
-  { title: 'Cheesesteaks', price: '12.99', cta: 'View Steaks', art: 'steaks', href: `${MENU_URL}#steaks` },
-  { title: 'Kati Rolls', price: '6.99', cta: 'View Rolls', art: 'rolls', href: `${MENU_URL}#rolls` },
-  { title: 'Cozy Classics', price: 'From 2.99', cta: 'View Classics', art: 'classics', href: `${MENU_URL}#classics` },
-  { title: 'Munchies', price: 'From 1.99', cta: 'View Munchies', art: 'munchies', href: `${MENU_URL}#munchies` },
-];
+// Every sub costs the same per size. Change sub prices here; the size guide,
+// group headers, fan faves and home page card all read from it.
+export const SUB_PRICES = { half: '8.99', full: '15.99' };
+const SUB_PRICE_PAIR = `${SUB_PRICES.half} / ${SUB_PRICES.full}`;
 
 export type Sticker = 'fire-og' | 'grandaddy-purp' | 'white-widow' | 'pineapple-express';
 
@@ -41,10 +32,10 @@ export const FAN_FAVES: {
   text: string;
   tilt: number;
 }[] = [
-  { name: 'Fire OG', flavor: 'Buffalo', price: '8.99 / 15.99', sticker: 'fire-og', text: 'text-green', tilt: 6 },
-  { name: 'Grandaddy Purp', flavor: 'BBQ', price: '8.99 / 15.99', sticker: 'grandaddy-purp', text: 'text-cream', tilt: -4 },
-  { name: 'White Widow', flavor: 'Chicken Bacon Ranch', price: '8.99 / 15.99', sticker: 'white-widow', text: 'text-ink', tilt: 3 },
-  { name: 'Pineapple Express', flavor: 'Teriyaki', price: '8.99 / 15.99', sticker: 'pineapple-express', text: 'text-cream', tilt: -7 },
+  { name: 'Fire OG', flavor: 'Buffalo', price: SUB_PRICE_PAIR, sticker: 'fire-og', text: 'text-green', tilt: 6 },
+  { name: 'Grandaddy Purp', flavor: 'BBQ', price: SUB_PRICE_PAIR, sticker: 'grandaddy-purp', text: 'text-cream', tilt: -4 },
+  { name: 'White Widow', flavor: 'Chicken Bacon Ranch', price: SUB_PRICE_PAIR, sticker: 'white-widow', text: 'text-ink', tilt: 3 },
+  { name: 'Pineapple Express', flavor: 'Teriyaki', price: SUB_PRICE_PAIR, sticker: 'pineapple-express', text: 'text-cream', tilt: -7 },
 ];
 
 export const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=709+N+Main+St+Glassboro+NJ+08028';
@@ -85,12 +76,12 @@ export const SPECIALS = [
 ] as const;
 
 // ---------------------------------------------------------------------------
-// Full menu (from the in-store menu board). Sub prices are per size, so they
-// live on SUB_SIZES and the group headers rather than on every item.
+// Full menu (from the in-store menu board). Subs have no per-item price; they
+// all use SUB_PRICES (above).
 
 export const SUB_SIZES = [
-  { size: 'Half', inches: '6"', nickname: 'Quick Hit', price: '$8.99' },
-  { size: 'Full', inches: '12"', nickname: 'Heavy Hands', price: '$15.99' },
+  { size: 'Half', inches: '6"', nickname: 'Quick Hit', price: `$${SUB_PRICES.half}` },
+  { size: 'Full', inches: '12"', nickname: 'Heavy Hands', price: `$${SUB_PRICES.full}` },
 ];
 export const ALL_THE_WAY = ['Lettuce', 'Red Onion', 'Tomato', 'Shake', 'House Dressing'];
 export const SHAKE = 'Our house seasoning: parmesan, oregano, basil, onion powder, parsley, salt & pepper.';
@@ -149,4 +140,26 @@ export const DRINKS = [
   { name: 'Water', price: '1.50' },
   { name: 'Energy Drinks & Glass Bottles', price: '2.99' },
   { name: 'Can + Chip Combo', price: '2.99' },
+];
+
+// Home page category cards: prices come from the menu above, so they never drift.
+// One price if every item costs the same, otherwise "From" the cheapest.
+function priceLabel(items: readonly { price: string }[]) {
+  const prices = items.map((i) => parseFloat(i.price));
+  const min = Math.min(...prices);
+  return prices.every((p) => p === min) ? min.toFixed(2) : `From ${min.toFixed(2)}`;
+}
+
+export const MENU_CATEGORIES: {
+  title: string;
+  price: string;
+  cta: string;
+  art: MenuArt;
+  href: string;
+}[] = [
+  { title: 'Toasted Subs', price: `${SUB_PRICES.half} half · ${SUB_PRICES.full} whole`, cta: 'View Subs', art: 'subs', href: `${MENU_URL}#subs` },
+  { title: 'Cheesesteaks', price: priceLabel(CHEESESTEAKS), cta: 'View Steaks', art: 'steaks', href: `${MENU_URL}#steaks` },
+  { title: 'Kati Rolls', price: priceLabel(KATI_ROLLS), cta: 'View Rolls', art: 'rolls', href: `${MENU_URL}#rolls` },
+  { title: 'Cozy Classics', price: priceLabel(CLASSICS), cta: 'View Classics', art: 'classics', href: `${MENU_URL}#classics` },
+  { title: 'Munchies', price: priceLabel(MUNCHIES), cta: 'View Munchies', art: 'munchies', href: `${MENU_URL}#munchies` },
 ];

@@ -4,13 +4,12 @@ Recipes for everyday edits. Each one ends the same way: check your work and open
 
 ## Where each fact appears
 
-Most content lives in `src/data/site.ts`, but a few facts are repeated in page copy or summaries. When one of these changes, update every place listed.
+All prices live only in `src/data/site.ts`. Everything that shows a price (menu page, home page cards, fan faves, size guide) reads it from there. A few other facts are also written into page copy or art; when one of these changes, update every place listed.
 
 | Fact | Places |
 |---|---|
-| Sub prices (half / whole) | `SUB_SIZES`, the Toasted Subs entry in `MENU_CATEGORIES`, each `FAN_FAVES` price (`site.ts`); the two hardcoded price lines in `src/components/menu-page/SubsSection.astro` |
-| Kati roll or cheesesteak prices | `KATI_ROLLS` / `CHEESESTEAKS`, and that category's price in `MENU_CATEGORIES` (the home page card) |
-| Cheapest Classics or Munchies item | The "From x.xx" price for that category in `MENU_CATEGORIES` |
+| Sub prices (half / whole) | `SUB_PRICES` only |
+| Any other price | That item in `site.ts` only. The home page cards work out their own price ("12.99", or "From 2.99" for the cheapest item). |
 | Hours | `HOURS`. "Open till 2AM" also appears in the hero sticker art, the hero's screen-reader text (`sections/Hero.astro`), and the Our Vibe badge (`sections/OurVibe.astro`, art + alt text). |
 | Address | `MAPS_URL`, `sections/FindUs.astro`, `menu-page/HungryYet.astro` |
 | DoorDash link | `ORDER_URL` (every Order button uses it) |
@@ -21,16 +20,15 @@ Text that's part of an illustration (the "Open till 2AM" sticker and badge, "Est
 
 ## Change a price
 
-1. Find the item in `src/data/site.ts` (`SUB_SIZES`, `KATI_ROLLS`, `CHEESESTEAKS`, `CLASSICS`, `MUNCHIES`, `DRINKS`).
-2. Change `price`. Menu prices have no `$`.
-3. Update any other place from the table above.
+1. For subs, change `SUB_PRICES` in `src/data/site.ts`. All subs cost the same per size.
+2. For anything else, find the item (`KATI_ROLLS`, `CHEESESTEAKS`, `CLASSICS`, `MUNCHIES`, `DRINKS`) and change its `price`. Menu prices have no `$`. Two prices are written "5.99 / 12.99".
+3. That's it. The home page cards update themselves.
 
 ## Add, rename or remove a menu item
 
 1. Edit the right array in `src/data/site.ts`. Items are `{ name, price, desc? }`. `desc` is an optional small line under the name (e.g. "6 pieces").
-2. Subs are grouped in `SUB_GROUPS` and have a `style` instead of a price, since all subs share the sizes in `SUB_SIZES`. A sub whose name matches a `FAN_FAVES` entry gets a "fan fave" marker automatically.
-3. If it's now the cheapest item in Classics or Munchies, update "From x.xx" in `MENU_CATEGORIES`.
-4. Check the menu page at phone and desktop widths. Long names should wrap cleanly and leave room for the dotted leader and price.
+2. Subs are grouped in `SUB_GROUPS` and have a `style` instead of a price, since all subs use `SUB_PRICES`. A sub whose name matches a `FAN_FAVES` entry gets a "fan fave" marker automatically.
+3. Check the menu page at phone and desktop widths. Long names should wrap cleanly and leave room for the dotted leader and price.
 
 ## Change hours
 
