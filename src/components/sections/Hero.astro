@@ -56,9 +56,9 @@ import tagline from '../../assets/art/hero/tagline.svg';
       <Art src={sparkleMustard.src} x={68.81} y={72.83} w={34.38} h={34.38} class="twinkle" />
       <Art src={burstCream.src} x={108.42} y={722.44} w={21.16} h={21.16} class="twinkle" />
       <Art src={sparkleMustardSm.src} x={758.81} y={682.83} w={28.38} h={28.38} class="twinkle" />
-      <Art src={openSticker.src} x={611.71} y={531.81} w={186.78} h={187.53} class="open-sticker" />
-      <!-- Halal stamp sits diagonally opposite the "Open till 2AM" sticker, clear of the headline. -->
-      <div class="halal-rock absolute" style="left:calc(92 * var(--su));top:calc(150 * var(--su));width:calc(140 * var(--su));height:calc(140 * var(--su))">
+      <Art src={openSticker.src} x={68.61} y={126.24} w={186.78} h={187.53} class="open-sticker" />
+      <!-- Halal stamp and "Open till 2AM" sticker sit diagonally opposite each other (centers swapped at the owners' request). -->
+      <div class="halal-rock absolute" style="left:calc(635.1 * var(--su));top:calc(555.58 * var(--su));width:calc(140 * var(--su));height:calc(140 * var(--su))">
         <HalalStamp variant="sticker" class="hero-halal size-full" />
       </div>
     </div>
@@ -163,11 +163,16 @@ import tagline from '../../assets/art/hero/tagline.svg';
   }
 
   /* ---------- Desktop: the 1440×900 design, scaled to fit ---------- */
+  /* Scales to whichever is tighter: the window's width, or its height below the
+     93px nav, so the Order and Menu buttons show on first load. It stops shrinking
+     at 70% so text stays readable; shorter windows just scroll. */
   @media (min-width: 1024px) {
     .canvas {
-      --u: min(1px, calc(100cqw / 1440));
+      --u: min(1px, calc(100cqw / 1440), max(0.7px, calc((100svh - 93px) / 900)));
       --su: var(--u);
-      --sbu: var(--u);
+      /* Rays scale with the window, not the art, so they reach the edges when the
+         art is narrower than the window (short or very wide windows). */
+      --sbu: max(var(--u), calc(100vw / 1440));
       --cu: var(--u);
       width: calc(1440 * var(--u));
       height: calc(900 * var(--u));
