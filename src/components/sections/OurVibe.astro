@@ -34,12 +34,13 @@ const badges = [
 
     <div class="text-center lg:text-left" data-reveal-group>
       <StackedText data-reveal designSize={66} layers={9} outline class="heading text-cream lg:whitespace-nowrap">
-        Rowan-grown.<br />Late-night raised.
+        Rowan-grown.<br />Built for late nights.
       </StackedText>
       <p data-reveal class="blurb mx-auto text-cream lg:mx-0">
-        Glassboro goes quiet after midnight. Brothers Faizan and Riyyan — both Rowan grads — weren’t having it. So they
-        opened The Hut on North Main: toasted subs, kati rolls with mint chutney, and a munchies menu made for the hours
-        your meal plan forgot.
+        Glassboro gets quiet after 10. As Rowan grads, we wanted to change that. So we built The Hut for the community
+        that’s still hungry after everything else shuts down. Warm, cozy comfort food, toasted subs, cheesesteaks, kati
+        rolls, late-night munchies, and prices made with students in mind. Whether you’re coming from class, work, or a
+        night out, The Hut is here to satisfy those late-night cravings without breaking the bank.
       </p>
       <ul class="badges flex justify-center lg:justify-start">
         {
@@ -74,9 +75,16 @@ const badges = [
     height: calc(534 * var(--pu));
     margin-top: clamp(90px, 8.3vw, 120px);
   }
+  /* Sized so the longest line ("Built for late nights.") fits on one line:
+     the screen width on phones, the text column on desktop. */
   .vibe :global(.heading) {
-    font-size: clamp(34px, 4.6vw, 66px);
+    font-size: min(max(26px, 8.1vw), 36px);
     line-height: 1;
+  }
+  @media (min-width: 1024px) {
+    .vibe :global(.heading) {
+      font-size: min(3.7vw, 54px);
+    }
   }
   .blurb {
     margin-top: clamp(24px, 2.3vw, 33px);
