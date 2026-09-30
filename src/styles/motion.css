@@ -30,6 +30,9 @@
   .est-badge {
     animation: rock 7s ease-in-out infinite alternate;
   }
+  .halal-rock {
+    animation: rock 6.5s ease-in-out infinite alternate-reverse;
+  }
 
   /* Smoke + steam wisps drift up and breathe */
   .smoke,
