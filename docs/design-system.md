@@ -56,6 +56,7 @@ Typical sizes (phone → desktop):
 | Tags and chips | e.g. "Pick one" chips in `RollsSteaks.astro` | `rounded-full border-3 border-ink`, Titan One uppercase, 13–15px. |
 | `DripBand` | `src/components/DripBand.astro` + `src/data/drips/*.json` | The drippy top edge of a section, in the color of the section above so it looks like that section is dripping down. Bands: `nav-drips` (ink), `hero-drips` (green), `marquee-drips` (brown), `menu-drips` (cream), `gold-drips` (mustard). Each drip stretches slightly on scroll (`src/scripts/drips.ts`). |
 | Scallop edge | `src/assets/art/findus/scallop.svg` | Wavy top edge used on mustard sections (Find Us, Hungry Yet), as `<img class="edge-art" data-reveal="drip">`. |
+| `HalalStamp` | `src/components/HalalStamp.astro` + `src/assets/art/badges/halal.svg` | The generic halal badge (Arabic "halal" in a ring). `variant="sticker"`: ink badge on a cream disc with a hard shadow, for busy art (the hero). `variant="line"` (default): the badge alone in the current text color, e.g. `text-mustard` in the footer. Size it with the wrapper; tilt with `rotate`. Don't redraw or restyle the mark itself. |
 | Sparkles | `src/assets/art/hero/sparkle-*.svg`, `star-*.svg` | Small decorative stars scattered in a section's margins. Add the `twinkle` class for a gentle staggered pulse. Hide the small ones on phones (`max-md:hidden`). |
 | Sunburst | `src/assets/art/hero/sunburst.svg`, `vibe/rays.svg`, `menu/rays.svg` | Radiating rays behind green sections, usually at `opacity-50`. |
 | Lava blobs | `src/assets/art/munchie/blob-*.svg` | Slow-moving blobs behind ink sections (class `lava`). |
@@ -81,7 +82,7 @@ Typical sizes (phone → desktop):
 
 - **Tone:** late-night, playful, a little cheeky. Short punchy lines ("Hungry yet?", "Got Munchies?", "The 1AM trifecta.").
 - **Names:** subs are named after cannabis strains (Fire OG, Grandaddy Purp, White Widow, Pineapple Express). Keep the wink subtle and never explicit.
-- **Facts to keep consistent:** 100% halal, open till 2AM Fri & Sat, Rowan-grown, order on DoorDash.
+- **Facts to keep consistent:** 100% halal (the halal stamp appears in the hero and the footer), open till 2AM Fri & Sat, Rowan-grown, order on DoorDash.
 - **Formatting:**
   - Menu prices have no `$` ("12.99"). Specials and the size guide use `$`.
   - Two prices are written "5.99 / 12.99".

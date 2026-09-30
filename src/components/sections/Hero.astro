@@ -4,6 +4,7 @@
 import Art from '../Art.astro';
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
+import HalalStamp from '../HalalStamp.astro';
 import { ORDER_URL, MENU_URL } from '../../data/site';
 
 import DripBand from '../DripBand.astro';
@@ -56,8 +57,12 @@ import tagline from '../../assets/art/hero/tagline.svg';
       <Art src={burstCream.src} x={108.42} y={722.44} w={21.16} h={21.16} class="twinkle" />
       <Art src={sparkleMustardSm.src} x={758.81} y={682.83} w={28.38} h={28.38} class="twinkle" />
       <Art src={openSticker.src} x={611.71} y={531.81} w={186.78} h={187.53} class="open-sticker" />
+      <!-- Halal stamp sits diagonally opposite the "Open till 2AM" sticker, clear of the headline. -->
+      <div class="halal-rock absolute" style="left:calc(92 * var(--su));top:calc(150 * var(--su));width:calc(140 * var(--su));height:calc(140 * var(--su))">
+        <HalalStamp variant="sticker" class="hero-halal size-full" />
+      </div>
     </div>
-    <p class="sr-only">Open till 2AM Fri &amp; Sat</p>
+    <p class="sr-only">Open till 2AM Fri &amp; Sat. 100% halal.</p>
 
     <div class="copy relative z-10" data-reveal-group>
       <p data-reveal class="kicker inline-flex items-center rounded-full border-3 border-ink bg-cream font-label uppercase text-ink">
@@ -217,5 +222,9 @@ import tagline from '../../assets/art/hero/tagline.svg';
       width: calc(16.38 * var(--u));
       height: calc(16.38 * var(--u));
     }
+  }
+  .stage :global(.hero-halal) {
+    --stamp-shadow: calc(6 * var(--su));
+    rotate: -8deg;
   }
 </style>
