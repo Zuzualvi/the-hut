@@ -39,6 +39,7 @@ Astro (static HTML, very little JavaScript), Tailwind CSS v4 and the Motion libr
 ```sh
 npm install
 npm run dev      # http://localhost:4321/
+npm run share-image  # regenerate the link-preview image (see docs/common-tasks.md)
 npm run check    # type-check
 npm run build    # production build into dist/
 ```

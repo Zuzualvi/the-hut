@@ -26,13 +26,14 @@ function reveal(el: HTMLElement, delay = 0) {
 if (document.documentElement.classList.contains('motion')) {
   // Groups: children reveal in sequence when the group scrolls into view.
   document.querySelectorAll<HTMLElement>('[data-reveal-group]').forEach((group) => {
-    inView(
-      group,
-      () => {
-        group.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el, i) => reveal(el, i * 0.09));
-      },
-      { amount: 0.15 },
-    );
+    const items = group.querySelectorAll<HTMLElement>('[data-reveal]');
+    // A `display: contents` wrapper (used to reorder items on phones) has no box,
+    // so it never scrolls into view. Reveal its items one by one instead.
+    if (getComputedStyle(group).display === 'contents') {
+      items.forEach((el) => inView(el, () => reveal(el), { amount: 0.1 }));
+      return;
+    }
+    inView(group, () => items.forEach((el, i) => reveal(el, i * 0.09)), { amount: 0.15 });
   });
 
   // Loners: anything with data-reveal that isn't inside a group.

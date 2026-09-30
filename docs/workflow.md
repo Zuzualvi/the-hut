@@ -39,7 +39,8 @@ If you can take screenshots:
 - `npm run build`, then `npx astro preview` serves the built site at http://localhost:4321/.
 - Headless Chrome won't go narrower than 500px. For phone width, screenshot a small HTML page that puts the site in a 390px-wide `<iframe>`.
 - Scroll reveals can be caught half-finished. Run Chrome with `--force-prefers-reduced-motion` to see the final state, or wait a few seconds of real time.
-- Stop the server when done: `lsof -nP -tiTCP:4321 -sTCP:LISTEN | xargs kill`.
+- Also check once with motion on, scrolling through the page. Content fades in as it scrolls into view, and reduced-motion screenshots skip that step, so they can't show text that never appears.
+- `astro preview` keeps running in the background, and only one can run at a time. Stop it when done: `npx astro preview stop`.
 
 ## Deploys
 
