@@ -3,7 +3,7 @@
 //
 // Usage: npm run build && npm run share-image
 // Needs Google Chrome or Chromium. Set CHROME_PATH if it isn't found.
-import { spawn, execFileSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -22,7 +22,8 @@ const chrome = [
 if (!chrome) throw new Error('Chrome not found. Set CHROME_PATH.');
 if (!existsSync('dist/share-card/index.html')) throw new Error('Run `npm run build` first.');
 
-const server = spawn('npx', ['astro', 'preview', '--port', String(PORT)], { stdio: 'ignore' });
+// `astro preview` runs in the background and only one can run at a time; stop it when done.
+execFileSync('npx', ['astro', 'preview', '--port', String(PORT)], { stdio: 'ignore' });
 try {
   for (let i = 0; ; i++) {
     try {
@@ -58,5 +59,5 @@ try {
 
   console.log('Wrote public/og.jpg and public/apple-touch-icon.png');
 } finally {
-  server.kill();
+  execFileSync('npx', ['astro', 'preview', 'stop'], { stdio: 'ignore' });
 }
