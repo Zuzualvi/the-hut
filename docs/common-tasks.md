@@ -12,6 +12,7 @@ All prices live only in `src/data/site.ts`. Everything that shows a price (menu 
 | Any other price | That item in `site.ts` only. The home page cards work out their own price ("12.99", or "From 2.99" for the cheapest item). |
 | Hours | `HOURS` (both the display text and the `open` times for Google). "Open till 2AM" also appears in the hero sticker art, the hero's screen-reader text (`sections/Hero.astro`), and the Our Vibe badge (`sections/OurVibe.astro`, art + alt text). |
 | Address | `ADDRESS` only (Find Us, Hungry Yet, the map link and Google's business details all read it) |
+| Phone | `PHONE` only (Find Us and Google's business details) |
 | DoorDash link | `ORDER_URL` (every Order button uses it) |
 | Instagram | `INSTAGRAM_HANDLE` |
 | Copyright year | `sections/Footer.astro` |
