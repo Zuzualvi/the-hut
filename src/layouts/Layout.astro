@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/motion.css';
-import { SITE_NAME, ADDRESS, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER_URL } from '../data/site';
+import { SITE_NAME, PHONE, ADDRESS, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER_URL } from '../data/site';
 
 interface Props {
   title?: string;
@@ -32,6 +32,7 @@ const business = {
   menu: abs(MENU_URL),
   servesCuisine: ['Sandwiches', 'Cheesesteaks', 'Kati rolls', 'Halal'],
   priceRange: '$',
+  telephone: PHONE.tel,
   address: {
     '@type': 'PostalAddress',
     streetAddress: ADDRESS.street,
