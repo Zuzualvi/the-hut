@@ -8,17 +8,17 @@ import scallop from '../../assets/art/findus/scallop.svg';
 import mapBlob from '../../assets/art/findus/map-blob.svg';
 ---
 
-<section id="find-us" class="findus relative overflow-hidden bg-mustard">
+<section id="find-us" class="findus relative overflow-hidden bg-mustard px-5 lg:px-[clamp(20px,5vw,120px)]">
   <img src={scallop.src} alt="" aria-hidden="true" data-reveal="drip" class="edge-art" />
 
-  <div class="relative mx-auto grid max-w-[1200px] items-center gap-10 px-5 lg:grid-cols-[680px_440px] lg:gap-20 lg:px-0">
+  <div class="relative mx-auto grid max-w-[1200px] items-center gap-10 lg:grid-cols-[minmax(0,680fr)_minmax(0,440fr)] lg:gap-[clamp(40px,5.5vw,80px)]">
     <div class="contents lg:block" data-reveal-group>
       <StackedText data-reveal designSize={92} layers={9} outline class="heading text-cream lg:whitespace-nowrap">Hit up<br class="lg:hidden" /> The Hut</StackedText>
 
-      <dl data-reveal class="info order-3 grid gap-7 sm:grid-cols-[auto_auto_auto] sm:gap-11 lg:order-none">
+      <dl data-reveal class="info order-3 grid gap-7 sm:grid-cols-[auto_auto_auto] sm:gap-11 lg:order-none lg:grid-cols-[auto_auto] lg:gap-y-7 xl:grid-cols-[auto_auto_auto] xl:gap-y-11">
         <div>
           <dt class="label">Address</dt>
-          <dd class="value">{ADDRESS.street}<br />{ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}</dd>
+          <dd class="value whitespace-nowrap">{ADDRESS.street}<br />{ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}</dd>
         </div>
         <div>
           <dt class="label">Hours</dt>
@@ -26,7 +26,7 @@ import mapBlob from '../../assets/art/findus/map-blob.svg';
             {
               HOURS.map((h) => (
                 <Fragment>
-                  <span>{h.days}</span>
+                  <span class="whitespace-nowrap">{h.days}</span>
                   <span class="whitespace-nowrap">{h.time}</span>
                 </Fragment>
               ))
@@ -93,7 +93,7 @@ import mapBlob from '../../assets/art/findus/map-blob.svg';
     font-size: clamp(16px, 1.5vw, 22px);
   }
   .map {
-    width: min(450px, calc(100vw - 40px));
+    width: min(450px, 100%);
     transition: transform 300ms ease-out;
   }
   .map:hover {
