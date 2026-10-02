@@ -27,6 +27,7 @@ This repo is the single source of truth for the site: content, code and design. 
 | `src/styles/motion.css`, `src/scripts/motion.ts`, `src/scripts/drips.ts` | Ambient animation, scroll reveals, stretchy drips |
 | `src/assets/art/` | SVG illustrations, grouped by section |
 | `src/data/drips/*.json`, `scripts/split-drips.mjs` | Drip band shapes and the script that generates them |
+| `scripts/flower-of-life.mjs` | Generates the hero's inner ring with its Flower of Life pattern |
 | `src/layouts/Layout.astro` | Page `<head>`: title, description, link-preview tags, business details for Google |
 | `src/pages/share-card.astro`, `scripts/share-image.mjs`, `public/og.jpg` | The link-preview image and how it's made |
 | `public/` | Favicon, iPhone icon, `robots.txt`, share image. The sitemap is generated on build. |
