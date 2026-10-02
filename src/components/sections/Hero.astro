@@ -12,11 +12,12 @@ import navDrips from '../../data/drips/nav-drips.json';
 import sunburst from '../../assets/art/hero/sunburst.svg';
 import ringOuter from '../../assets/art/hero/ring-outer.svg';
 import ringMid from '../../assets/art/hero/ring-mid.svg';
-import ringInner from '../../assets/art/hero/ring-inner.svg';
+import ringInner from '../../assets/art/hero/ring-inner-geometry.svg';
 import smokeLeft from '../../assets/art/hero/smoke-left.svg';
 import smokeRight from '../../assets/art/hero/smoke-right.svg';
 import smokeTop from '../../assets/art/hero/smoke-top.svg';
 import owl from '../../assets/art/hero/owl-duo.svg';
+import wordmark from '../../assets/art/nav/logo-wordmark.svg';
 import starMustard from '../../assets/art/hero/star-mustard.svg';
 import starCream from '../../assets/art/hero/star-cream.svg';
 import sparkleMustard from '../../assets/art/hero/sparkle-mustard.svg';
@@ -50,7 +51,9 @@ import tagline from '../../assets/art/hero/tagline.svg';
       <Art src={smokeLeft.src} x={154.5} y={6.02} w={83} h={308} class="smoke" />
       <Art src={smokeRight.src} x={654.5} y={-33.98} w={83} h={328} class="smoke" />
       <Art src={smokeTop.src} x={372} y={-123.98} w={68} h={228} class="smoke" />
-      <Art src={owl.src} x={276} y={275.02} w={349.09} h={320.1} class="owl" />
+      <!-- Owl over "THE HUT", like the shop's sign. They float together. -->
+      <Art src={owl.src} x={287.5} y={235.9} w={333.7} h={306} class="owl" />
+      <Art src={wordmark.src} x={319} y={561.2} w={264} h={57.84} class="owl hero-wordmark" />
       <Art src={starMustard.src} x={738.42} y={112.44} w={51.16} h={51.16} class="twinkle" />
       <Art src={starCream.src} x={768.81} y={212.83} w={24.38} h={24.38} class="twinkle" />
       <Art src={sparkleMustard.src} x={68.81} y={72.83} w={34.38} h={34.38} class="twinkle" />
@@ -227,6 +230,10 @@ import tagline from '../../assets/art/hero/tagline.svg';
       width: calc(16.38 * var(--u));
       height: calc(16.38 * var(--u));
     }
+  }
+  /* Hard ink shadow, like the owl's. */
+  .stage :global(.hero-wordmark) {
+    filter: drop-shadow(calc(7 * var(--su)) calc(7 * var(--su)) 0 var(--color-ink));
   }
   .stage :global(.hero-halal) {
     --stamp-shadow: calc(6 * var(--su));
