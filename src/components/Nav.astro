@@ -14,7 +14,8 @@ const { current } = Astro.props;
   <nav class="flex items-center justify-between px-5 py-4 md:px-14 lg:py-[18px]" aria-label="Main">
     <a href={`${HOME_URL}#top`} class="flex items-center gap-3" aria-label="The Hut — home">
       <img src={owlMark.src} alt="" width="58" height="52.9" class="h-[38px] w-auto lg:h-[52.9px]" />
-      <img src={wordmark.src} alt="" width="120" height="26.3" class="h-[19px] w-auto lg:h-[26.3px]" />
+      <!-- Nudged down to line up with the owl's eyes: the owl's weight sits low, so centering on its box reads high. -->
+      <img src={wordmark.src} alt="" width="120" height="26.3" class="h-[19px] w-auto translate-y-[3px] lg:h-[26.3px] lg:translate-y-[4px]" />
     </a>
 
     <ul class="hidden items-center gap-10 font-label text-[18px] uppercase tracking-[0.36px] text-cream lg:flex">
