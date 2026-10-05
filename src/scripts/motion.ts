@@ -24,16 +24,25 @@ function reveal(el: HTMLElement, delay = 0) {
 (window as unknown as { __motionReady: boolean }).__motionReady = true;
 
 if (document.documentElement.classList.contains('motion')) {
-  // Groups: children reveal in sequence when the group scrolls into view.
+  // Groups: items that scroll into view together reveal one after another.
+  // Each item is watched on its own rather than the group as a whole, so it
+  // doesn't matter how the layout looked when the page loaded. (A wrapper that's
+  // `display: contents` on phones has no box and never "scrolls into view", and
+  // the page can load at a different width than it's read at: a rotated phone,
+  // a resized window, a browser that loads the page before it's on screen.)
   document.querySelectorAll<HTMLElement>('[data-reveal-group]').forEach((group) => {
-    const items = group.querySelectorAll<HTMLElement>('[data-reveal]');
-    // A `display: contents` wrapper (used to reorder items on phones) has no box,
-    // so it never scrolls into view. Reveal its items one by one instead.
-    if (getComputedStyle(group).display === 'contents') {
-      items.forEach((el) => inView(el, () => reveal(el), { amount: 0.1 }));
-      return;
-    }
-    inView(group, () => items.forEach((el, i) => reveal(el, i * 0.09)), { amount: 0.15 });
+    let batch = 0;
+    let frame = 0;
+    group.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+      inView(
+        el,
+        () => {
+          reveal(el, batch++ * 0.09);
+          frame ||= requestAnimationFrame(() => (batch = frame = 0));
+        },
+        { amount: 0.1 },
+      );
+    });
   });
 
   // Loners: anything with data-reveal that isn't inside a group.
