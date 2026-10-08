@@ -37,6 +37,15 @@ const blobs = {
 };
 const blob = blobs[art];
 
+// What each drawing shows, for screen readers and search engines.
+const labels = {
+  subs: 'Illustration of a toasted sub with lettuce, cheese and a sesame roll',
+  steaks: 'Illustration of a cheesesteak with melted cheese and onions',
+  rolls: 'Illustration of a kati roll',
+  classics: 'Illustration of a steaming bowl of soup',
+  munchies: 'Illustration of a carton of fries',
+};
+
 // Sesame seeds: [left, top, tilt] of each 7.946×6.153 slot, in design px.
 const seeds: [number, number, number][] = [
   [82.23, 68.2, 20], [111.2, 72.81, -20], [137.43, 68.2, 20], [166.4, 72.81, -20],
@@ -56,7 +65,7 @@ const fries: [number, number, number, number, number, number][] = [
 ];
 ---
 
-<div class="relative h-[230px] w-full overflow-hidden rounded-[26px] border-3 border-ink bg-green-deep">
+<div role="img" aria-label={labels[art]} class="relative h-[230px] w-full overflow-hidden rounded-[26px] border-3 border-ink bg-green-deep">
   <div class="stage absolute top-[-3px] left-1/2 h-[230px] w-[340px] -translate-x-1/2">
     <div class="rays absolute" style="left:-329px;top:-373px;width:1000px;height:1000px">
       <img src={rays.src} alt="" class="block size-full max-w-none" />

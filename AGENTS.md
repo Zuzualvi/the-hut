@@ -31,6 +31,7 @@ This repo is the single source of truth for the site: content, code and design. 
 | `src/layouts/Layout.astro` | Page `<head>`: title, description, link-preview tags, business details for Google |
 | `src/pages/share-card.astro`, `scripts/share-image.mjs`, `public/og.jpg` | The link-preview image and how it's made |
 | `public/` | Favicon, iPhone icon, `robots.txt`, share image. The sitemap is generated on build. |
+| `vercel.json` | Redirects (`/sitemap.xml` points to the generated `/sitemap-index.xml`) |
 | `docs/` | Workflow, design system and task recipes |
 
 ## Stack

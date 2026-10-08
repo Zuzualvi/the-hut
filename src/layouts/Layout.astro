@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/motion.css';
-import { SITE_NAME, PHONE, ADDRESS, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER_URL } from '../data/site';
+import { SITE_NAME, PHONE, ADDRESS, GEO, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER_URL } from '../data/site';
 
 interface Props {
   title?: string;
@@ -11,7 +11,7 @@ interface Props {
 const SITE_DESCRIPTION =
   'Toasted subs lathered in house garlic butter and parm. Kati rolls, cheesesteaks, and munchies for those late-night cravings. Halal. Open late.';
 const {
-  title = 'The Hut — Toasted Subs & Late-Night Munchies · Glassboro, NJ',
+  title = 'The Hut — Late-Night Toasted Subs & Sandwiches · Glassboro, NJ',
   description = SITE_DESCRIPTION,
   noindex = false,
 } = Astro.props;
@@ -29,6 +29,7 @@ const business = {
   description: SITE_DESCRIPTION,
   url: abs(HOME_URL),
   image: shareImage,
+  logo: abs(`${base}/apple-touch-icon.png`),
   menu: abs(MENU_URL),
   servesCuisine: ['Sandwiches', 'Cheesesteaks', 'Kati rolls', 'Halal'],
   priceRange: '$',
@@ -41,6 +42,7 @@ const business = {
     postalCode: ADDRESS.zip,
     addressCountry: 'US',
   },
+  geo: { '@type': 'GeoCoordinates', latitude: GEO.lat, longitude: GEO.lng },
   openingHoursSpecification: HOURS.flatMap((h) =>
     h.open ? [{ '@type': 'OpeningHoursSpecification', dayOfWeek: h.open.days, opens: h.open.opens, closes: h.open.closes }] : [],
   ),

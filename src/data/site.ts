@@ -42,6 +42,8 @@ export const SITE_NAME = 'The Hut';
 // `tel` is the dialable form used for tap-to-call links and Google's business details.
 export const PHONE = { display: '(856) 355-8899', tel: '+18563558899' };
 export const ADDRESS = { street: '709 N. Main St.', city: 'Glassboro', region: 'NJ', zip: '08028' };
+// Map pin for Google's business details (the building at ADDRESS). Update it if the shop moves.
+export const GEO = { lat: 39.71568, lng: -75.11518 };
 export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   `${ADDRESS.street} ${ADDRESS.city} ${ADDRESS.region} ${ADDRESS.zip}`,
 )}`;

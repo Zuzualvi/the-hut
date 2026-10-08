@@ -52,7 +52,7 @@ import tagline from '../../assets/art/hero/tagline.svg';
       <Art src={smokeRight.src} x={654.5} y={-33.98} w={83} h={328} class="smoke" />
       <Art src={smokeTop.src} x={372} y={-123.98} w={68} h={228} class="smoke" />
       <!-- Owl over "THE HUT", like the shop's sign. They float together. -->
-      <Art src={owl.src} x={287.5} y={235.9} w={333.7} h={306} class="owl" />
+      <Art src={owl.src} x={287.5} y={235.9} w={333.7} h={306} class="owl" alt="The Hut logo: an owl above the shop name" />
       <Art src={wordmark.src} x={319} y={561.2} w={264} h={57.84} class="owl hero-wordmark" />
       <Art src={starMustard.src} x={738.42} y={112.44} w={51.16} h={51.16} class="twinkle" />
       <Art src={starCream.src} x={768.81} y={212.83} w={24.38} h={24.38} class="twinkle" />
@@ -68,13 +68,14 @@ import tagline from '../../assets/art/hero/tagline.svg';
     <p class="sr-only">Open till 2AM Fri &amp; Sat. 100% halal.</p>
 
     <div class="copy relative z-10" data-reveal-group>
-      <p data-reveal class="kicker inline-flex items-center rounded-full border-3 border-ink bg-cream font-label uppercase text-ink">
+      <!-- The small pill is the page's main heading (what the page is about, for search engines); "Get Toasted." is the display line. -->
+      <h1 id="hero-title" data-reveal class="kicker inline-flex items-center rounded-full border-3 border-ink bg-cream font-label uppercase text-ink">
         <img src={pillSparkle.src} alt="" class="kicker-sparkle" />
-        Glassboro’s late-night sub shack
-      </p>
+        Toasted subs &amp; sandwiches in Glassboro, NJ
+      </h1>
 
       <div class="headline relative isolate" data-reveal>
-        <StackedText as="h1" id="hero-title" designSize={150} layers={12} outline class="headline-text text-cream">
+        <StackedText as="p" designSize={150} layers={12} outline class="headline-text text-cream">
           Get<br />Toasted.
         </StackedText>
         <img src={drip1.src} alt="" aria-hidden="true" data-reveal="drip" class="drip absolute -z-10" style="left:0.99em;top:1.44em;width:0.22em;height:0.8667em" />
