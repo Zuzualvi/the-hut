@@ -1,8 +1,8 @@
 ---
-// Footer: logo, tagline, links and the order button.
+// Footer: logo, tagline, links, and the shop's address and phone (on every page, for visitors and search engines).
 import Art from '../Art.astro';
 import HalalStamp from '../HalalStamp.astro';
-import { NAV_LINKS, INSTAGRAM_URL } from '../../data/site';
+import { NAV_LINKS, INSTAGRAM_URL, ORDER_URL, ADDRESS, PHONE, MAPS_URL } from '../../data/site';
 
 import DripBand from '../DripBand.astro';
 import goldDrips from '../../data/drips/gold-drips.json';
@@ -33,9 +33,16 @@ import tagline from '../../assets/art/footer/tagline.svg';
           </li>
         ))
       }
+      <li><a href={ORDER_URL} target="_blank" rel="noopener" class="hover:text-mustard">Order Online</a></li>
       <li><a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="hover:text-mustard">Instagram</a></li>
     </ul>
   </nav>
+
+  <address class="nap not-italic text-stone">
+    <a href={MAPS_URL} target="_blank" rel="noopener" class="hover:text-mustard">The Hut · {ADDRESS.street}, {ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}</a>
+    <span class="max-md:hidden" aria-hidden="true"> · </span>
+    <a href={`tel:${PHONE.tel}`} class="hover:text-mustard">{PHONE.display}</a>
+  </address>
 
   <p class="legal text-ash">© 2026 The Hut Glassboro · 100% Halal · Order via DoorDash</p>
 
@@ -64,8 +71,23 @@ import tagline from '../../assets/art/footer/tagline.svg';
     gap: 14px 40px;
     font-size: clamp(14px, 1.25vw, 18px);
   }
+  .nap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 36px;
+    padding: 0 20px;
+    font-size: clamp(14px, 1.15vw, 17px);
+  }
+  @media (min-width: 768px) {
+    .nap {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
   .legal {
-    margin-top: 44px;
+    margin-top: 28px;
     padding: 0 20px;
     font-size: clamp(12px, 1vw, 15px);
   }

@@ -27,16 +27,20 @@ const jumps = [
   <DripBand data={navDrips} class="z-20" />
 
   <div class="relative z-10 mx-auto flex max-w-[980px] flex-col items-center px-5 text-center" data-reveal-group>
-    <p data-reveal class="flex items-center gap-2.5 rounded-full border-3 border-ink bg-mustard px-[18px] py-2 font-label text-[16px] uppercase tracking-[0.64px] text-ink">
+    <!-- The small pill is the page's main heading (for search engines); "Got Munchies?" is the display line. -->
+    <h1 id="menu-title" data-reveal class="pill flex items-center gap-2.5 rounded-full border-3 border-ink bg-mustard px-[18px] py-2 font-label uppercase tracking-[0.64px] text-ink">
       <img src={pillSparkle.src} alt="" width="16" height="16" />
-      The Full Menu
+      The Hut Menu · Glassboro, NJ
       <img src={pillSparkle.src} alt="" width="16" height="16" />
-    </p>
-    <StackedText as="h1" id="menu-title" data-reveal designSize={120} layers={12} outline class="title text-cream">
+    </h1>
+    <StackedText as="p" data-reveal designSize={120} layers={12} outline class="title text-cream">
       Got Munchies?
     </StackedText>
-    <p data-reveal class="blurb max-w-[700px] text-cream">
-      Every sub is toasted and brushed with our house garlic butter &amp; parm. 100% halal.{' '}
+    <p data-reveal class="blurb max-w-[760px] text-cream">
+      Toasted subs and sandwiches in Glassboro, made for late nights. Chicken, turkey and veggie subs come on a toasted
+      roll brushed with our house garlic butter &amp; parm. There are beef and chicken cheesesteaks, chicken or paneer kati
+      rolls, grilled cheese, tomato soup, and munchies like nachos, fries and mac &amp; cheese bites. 100% halal, open till
+      2AM Fri &amp; Sat.{' '}
       <span class="max-md:hidden">Order ahead on DoorDash or pull up to the counter.</span>
     </p>
 
@@ -80,6 +84,9 @@ const jumps = [
     margin-top: clamp(18px, 1.8vw, 26px);
     font-size: clamp(54px, 8vw, 116px);
     line-height: 0.98;
+  }
+  .pill {
+    font-size: clamp(13px, 3.4vw, 16px);
   }
   .blurb {
     margin-top: clamp(18px, 1.8vw, 26px);

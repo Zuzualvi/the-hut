@@ -21,11 +21,16 @@ const REPEAT = 8;
         aria-hidden="true"
       >
         <div class:list={['track flex w-max items-center', b.dir === 'right' && 'track-reverse']}>
-          {[0, 1].map(() => (
+          {[0, 1].map((half) => (
             <div class="flex shrink-0 items-center">
-              {Array.from({ length: REPEAT }, () => (
+              {Array.from({ length: REPEAT }, (_, i) => (
                 <span class="unit flex shrink-0 items-center">
-                  <span class="font-label uppercase whitespace-nowrap">{b.text}</span>
+                  {/* Only the first copy is real text; the repeats are drawn by CSS so the page doesn't repeat the phrase 16 times. */}
+                  {half === 0 && i === 0 ? (
+                    <span class="font-label uppercase whitespace-nowrap">{b.text}</span>
+                  ) : (
+                    <span class="repeat font-label uppercase whitespace-nowrap" data-text={b.text} />
+                  )}
                   <img src={sparkle.src} alt="" class="band-sparkle" />
                 </span>
               ))}
@@ -59,6 +64,9 @@ const REPEAT = 8;
   }
   .unit {
     letter-spacing: 0.05em;
+  }
+  .repeat::before {
+    content: attr(data-text);
   }
   .band-sparkle {
     width: 0.8125em;
