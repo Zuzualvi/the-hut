@@ -1,6 +1,10 @@
 ---
 import '../styles/global.css';
 import '../styles/motion.css';
+// The two display fonts are visible at the top of both pages; preloading them lets the browser
+// fetch them right away instead of discovering them only after reading the CSS.
+import shrikhandFont from '@fontsource/shrikhand/files/shrikhand-latin-400-normal.woff2?url';
+import titanOneFont from '@fontsource/titan-one/files/titan-one-latin-400-normal.woff2?url';
 import { SITE_NAME, PHONE, ADDRESS, GEO, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER_URL } from '../data/site';
 
 interface Props {
@@ -58,6 +62,8 @@ const business = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#121210" />
+    <link rel="preload" href={shrikhandFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={titanOneFont} as="font" type="font/woff2" crossorigin />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
 
     <!-- Link previews (iMessage, WhatsApp, Instagram, Slack, X…). The image is public/og.jpg. -->
