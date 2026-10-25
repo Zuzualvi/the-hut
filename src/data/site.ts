@@ -133,7 +133,6 @@ export const CHEESESTEAKS = [
 export const CLASSICS = [
   { name: 'Grilled Cheese', price: '4.99' },
   { name: 'Tomato Soup', price: '2.99' },
-  { name: 'Wake and Bake', price: '7.99', desc: 'Bagel, turkey sausage, egg, cheese' },
   { name: 'Grilled PB&J', price: '2.99' },
   { name: 'Chicken Nuggets', price: '5.99', desc: '6 pieces' },
 ];
