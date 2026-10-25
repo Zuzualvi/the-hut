@@ -141,6 +141,7 @@ export const MUNCHIES = [
   { name: 'Not’so Nachos', price: '5.99 / 12.99', desc: 'Doritos, colby jack, jalapeño, red onions, black olives, hot sauce, ranch' },
   { name: 'Fries / Tots', price: '3.99', desc: ['Add cajun', 'Add cheese +2.00'] },
   { name: 'Mac & Cheese Bites', price: '5.99' },
+  { name: 'Mozzarella Sticks', price: '3.99' },
   { name: 'Brownies', price: '1.99' },
 ];
 
