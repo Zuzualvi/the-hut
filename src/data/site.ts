@@ -22,7 +22,7 @@ export type MenuArt = 'subs' | 'steaks' | 'rolls' | 'classics' | 'munchies';
 export const SUB_PRICES = { half: '8.99', full: '15.99' };
 const SUB_PRICE_PAIR = `${SUB_PRICES.half} / ${SUB_PRICES.full}`;
 
-export type Sticker = 'fire-og' | 'grandaddy-purp' | 'white-widow' | 'pineapple-express';
+export type Sticker = 'fire-og' | 'marinara-haze' | 'white-widow' | 'pineapple-express';
 
 export const FAN_FAVES: {
   name: string;
@@ -33,7 +33,7 @@ export const FAN_FAVES: {
   tilt: number;
 }[] = [
   { name: 'Fire OG', flavor: 'Buffalo', price: SUB_PRICE_PAIR, sticker: 'fire-og', text: 'text-green', tilt: 6 },
-  { name: 'Grandaddy Purp', flavor: 'BBQ', price: SUB_PRICE_PAIR, sticker: 'grandaddy-purp', text: 'text-cream', tilt: -4 },
+  { name: 'Marinara Haze', flavor: 'Chicken Parm', price: SUB_PRICE_PAIR, sticker: 'marinara-haze', text: 'text-cream', tilt: -4 },
   { name: 'White Widow', flavor: 'Chicken Bacon Ranch', price: SUB_PRICE_PAIR, sticker: 'white-widow', text: 'text-ink', tilt: 3 },
   { name: 'Pineapple Express', flavor: 'Teriyaki', price: SUB_PRICE_PAIR, sticker: 'pineapple-express', text: 'text-cream', tilt: -7 },
 ];
@@ -141,7 +141,8 @@ export const MUNCHIES = [
   { name: 'Not’so Nachos', price: '5.99 / 12.99', desc: 'Doritos, colby jack, jalapeño, red onions, black olives, hot sauce, ranch' },
   { name: 'Fries / Tots', price: '3.99', desc: ['Add cajun', 'Add cheese +2.00'] },
   { name: 'Mac & Cheese Bites', price: '5.99' },
-  { name: 'Chips / Brownies', price: '1.99' },
+  { name: 'Mozzarella Sticks', price: '3.99' },
+  { name: 'Brownies', price: '1.99' },
 ];
 
 export const DRINKS = [
