@@ -139,7 +139,7 @@ export const CLASSICS = [
 
 export const MUNCHIES = [
   { name: 'Not’so Nachos', price: '5.99 / 12.99', desc: 'Doritos, colby jack, jalapeño, red onions, black olives, hot sauce, ranch' },
-  { name: 'Fries', price: '3.99', desc: 'Add cajun' },
+  { name: 'Fries / Tots', price: '3.99', desc: ['Add cajun', 'Add cheese +2.00'] },
   { name: 'Mac & Cheese Bites', price: '5.99' },
   { name: 'Chips / Brownies', price: '1.99' },
 ];
@@ -148,6 +148,7 @@ export const DRINKS = [
   { name: 'Soda Cans', price: '1.99' },
   { name: 'Water', price: '1.50' },
   { name: 'Energy Drinks & Glass Bottles', price: '2.99' },
+  { name: 'Chips', price: '1.99' },
   { name: 'Can + Chip Combo', price: '2.99' },
 ];
 

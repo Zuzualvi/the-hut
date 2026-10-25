@@ -1,5 +1,5 @@
 ---
-// Classics + Munchies lists and the Drinks strip.
+// Classics + Munchies lists and the Drinks & Chips strip.
 import StackedText from '../StackedText.astro';
 import DripBand from '../DripBand.astro';
 import navDrips from '../../data/drips/nav-drips.json';
@@ -8,7 +8,8 @@ import sparkleMustard from '../../assets/art/hero/sparkle-mustard.svg';
 import sparkleCreamSm from '../../assets/art/hero/sparkle-cream-sm.svg';
 import { CLASSICS, MUNCHIES, DRINKS } from '../../data/site';
 
-type Item = { name: string; price: string; desc?: string };
+// A `desc` array shows one line per entry.
+type Item = { name: string; price: string; desc?: string | string[] };
 const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
   { id: 'classics', title: 'Classics', sub: 'Cozy classics', items: CLASSICS },
   { id: 'munchies', title: 'Munchies', sub: 'Sides & snacks', items: MUNCHIES },
@@ -38,7 +39,11 @@ const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
                     <span class="leader text-brown" aria-hidden="true" />
                     <p class="shrink-0 font-label text-[17px] text-brown min-[400px]:text-[18px] md:text-[24px]">{it.price}</p>
                   </div>
-                  {it.desc && <p class="max-w-[440px] text-[15px] leading-normal text-brown md:text-[18px]">{it.desc}</p>}
+                  {it.desc && (
+                    <p class="max-w-[440px] text-[15px] leading-normal text-brown md:text-[18px]">
+                      {[it.desc].flat().map((line, i) => (i ? [<br />, line] : line))}
+                    </p>
+                  )}
                 </li>
               ))}
             </ul>
@@ -47,13 +52,13 @@ const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
       }
     </div>
 
-    <div id="drinks" data-reveal class="drinks flex scroll-mt-24 flex-col gap-3.5 rounded-[30px] border-4 border-ink bg-mustard text-ink md:rounded-[36px] lg:gap-2 xl:flex-row xl:items-center xl:gap-10">
-      <h3 class="font-display text-[38px] leading-[1.2] lg:text-[52px]">Drinks</h3>
-      <ul class="flex flex-1 flex-col gap-2.5 lg:flex-row lg:justify-between lg:gap-4">
+    <div id="drinks" data-reveal class="drinks scroll-mt-24 rounded-[30px] border-4 border-ink bg-mustard text-ink md:rounded-[36px]">
+      <h3 class="sr-only">Drinks &amp; chips</h3>
+      <ul class="flex flex-col gap-2.5 lg:flex-row lg:justify-between lg:gap-4">
         {
           DRINKS.map((d, i) => (
             <Fragment>
-              <li class="flex items-baseline-last gap-2.5 lg:shrink-0 lg:flex-col lg:items-start lg:justify-end lg:gap-0.5">
+              <li class="flex items-baseline-last gap-2.5 lg:flex-col lg:items-start lg:justify-end lg:gap-0.5">
                 <p class="max-w-[11.5em] font-label text-[14px] uppercase tracking-[0.3px] min-[400px]:text-[15px] lg:text-[18px] min-[1400px]:max-w-none">{d.name}</p>
                 <span class="leader lg:hidden" aria-hidden="true" />
                 <p class="font-label text-[18px] lg:font-display lg:text-[34px] lg:leading-[1.2]">{d.price}</p>
