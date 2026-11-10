@@ -83,11 +83,11 @@ Typical sizes (phone → desktop):
 
 - **Tone:** late-night, playful, a little cheeky. Short punchy lines ("Hungry yet?", "Got Munchies?", "The 1AM trifecta.").
 - **Names:** subs are named after cannabis strains (Fire OG, Grandaddy Purp, White Widow, Pineapple Express). Keep the wink subtle and never explicit.
-- **Facts to keep consistent:** 100% halal (the halal stamp appears in the hero and the footer), open till 2AM Fri & Sat, Rowan-grown, order on DoorDash.
+- **Facts to keep consistent:** 100% halal (the halal stamp appears in the hero and the footer), open till 1AM Fri & Sat, Rowan-grown, order on DoorDash.
 - **Formatting:**
   - Menu prices have no `$` ("12.99"). Specials and the size guide use `$`.
   - Two prices are written "5.99 / 12.99".
-  - Use typographic apostrophes (’), en dashes for ranges ("Mon–Thu", "4PM – 11PM") and a middle dot (·) as a separator.
+  - Use typographic apostrophes (’), en dashes for ranges ("Mon–Thu", "11AM – 10PM") and a middle dot (·) as a separator.
 
 ## Share image and icons
 
