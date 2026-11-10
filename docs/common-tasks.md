@@ -10,14 +10,14 @@ All prices live only in `src/data/site.ts`. Everything that shows a price (menu 
 |---|---|
 | Sub prices (half / whole) | `SUB_PRICES` only |
 | Any other price | That item in `site.ts` only. The home page cards work out their own price ("12.99", or "From 2.99" for the cheapest item). |
-| Hours | `HOURS` (both the display text and the `open` times for Google). "Open till 2AM" also appears in the hero sticker art, the hero's screen-reader text (`sections/Hero.astro`), and the Our Vibe badge (`sections/OurVibe.astro`, art + alt text). |
+| Hours | `HOURS` (both the display text and the `open` times for Google). "Open till 1AM" also appears in the hero sticker art, the hero's screen-reader text (`sections/Hero.astro`), and the Our Vibe badge (`sections/OurVibe.astro`, art + alt text). |
 | Address | `ADDRESS` (Find Us, Hungry Yet, the footer, the map link and Google's business details all read it). If the shop moves, also update the map pin in `GEO` next to it. |
 | Phone | `PHONE` only (Find Us, the footer and Google's business details) |
 | DoorDash link | `ORDER_URL` (every Order button uses it) |
 | Instagram | `INSTAGRAM_HANDLE` |
 | Copyright year | `sections/Footer.astro` |
 
-Text that's part of an illustration (the "Open till 2AM" sticker and badge, "Est. 2026", "100% Halal") can't be edited as text. If it needs to change, flag it in the PR as needing new art.
+Text that's part of an illustration (the "Open till 1AM" sticker and badge, "Est. 2026", "100% Halal") can't be edited as text. If it needs to change, flag it in the PR as needing new art.
 
 ## Change a price
 
@@ -33,9 +33,9 @@ Text that's part of an illustration (the "Open till 2AM" sticker and badge, "Est
 
 ## Change hours
 
-1. Edit `HOURS` in `src/data/site.ts`. Each entry has what the site shows (`days: 'Mon–Thu'`, `time: '4PM – 11PM'`) and the same hours for Google (`open`: full day names and 24-hour `opens` / `closes`; a close earlier than the open means after midnight). Update both. A closed day has no `open`.
+1. Edit `HOURS` in `src/data/site.ts`. Each entry has what the site shows (`days: 'Mon–Thu'`, `time: '11AM – 10PM'`) and the same hours for Google (`open`: full day names and 24-hour `opens` / `closes`; a close earlier than the open means after midnight). Update both. A closed day has no `open`.
 2. Hours show in Find Us (home) and Hungry Yet (menu page), and in search results via the business details in `src/layouts/Layout.astro`.
-3. If the late-night closing time changes, the "Open till 2AM" art and its text need updating too (see the table above).
+3. If the late-night closing time changes, the "Open till 1AM" art and its text need updating too (see the table above).
 
 ## Change the Munchie Hour specials
 
