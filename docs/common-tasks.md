@@ -37,7 +37,7 @@ Text that's part of an illustration (the "Open till 1AM" sticker and badge, "Est
 2. Hours show in Find Us (home) and Hungry Yet (menu page), and in search results via the business details in `src/layouts/Layout.astro`.
 3. If the late-night closing time changes, the "Open till 1AM" art and its text need updating too (see the table above).
 
-## Change the Munchie Hour specials
+## Change the specials
 
 1. Edit `SPECIALS` in `src/data/site.ts`: `tag` (small label), `title`, `body`, `price` (with `$` or a phrase like "10% off"), `tone` (`cream`, `mustard` or `green`), and `tilt` (a small angle between -3 and 3).
 2. Keep three specials with three different tones so the row stays balanced. If the count changes, check the layout at all widths.

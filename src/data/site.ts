@@ -10,7 +10,7 @@ export const MENU_URL = `${BASE}/menu/`;
 
 export const NAV_LINKS = [
   { label: 'Menu', href: MENU_URL },
-  { label: 'Munchie Hour', href: `${HOME_URL}#munchie-hour` },
+  { label: 'Specials', href: `${HOME_URL}#specials` },
   { label: 'Our Vibe', href: `${HOME_URL}#our-vibe` },
   { label: 'Find Us', href: `${HOME_URL}#find-us` },
 ];
@@ -60,26 +60,26 @@ export const HOURS: { days: string; time: string; open?: { days: string[]; opens
 
 export const SPECIALS = [
   {
-    tag: 'Fri–Sat · after 10PM',
-    title: 'The Night Owl',
-    body: 'Any half toasted sub, fries and a brownie. The 1AM trifecta.',
-    price: '$13.99',
+    tag: 'Half sub combo',
+    title: 'Lunch Special',
+    body: 'Any half toasted sub with a drink and chips.',
+    price: '$10.99',
     tone: 'cream',
     tilt: -2,
   },
   {
-    tag: 'Rowan students',
+    tag: 'Students · Vets · Local workers',
     title: 'Show Ya ID',
-    body: 'Flash your Rowan ID at the counter for 10% off any whole sub.',
+    body: 'Rowan students, veterans and local employees: flash your ID at the counter for 10% off any whole sub.',
     price: '10% off',
     tone: 'mustard',
     tilt: 2,
   },
   {
-    tag: 'Fri & Sat',
-    title: 'Munchie Box',
-    body: 'Not’so Nachos, Mac & Cheese Bites and two fries. Built for the group chat.',
-    price: '$21.99',
+    tag: 'Cheesesteak combo',
+    title: 'Dinner Special',
+    body: 'Any cheesesteak with a drink and fries.',
+    price: '$14.99',
     tone: 'green',
     tilt: -1.5,
   },
