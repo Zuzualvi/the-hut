@@ -20,7 +20,7 @@ This repo is the single source of truth for the site: content, code and design. 
 |---|---|
 | `src/data/site.ts` | All content: menu, prices, hours, specials, links, DoorDash URL |
 | `src/pages/index.astro`, `src/pages/menu.astro` | The two pages; each is a list of sections |
-| `src/components/sections/` | Home page sections (Hero, Marquees, Menu, Munchie Hour, Our Vibe, Find Us, Footer) |
+| `src/components/sections/` | Home page sections (Hero, Marquees, Menu, Specials, Our Vibe, Find Us, Footer) |
 | `src/components/menu-page/` | Menu page sections |
 | `src/components/` | Shared pieces: `Nav`, `PillButton`, `StackedText`, `DripBand`, `Art` |
 | `src/styles/global.css` | Color and font tokens, shared CSS (`.edge-art`, `.leader`) |

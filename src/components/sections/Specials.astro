@@ -1,5 +1,5 @@
 ---
-// Munchie Hour / specials.
+// Specials.
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
 import { SPECIALS, ORDER_URL } from '../../data/site';
@@ -30,7 +30,7 @@ const tones = {
 };
 ---
 
-<section id="munchie-hour" class="munchie relative overflow-hidden bg-ink">
+<section id="specials" class="munchie relative overflow-hidden bg-ink">
   <div aria-hidden="true">
     {
       blobs.map((b, i) => (
@@ -46,7 +46,7 @@ const tones = {
   <DripBand data={menuDrips} class="z-10" />
 
   <div class="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center px-5">
-    <StackedText data-reveal designSize={120} layers={12} outline class="title text-center text-cream">Munchie Hour</StackedText>
+    <StackedText data-reveal designSize={120} layers={12} outline class="title text-center text-cream">Specials</StackedText>
     <img data-reveal data-delay="0.15" src={dazed.src} alt="deals for the dazed & hungry" class="dazed block h-auto" />
 
     <ul class="specials grid w-full grid-cols-1 lg:grid-cols-3">

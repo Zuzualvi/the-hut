@@ -16,7 +16,7 @@ Defined as Tailwind theme tokens in `src/styles/global.css`. Use them as utiliti
 
 | Token | Hex | Used for |
 |---|---|---|
-| `ink` | `#121210` | Page background, nav, outlines and keylines, hard shadows, dark sections (Munchie Hour, Rolls & Steaks) |
+| `ink` | `#121210` | Page background, nav, outlines and keylines, hard shadows, dark sections (Specials, Rolls & Steaks) |
 | `cream` | `#f3e9d2` | Light sections (home Menu, Toasted Subs), headlines on dark or green backgrounds, light cards and buttons |
 | `mustard` | `#e0ae2e` | The accent: Order buttons, small uppercase labels on dark backgrounds, sparkles, Find Us / Hungry Yet sections, the Drinks strip |
 | `green` | `#3d5541` | Green sections (Hero, Our Vibe, Classics & Munchies, menu hero), item names on light cards |
@@ -81,7 +81,7 @@ Typical sizes (phone → desktop):
 
 ## Copy voice
 
-- **Tone:** late-night, playful, a little cheeky. Short punchy lines ("Hungry yet?", "Got Munchies?", "The 1AM trifecta.").
+- **Tone:** late-night, playful, a little cheeky. Short punchy lines ("Hungry yet?", "Got Munchies?", "Built for late nights.").
 - **Names:** subs are named after cannabis strains (Fire OG, Grandaddy Purp, White Widow, Pineapple Express). Keep the wink subtle and never explicit.
 - **Facts to keep consistent:** 100% halal (the halal stamp appears in the hero and the footer), open till 1AM Fri & Sat, Rowan-grown, order on DoorDash.
 - **Formatting:**
