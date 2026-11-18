@@ -53,9 +53,9 @@ export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 // `days` and `time` are what the site shows. `open` is the same thing for Google
 // (24-hour times; a close earlier than the open means after midnight). Update both.
 export const HOURS: { days: string; time: string; open?: { days: string[]; opens: string; closes: string } }[] = [
-  { days: 'Mon–Thu', time: '11AM – 10PM', open: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '11:00', closes: '22:00' } },
+  { days: 'Tue–Thu', time: '11AM – 10PM', open: { days: ['Tuesday', 'Wednesday', 'Thursday'], opens: '11:00', closes: '22:00' } },
   { days: 'Fri–Sat', time: '11AM – 1AM', open: { days: ['Friday', 'Saturday'], opens: '11:00', closes: '01:00' } },
-  { days: 'Sunday', time: 'Closed' },
+  { days: 'Sun–Mon', time: 'Closed' },
 ];
 
 export const SPECIALS = [
