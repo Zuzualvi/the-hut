@@ -18,7 +18,7 @@ export const CATERING_URL = `${BASE}/catering/`;
 export const PRIVACY_URL = `${BASE}/privacy/`;
 
 // Google Tag Manager container (sends visits and tracked taps to Google Analytics). See docs/common-tasks.md → Analytics.
-export const GTM_ID = 'GTM-NH2BNH2W';
+export const GTM_ID = 'GTM-MX2DM82W';
 
 export const NAV_LINKS = [
   { label: 'Menu', href: MENU_URL },
