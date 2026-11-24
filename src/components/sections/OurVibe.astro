@@ -23,7 +23,7 @@ const badges = [
   <div class="checks h-[72px]" aria-hidden="true"></div>
   <img src={rays.src} alt="" aria-hidden="true" class="rays absolute block max-w-none" />
 
-  <div class="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 lg:grid-cols-[520px_minmax(0,590px)] lg:gap-[90px] lg:px-0">
+  <div class="vibe-grid relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 lg:px-8 xl:px-0">
     <div class="photo relative mx-auto" aria-hidden="true" data-reveal>
       <Art src={smokeB.src} x={146} y={-44} w={68} h={168} unit="--pu" class="smoke" />
       <Art src={smokeA.src} x={316} y={-74} w={68} h={188} unit="--pu" class="smoke" />
@@ -34,13 +34,12 @@ const badges = [
 
     <div class="text-center lg:text-left" data-reveal-group>
       <StackedText data-reveal designSize={66} layers={9} outline class="heading text-cream lg:whitespace-nowrap">
-        Rowan-grown.<br />Built for late nights.
+        Rowan-grown.<br />Built for the community.
       </StackedText>
       <p data-reveal class="blurb mx-auto text-cream lg:mx-0">
-        Weekends in Glassboro get quiet after 10. As Rowan grads, we wanted to change that. So we built The Hut for the community
-        that’s still hungry after everything else shuts down. Warm, cozy comfort food, toasted subs, cheesesteaks, kati
-        rolls, late-night munchies, and prices made with students in mind. Whether you’re coming from class, work, or a
-        night out, The Hut is here to satisfy those late-night cravings without breaking the bank.
+        Rowan gave us a lot, so we’re giving something back: a cozy hideout in the middle of Glassboro where anyone can pull
+        up, grab something warm, and feel at home. The Hut is a work in progress, and we want the community to shape it. Got
+        an idea? We’re listening.
       </p>
       <ul class="badges flex justify-center lg:justify-start">
         {
@@ -75,15 +74,15 @@ const badges = [
     height: calc(534 * var(--pu));
     margin-top: clamp(90px, 8.3vw, 120px);
   }
-  /* Sized so the longest line ("Built for late nights.") fits on one line:
+  /* Sized so the longest line ("Built for the community.") fits on one line:
      the screen width on phones, the text column on desktop. */
   .vibe :global(.heading) {
-    font-size: min(max(26px, 8.1vw), 36px);
+    font-size: min(max(22px, 6.7vw), 33px);
     line-height: 1;
   }
   @media (min-width: 1024px) {
     .vibe :global(.heading) {
-      font-size: min(3.7vw, 54px);
+      font-size: min(3vw, 45px);
     }
   }
   .blurb {
@@ -102,8 +101,15 @@ const badges = [
     height: calc(var(--h) * var(--bs));
     transform: translateY(calc(var(--dy) * var(--bs)));
   }
+  /* Desktop: photo and text side by side. On laptops (1024–1240px) the photo and the gap shrink
+     with the screen so the text column, the heading and the badges keep a margin from the edge. */
   @media (min-width: 1024px) {
+    .vibe-grid {
+      grid-template-columns: min(520px, 40vw) minmax(0, 590px);
+      column-gap: clamp(40px, 6.25vw, 90px);
+    }
     .vibe :global(.photo) {
+      --pu: min(1px, calc(40vw / 520));
       margin-left: 0;
     }
   }

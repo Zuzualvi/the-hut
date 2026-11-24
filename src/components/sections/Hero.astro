@@ -71,7 +71,7 @@ import tagline from '../../assets/art/hero/tagline.svg';
       <!-- The small pill is the page's main heading (what the page is about, for search engines); "Get Toasted." is the display line. -->
       <h1 id="hero-title" data-reveal class="kicker inline-flex items-center rounded-full border-3 border-ink bg-cream font-label uppercase text-ink">
         <img src={pillSparkle.src} alt="" class="kicker-sparkle" />
-        Toasted subs &amp; sandwiches in Glassboro, NJ
+        <span>Toasted subs, kati rolls, munchies, cheesesteaks and more<span class="sr-only"> in Glassboro, NJ</span>!</span>
       </h1>
 
       <div class="headline relative isolate" data-reveal>
@@ -129,6 +129,8 @@ import tagline from '../../assets/art/hero/tagline.svg';
     padding: calc(6 * var(--cu)) calc(16 * var(--cu));
     font-size: max(10px, calc(16 * var(--cu)));
     letter-spacing: 0.04em;
+    /* If it wraps (phones), split the two lines evenly. */
+    text-wrap: balance;
   }
   .kicker-sparkle {
     width: max(10px, calc(16 * var(--cu)));
