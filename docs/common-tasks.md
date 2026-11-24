@@ -60,7 +60,7 @@ The site reports these taps through `src/scripts/track.ts`:
 | `directions_click` | A Google Maps link is tapped | `placement` |
 
 - Order buttons report themselves: give each `PillButton order` a `placement`.
-- To track another link or button, add `data-track="<event>"` and `data-placement="<where>"` to it. A new event name also needs a matching tag in Tag Manager before it reaches Analytics.
+- To track another link or button, add `data-track="<event>"` and `data-placement="<where>"` to it. A new event name also has to be added to the "Site events" trigger in Tag Manager before it reaches Analytics.
 - Rename an event or placement only together with its Tag Manager setup, or the reports split in two.
 - Page views, scrolling and clicks to other websites are collected by Analytics itself and need nothing here.
 - `src/pages/privacy.astro` says what Analytics collects. Update it if tracking changes.
