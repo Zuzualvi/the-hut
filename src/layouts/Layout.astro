@@ -5,7 +5,7 @@ import '../styles/motion.css';
 // fetch them right away instead of discovering them only after reading the CSS.
 import shrikhandFont from '@fontsource/shrikhand/files/shrikhand-latin-400-normal.woff2?url';
 import titanOneFont from '@fontsource/titan-one/files/titan-one-latin-400-normal.woff2?url';
-import { SITE_NAME, PHONE, ADDRESS, GEO, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER } from '../data/site';
+import { SITE_NAME, PHONE, ADDRESS, GEO, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER, GTM_ID } from '../data/site';
 
 interface Props {
   title?: string;
@@ -91,11 +91,27 @@ const business = {
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
     {!noindex && <script type="application/ld+json" set:html={JSON.stringify(business)} />}
+    {
+      // Google Tag Manager, which loads Google Analytics. Kept off the share-card page (noindex).
+      !noindex && (
+        <Fragment>
+          <script is:inline async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}></script>
+          <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+          </script>
+        </Fragment>
+      )
+    }
   </head>
   <body>
     <slot />
     <script>
       import '../scripts/motion';
+      import '../scripts/track';
     </script>
   </body>
 </html>

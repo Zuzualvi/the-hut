@@ -46,6 +46,25 @@ Text that's part of an illustration (the "Open till 1AM" sticker and badge, "Est
 
 `ORDER` (pickup and delivery apps), `MAPS_URL`, `INSTAGRAM_HANDLE` and `NAV_LINKS` are at the top of `src/data/site.ts`. To add or remove a delivery app, edit `ORDER.delivery`; the popup shows one button per entry. Internal links must use `HOME_URL` / `MENU_URL` / `CATERING_URL`, not hardcoded paths.
 
+## Analytics
+
+The site sends visits and a few key taps to Google Analytics through Google Tag Manager (`GTM_ID` in `src/data/site.ts`; the snippet is in `src/layouts/Layout.astro`). What gets sent to Analytics, and how, is set up in Tag Manager by the owners' Google account, not in this repo.
+
+The site reports these taps through `src/scripts/track.ts`:
+
+| Event | When | Details sent |
+|---|---|---|
+| `order_open` | An Order button opens the order popup | `placement` (where the button is, e.g. `hero`, `nav`, `special: The Owl Box`) |
+| `order_choice` | Pickup or a delivery app is chosen in the popup | `method` (`pickup` / `delivery`), `app` (e.g. `Grubhub`), `placement` of the Order button that opened it |
+| `call_click` | A phone link is tapped | `placement` |
+| `directions_click` | A Google Maps link is tapped | `placement` |
+
+- Order buttons report themselves: give each `PillButton order` a `placement`.
+- To track another link or button, add `data-track="<event>"` and `data-placement="<where>"` to it. A new event name also needs a matching tag in Tag Manager before it reaches Analytics.
+- Rename an event or placement only together with its Tag Manager setup, or the reports split in two.
+- Page views, scrolling and clicks to other websites are collected by Analytics itself and need nothing here.
+- `src/pages/privacy.astro` says what Analytics collects. Update it if tracking changes.
+
 ## Change the page title or search description
 
 The home page defaults are in `src/layouts/Layout.astro` (`title`, `SITE_DESCRIPTION`). The menu and catering pages pass their own in `src/pages/menu.astro` and `src/pages/catering.astro`. The same title and description appear in link previews when someone shares the page.

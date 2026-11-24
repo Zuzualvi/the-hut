@@ -32,7 +32,7 @@ import { PHONE, MENU_URL } from '../../data/site';
       group.
     </p>
     <div data-reveal class="ctas flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
-      <PillButton href={`tel:${PHONE.tel}`} variant="mustard" size="xl">Call {PHONE.display}</PillButton>
+      <PillButton href={`tel:${PHONE.tel}`} variant="mustard" size="xl" data-track="call_click" data-placement="catering">Call {PHONE.display}</PillButton>
       <PillButton href={MENU_URL} size="xl">Menu</PillButton>
     </div>
   </div>

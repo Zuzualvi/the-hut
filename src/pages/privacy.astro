@@ -1,0 +1,95 @@
+---
+// Privacy page: what Google Analytics collects. Linked from the footer.
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import StackedText from '../components/StackedText.astro';
+import DripBand from '../components/DripBand.astro';
+import navDrips from '../data/drips/nav-drips.json';
+import Footer from '../components/sections/Footer.astro';
+import { PHONE, ADDRESS } from '../data/site';
+
+const sections = [
+  {
+    title: 'The short version',
+    body: [
+      'This site never asks for your name, email or payment details. We use Google Analytics to count visits and see which pages and buttons people use, so we can make the site better.',
+    ],
+  },
+  {
+    title: 'What Google Analytics collects',
+    body: [
+      'When you visit, Google Analytics records things like the pages you view, the buttons you tap (Order, Call or Directions), how you found the site, your device and browser, and your approximate location (about city level). It uses cookies to tell new visits from returning ones.',
+      'We see this as totals and trends, not as information about you personally.',
+    ],
+  },
+  {
+    title: 'Ordering',
+    body: [
+      'When you order, you leave this site for Toast (pickup), DoorDash, Grubhub or Uber Eats. Their own privacy policies cover anything you share with them.',
+    ],
+  },
+  {
+    title: 'Your choices',
+    body: [
+      'You can block or clear cookies in your browser settings, or install Google’s Analytics opt-out add-on. The site works the same either way.',
+    ],
+    links: [
+      { label: 'Google Analytics opt-out add-on', href: 'https://tools.google.com/dlpage/gaoptout' },
+      { label: 'How Google uses information from sites that use its services', href: 'https://policies.google.com/technologies/partner-sites' },
+    ],
+  },
+];
+---
+
+<Layout title="Privacy — The Hut · Glassboro, NJ" description="How The Hut’s website uses Google Analytics, and your choices.">
+  <Nav />
+  <main id="top">
+    <section class="privacy relative overflow-hidden bg-mustard px-5 md:px-[clamp(20px,8.3vw,120px)]">
+      <DripBand data={navDrips} class="z-10" />
+      <div class="relative z-10 mx-auto flex max-w-[720px] flex-col gap-8 text-ink md:gap-10">
+        <StackedText as="h1" designSize={92} layers={9} class="title text-green">Privacy</StackedText>
+        {
+          sections.map((s) => (
+            <div class="flex flex-col gap-3">
+              <h2 class="font-label text-[15px] uppercase tracking-[0.52px] md:text-[17px]">{s.title}</h2>
+              {s.body.map((p) => (
+                <p class="text-[16px] leading-normal md:text-[18px]">{p}</p>
+              ))}
+              {s.links && (
+                <ul class="flex flex-col gap-1.5">
+                  {s.links.map((l) => (
+                    <li>
+                      <a href={l.href} target="_blank" rel="noopener" class="text-[16px] underline underline-offset-4 md:text-[18px]">
+                        {l.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))
+        }
+        <div class="flex flex-col gap-3">
+          <h2 class="font-label text-[15px] uppercase tracking-[0.52px] md:text-[17px]">Questions</h2>
+          <p class="text-[16px] leading-normal md:text-[18px]">
+            Call us at <a href={`tel:${PHONE.tel}`} class="whitespace-nowrap underline underline-offset-4">{PHONE.display}</a> or stop by
+            {ADDRESS.street}, {ADDRESS.city}.
+          </p>
+        </div>
+        <p class="text-[14px] md:text-[15px]">Last updated November 24, 2026.</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .privacy {
+    padding-top: clamp(110px, 10.4vw, 150px);
+    padding-bottom: clamp(100px, 10.4vw, 150px);
+  }
+  .privacy :global(.title) {
+    font-size: clamp(54px, 7.2vw, 104px);
+    line-height: 1.05;
+  }
+</style>

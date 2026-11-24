@@ -25,8 +25,8 @@ import { ADDRESS, HOURS, MAPS_URL } from '../../data/site';
       }
     </ul>
     <div data-reveal class="ctas flex w-full flex-col gap-3.5 pt-2 md:w-auto md:flex-row md:gap-[18px] md:pt-3.5">
-      <PillButton order variant="ink" size="lg">Order Now</PillButton>
-      <PillButton href={MAPS_URL} size="lg" external>Get Directions</PillButton>
+      <PillButton order placement="hungry_yet" variant="ink" size="lg">Order Now</PillButton>
+      <PillButton href={MAPS_URL} size="lg" external data-track="directions_click" data-placement="hungry_yet">Get Directions</PillButton>
     </div>
   </div>
 </section>

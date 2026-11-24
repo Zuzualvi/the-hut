@@ -36,7 +36,7 @@ import mapBlob from '../../assets/art/findus/map-blob.svg';
         <div>
           <dt class="label">Contact</dt>
           <dd class="value">
-            <a href={`tel:${PHONE.tel}`} class="whitespace-nowrap underline-offset-4 hover:underline">{PHONE.display}</a>
+            <a href={`tel:${PHONE.tel}`} data-track="call_click" data-placement="find_us" class="whitespace-nowrap underline-offset-4 hover:underline">{PHONE.display}</a>
             <br />
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="underline-offset-4 hover:underline">@{INSTAGRAM_HANDLE}</a>
           </dd>
@@ -44,12 +44,12 @@ import mapBlob from '../../assets/art/findus/map-blob.svg';
       </dl>
 
       <div data-reveal class="ctas order-4 flex flex-col gap-4 sm:flex-row lg:order-none">
-        <PillButton order variant="ink" size="xl" class="sm:min-w-[213px]">Order Now</PillButton>
-        <PillButton href={MAPS_URL} size="xl" external class="sm:min-w-[213px]">Directions</PillButton>
+        <PillButton order placement="find_us" variant="ink" size="xl" class="sm:min-w-[213px]">Order Now</PillButton>
+        <PillButton href={MAPS_URL} size="xl" external class="sm:min-w-[213px]" data-track="directions_click" data-placement="find_us">Directions</PillButton>
       </div>
     </div>
 
-    <a href={MAPS_URL} target="_blank" rel="noopener" data-reveal="pop" class="map order-2 mx-auto block lg:order-none" aria-label="Map: The Hut on North Main St, next to Rowan University. Open directions in Google Maps">
+    <a href={MAPS_URL} target="_blank" rel="noopener" data-track="directions_click" data-placement="find_us_map" data-reveal="pop" class="map order-2 mx-auto block lg:order-none" aria-label="Map: The Hut on North Main St, next to Rowan University. Open directions in Google Maps">
       <img src={mapBlob.src} alt="" class="block size-full" />
     </a>
   </div>

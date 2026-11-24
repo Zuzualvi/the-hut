@@ -1,6 +1,6 @@
 # The Hut: agent guide
 
-Website for The Hut, a late-night toasted-sub shop at 709 N. Main St., Glassboro, NJ. Live at https://thehutglassboro.com: a home page (`/`), a full menu page (`/menu`) and a catering page (`/catering`, coming soon).
+Website for The Hut, a late-night toasted-sub shop at 709 N. Main St., Glassboro, NJ. Live at https://thehutglassboro.com: a home page (`/`), a full menu page (`/menu`), a catering page (`/catering`, coming soon) and a privacy page (`/privacy`).
 
 This repo is the single source of truth for the site: content, code and design. The people asking you for changes are usually the restaurant's owners and aren't developers, so explain what you changed in plain words and keep them out of technical weeds.
 
@@ -19,13 +19,14 @@ This repo is the single source of truth for the site: content, code and design. 
 | Path | What it is |
 |---|---|
 | `src/data/site.ts` | All content: menu, prices, hours, specials, links, ordering links (`ORDER`) |
-| `src/pages/index.astro`, `src/pages/menu.astro`, `src/pages/catering.astro` | The pages; each is a list of sections |
+| `src/pages/index.astro`, `src/pages/menu.astro`, `src/pages/catering.astro`, `src/pages/privacy.astro` | The pages; each is a list of sections |
 | `src/components/sections/` | Home page sections (Hero, Marquees, Menu, Specials, Our Vibe, Find Us, Footer) |
 | `src/components/menu-page/` | Menu page sections (the catering page reuses `HungryYet`) |
 | `src/components/catering/` | Catering page sections |
 | `src/components/` | Shared pieces: `Nav`, `PillButton`, `OrderPopup`, `StackedText`, `DripBand`, `Art` |
 | `src/styles/global.css` | Color and font tokens, shared CSS (`.edge-art`, `.leader`) |
 | `src/styles/motion.css`, `src/scripts/motion.ts`, `src/scripts/drips.ts` | Ambient animation, scroll reveals, stretchy drips |
+| `src/scripts/track.ts` | Reports Order, call and directions taps to Google Analytics (see `docs/common-tasks.md` → Analytics) |
 | `src/assets/art/` | SVG illustrations, grouped by section |
 | `src/data/drips/*.json`, `scripts/split-drips.mjs` | Drip band shapes and the script that generates them |
 | `scripts/flower-of-life.mjs` | Generates the hero's inner ring with its Flower of Life pattern |
