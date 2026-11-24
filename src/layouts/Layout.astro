@@ -5,7 +5,7 @@ import '../styles/motion.css';
 // fetch them right away instead of discovering them only after reading the CSS.
 import shrikhandFont from '@fontsource/shrikhand/files/shrikhand-latin-400-normal.woff2?url';
 import titanOneFont from '@fontsource/titan-one/files/titan-one-latin-400-normal.woff2?url';
-import { SITE_NAME, PHONE, ADDRESS, GEO, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER_URL } from '../data/site';
+import { SITE_NAME, PHONE, ADDRESS, GEO, HOURS, HOME_URL, MENU_URL, INSTAGRAM_URL, ORDER } from '../data/site';
 
 interface Props {
   title?: string;
@@ -50,7 +50,7 @@ const business = {
   openingHoursSpecification: HOURS.flatMap((h) =>
     h.open ? [{ '@type': 'OpeningHoursSpecification', dayOfWeek: h.open.days, opens: h.open.opens, closes: h.open.closes }] : [],
   ),
-  potentialAction: { '@type': 'OrderAction', target: ORDER_URL },
+  potentialAction: { '@type': 'OrderAction', target: [ORDER.pickup, ...ORDER.delivery.map((d) => d.href)] },
   sameAs: [INSTAGRAM_URL],
 };
 ---

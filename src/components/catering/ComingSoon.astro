@@ -1,0 +1,76 @@
+---
+// Catering page opener: "Coming Soon" on the green sunburst (same look as the menu page hero),
+// with a call button for catering orders in the meantime.
+import StackedText from '../StackedText.astro';
+import PillButton from '../PillButton.astro';
+import DripBand from '../DripBand.astro';
+import navDrips from '../../data/drips/nav-drips.json';
+import sunburst from '../../assets/art/hero/sunburst.svg';
+import pillSparkle from '../../assets/art/menu/sparkle-pill.svg';
+import sparkleMustard from '../../assets/art/hero/sparkle-mustard.svg';
+import sparkleCreamSm from '../../assets/art/hero/sparkle-cream-sm.svg';
+import sparkleMustardSm from '../../assets/art/hero/sparkle-mustard-sm.svg';
+import { PHONE, MENU_URL } from '../../data/site';
+---
+
+<section class="soon relative overflow-hidden bg-green" aria-labelledby="catering-title">
+  <img src={sunburst.src} alt="" aria-hidden="true" class="burst absolute block max-w-none" />
+  <img src={sparkleMustard.src} alt="" aria-hidden="true" class="twinkle absolute top-[26%] left-[14%] size-[34px] max-md:top-[24%] max-md:left-[8%] max-md:size-[24px]" />
+  <img src={sparkleCreamSm.src} alt="" aria-hidden="true" class="twinkle absolute top-[22%] right-[18%] size-[22px] max-md:right-[10%]" />
+  <img src={sparkleMustardSm.src} alt="" aria-hidden="true" class="twinkle absolute top-[62%] right-[14%] size-[28px] max-md:hidden" />
+  <DripBand data={navDrips} class="z-20" />
+
+  <div class="relative z-10 mx-auto flex max-w-[980px] flex-col items-center px-5 text-center" data-reveal-group>
+    <h1 id="catering-title" data-reveal class="pill flex items-center gap-2.5 rounded-full border-3 border-ink bg-mustard px-[18px] py-2 font-label uppercase tracking-[0.64px] text-ink">
+      <img src={pillSparkle.src} alt="" width="16" height="16" />
+      Catering · The Hut Glassboro
+      <img src={pillSparkle.src} alt="" width="16" height="16" />
+    </h1>
+    <StackedText as="p" data-reveal designSize={120} layers={12} outline class="title text-cream">Coming Soon</StackedText>
+    <p data-reveal class="blurb max-w-[620px] text-cream">
+      Feeding a crowd? Catering is on the way. Until then, call us at <span class="whitespace-nowrap">{PHONE.display}</span> and we’ll sort out an order for your
+      group.
+    </p>
+    <div data-reveal class="ctas flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+      <PillButton href={`tel:${PHONE.tel}`} variant="mustard" size="xl">Call {PHONE.display}</PillButton>
+      <PillButton href={MENU_URL} size="xl">Menu</PillButton>
+    </div>
+  </div>
+</section>
+
+<style>
+  .soon {
+    padding-top: clamp(110px, 10.4vw, 150px);
+    padding-bottom: clamp(110px, 13.2vw, 190px);
+  }
+  .burst {
+    width: 3000px;
+    height: 3000px;
+    left: calc(50% - 1500px);
+    top: -1250px;
+  }
+  @media (max-width: 767px) {
+    .burst {
+      width: 1400px;
+      height: 1400px;
+      left: calc(50% - 700px);
+      top: -520px;
+    }
+  }
+  .soon :global(.title) {
+    margin-top: clamp(18px, 1.8vw, 26px);
+    font-size: clamp(54px, 8vw, 116px);
+    line-height: 0.98;
+  }
+  .pill {
+    font-size: clamp(13px, 3.4vw, 16px);
+  }
+  .blurb {
+    margin-top: clamp(18px, 1.8vw, 26px);
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.5;
+  }
+  .ctas {
+    margin-top: clamp(26px, 2.4vw, 34px);
+  }
+</style>

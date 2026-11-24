@@ -1,13 +1,15 @@
 ---
 interface Props {
-  href: string;
+  href?: string;
+  /** Opens the order popup (pickup or delivery) instead of following a link. */
+  order?: boolean;
   variant?: 'cream' | 'mustard' | 'ink';
   size?: 'md' | 'lg' | 'xl';
   external?: boolean;
   class?: string;
 }
 
-const { href, variant = 'cream', size = 'md', external = false, class: className = '' } = Astro.props;
+const { href, order = false, variant = 'cream', size = 'md', external = false, class: className = '' } = Astro.props;
 
 const variants = {
   cream: 'bg-cream text-ink',
@@ -19,20 +21,25 @@ const sizes = {
   lg: 'px-[26px] py-3 text-[18px] tracking-[0.54px]',
   xl: 'px-8 py-4 text-[22px] tracking-[0.66px]',
 };
+const classes = [
+  'pill inline-flex cursor-pointer items-center justify-center rounded-full border-3 border-ink font-label uppercase whitespace-nowrap',
+  variants[variant],
+  sizes[size],
+  className,
+];
 ---
 
-<a
-  href={href}
-  class:list={[
-    'pill inline-flex items-center justify-center rounded-full border-3 border-ink font-label uppercase whitespace-nowrap',
-    variants[variant],
-    sizes[size],
-    className,
-  ]}
-  {...external && { target: '_blank', rel: 'noopener' }}
->
-  <slot />
-</a>
+{
+  order ? (
+    <button type="button" popovertarget="order-popup" class:list={classes}>
+      <slot />
+    </button>
+  ) : (
+    <a href={href} class:list={classes} {...(external && { target: '_blank', rel: 'noopener' })}>
+      <slot />
+    </a>
+  )
+}
 
 <style>
   /* Chunky offset shadow that the button "presses" into. */

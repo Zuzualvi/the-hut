@@ -2,7 +2,7 @@
 // Footer: logo, tagline, links, and the shop's address and phone (on every page, for visitors and search engines).
 import Art from '../Art.astro';
 import HalalStamp from '../HalalStamp.astro';
-import { NAV_LINKS, INSTAGRAM_URL, ORDER_URL, ADDRESS, PHONE, MAPS_URL } from '../../data/site';
+import { NAV_LINKS, INSTAGRAM_URL, ADDRESS, PHONE, MAPS_URL } from '../../data/site';
 
 import DripBand from '../DripBand.astro';
 import goldDrips from '../../data/drips/gold-drips.json';
@@ -33,7 +33,7 @@ import tagline from '../../assets/art/footer/tagline.svg';
           </li>
         ))
       }
-      <li><a href={ORDER_URL} target="_blank" rel="noopener" class="hover:text-mustard">Order Online</a></li>
+      <li><button type="button" popovertarget="order-popup" class="cursor-pointer uppercase hover:text-mustard">Order Online</button></li>
       <li><a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="hover:text-mustard">Instagram</a></li>
     </ul>
   </nav>
@@ -44,7 +44,7 @@ import tagline from '../../assets/art/footer/tagline.svg';
     <a href={`tel:${PHONE.tel}`} class="hover:text-mustard">{PHONE.display}</a>
   </address>
 
-  <p class="legal text-ash">© 2026 The Hut Glassboro · 100% Halal · Order via DoorDash</p>
+  <p class="legal text-ash">© 2026 The Hut Glassboro · 100% Halal · Pickup &amp; Delivery</p>
 
   <div class="checks" aria-hidden="true"></div>
 </footer>
