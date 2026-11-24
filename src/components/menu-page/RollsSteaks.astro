@@ -25,12 +25,17 @@ const tones = {
 } as const;
 
 const columns = [
-  { id: 'rolls', title: 'Kati Rolls', sub: 'Rolled in paratha', items: KATI_ROLLS.map((i) => ({ ...i, tone: 'mustard' as const })) },
+  {
+    id: 'rolls',
+    title: 'Kati Rolls',
+    sub: 'Rolled in paratha',
+    items: KATI_ROLLS.map((i, n) => ({ ...i, tone: n === 0 ? ('mustard' as const) : ('cream' as const) })),
+  },
   {
     id: 'steaks',
     title: 'Cheesesteaks',
     sub: 'Beef or chicken',
-    items: CHEESESTEAKS.map((i, n) => ({ ...i, choices: undefined, tone: n === 0 ? ('cream' as const) : ('green' as const) })),
+    items: CHEESESTEAKS.map((i, n) => ({ ...i, tone: n === 0 ? ('cream' as const) : ('green' as const) })),
   },
 ];
 ---
@@ -69,16 +74,6 @@ const columns = [
                 <p class="shrink-0 font-label text-[22px] md:text-[30px]">{it.price}</p>
               </div>
               <p class="text-[16px] leading-normal md:text-[19px]">{it.desc}</p>
-              {it.choices && (
-                <div class="flex flex-wrap items-center gap-2">
-                  <p class="font-label text-[13px] uppercase tracking-[0.4px] md:text-[15px]">Your choice of:</p>
-                  {it.choices.map((c) => (
-                    <span class="rounded-full border-3 border-ink bg-cream px-3.5 py-[7px] font-label text-[13px] uppercase tracking-[0.26px] text-ink md:px-4 md:py-2 md:text-[15px]">
-                      {c}
-                    </span>
-                  ))}
-                </div>
-              )}
             </article>
           ))}
         </div>

@@ -2,7 +2,8 @@
 import owlMark from '../assets/art/nav/logo-owl-mark.svg';
 import wordmark from '../assets/art/nav/logo-wordmark.svg';
 import PillButton from './PillButton.astro';
-import { NAV_LINKS, ORDER_URL, HOME_URL } from '../data/site';
+import OrderPopup from './OrderPopup.astro';
+import { NAV_LINKS, HOME_URL } from '../data/site';
 
 interface Props {
   current?: string; // label of the link for the page we're on
@@ -18,7 +19,7 @@ const { current } = Astro.props;
       <img src={wordmark.src} alt="" width="120" height="26.3" class="h-[19px] w-auto translate-y-[3px] lg:h-[26.3px] lg:translate-y-[4px]" />
     </a>
 
-    <ul class="hidden items-center gap-10 font-label text-[18px] uppercase tracking-[0.36px] text-cream lg:flex">
+    <ul class="hidden items-center gap-6 font-label text-[16px] uppercase tracking-[0.36px] text-cream lg:flex xl:gap-10 xl:text-[18px]">
       {
         NAV_LINKS.map((link) => (
           <li>
@@ -30,7 +31,7 @@ const { current } = Astro.props;
       }
     </ul>
 
-    <PillButton href={ORDER_URL} variant="mustard" size="lg" external class="max-lg:hidden">Order Now</PillButton>
+    <PillButton order variant="mustard" size="lg" class="max-lg:hidden">Order Now</PillButton>
 
     <button
       type="button"
@@ -55,11 +56,13 @@ const { current } = Astro.props;
         ))
       }
       <li class="mt-2">
-        <PillButton href={ORDER_URL} variant="mustard" size="lg" external>Order Now</PillButton>
+        <PillButton order variant="mustard" size="lg">Order Now</PillButton>
       </li>
     </ul>
   </div>
 </header>
+
+<OrderPopup />
 
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
@@ -72,7 +75,7 @@ const { current } = Astro.props;
     };
     toggle.addEventListener('click', () => set(toggle.getAttribute('aria-expanded') !== 'true'));
     menu.addEventListener('click', (e) => {
-      if ((e.target as HTMLElement).closest('a')) set(false);
+      if ((e.target as HTMLElement).closest('a, [popovertarget]')) set(false);
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') set(false);

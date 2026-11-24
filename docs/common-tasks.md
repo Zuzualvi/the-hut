@@ -12,8 +12,8 @@ All prices live only in `src/data/site.ts`. Everything that shows a price (menu 
 | Any other price | That item in `site.ts` only. The home page cards work out their own price ("12.99", or "From 2.99" for the cheapest item). |
 | Hours | `HOURS` (both the display text and the `open` times for Google). "Open till 1AM" also appears in the hero sticker art, the hero's screen-reader text (`sections/Hero.astro`), and the Our Vibe badge (`sections/OurVibe.astro`, art + alt text). |
 | Address | `ADDRESS` (Find Us, Hungry Yet, the footer, the map link and Google's business details all read it). If the shop moves, also update the map pin in `GEO` next to it. |
-| Phone | `PHONE` only (Find Us, the footer and Google's business details) |
-| DoorDash link | `ORDER_URL` (every Order button uses it) |
+| Phone | `PHONE` only (Find Us, the catering page, the footer and Google's business details) |
+| Ordering links | `ORDER`: `pickup` (Toast) and `delivery` (DoorDash, Grubhub, Uber Eats). Every Order button opens the order popup (`OrderPopup.astro`), which lists them; Google's business details list them too. |
 | Instagram | `INSTAGRAM_HANDLE` |
 | Copyright year | `sections/Footer.astro` |
 
@@ -22,7 +22,7 @@ Text that's part of an illustration (the "Open till 1AM" sticker and badge, "Est
 ## Change a price
 
 1. For subs, change `SUB_PRICES` in `src/data/site.ts`. All subs cost the same per size.
-2. For anything else, find the item (`KATI_ROLLS`, `CHEESESTEAKS`, `CLASSICS`, `MUNCHIES`, `DRINKS`) and change its `price`. Menu prices have no `$`. Two prices are written "5.99 / 12.99".
+2. For anything else, find the item (`KATI_ROLLS`, `CHEESESTEAKS`, `MUNCHIES`, `DRINKS`) and change its `price`. Menu prices have no `$`. Two prices are written "5.99 / 12.99".
 3. That's it. The home page cards update themselves.
 
 ## Add, rename or remove a menu item
@@ -34,7 +34,7 @@ Text that's part of an illustration (the "Open till 1AM" sticker and badge, "Est
 ## Change hours
 
 1. Edit `HOURS` in `src/data/site.ts`. Each entry has what the site shows (`days: 'Mon–Thu'`, `time: '11AM – 10PM'`) and the same hours for Google (`open`: full day names and 24-hour `opens` / `closes`; a close earlier than the open means after midnight). Update both. A closed day has no `open`.
-2. Hours show in Find Us (home) and Hungry Yet (menu page), and in search results via the business details in `src/layouts/Layout.astro`.
+2. Hours show in Find Us (home) and Hungry Yet (menu and catering pages), and in search results via the business details in `src/layouts/Layout.astro`.
 3. If the late-night closing time changes, the "Open till 1AM" art and its text need updating too (see the table above).
 
 ## Change the specials
@@ -44,11 +44,11 @@ Text that's part of an illustration (the "Open till 1AM" sticker and badge, "Est
 
 ## Change links
 
-`ORDER_URL` (DoorDash), `MAPS_URL`, `INSTAGRAM_HANDLE` and `NAV_LINKS` are at the top of `src/data/site.ts`. Internal links must use `HOME_URL` / `MENU_URL`, not hardcoded paths.
+`ORDER` (pickup and delivery apps), `MAPS_URL`, `INSTAGRAM_HANDLE` and `NAV_LINKS` are at the top of `src/data/site.ts`. To add or remove a delivery app, edit `ORDER.delivery`; the popup shows one button per entry. Internal links must use `HOME_URL` / `MENU_URL` / `CATERING_URL`, not hardcoded paths.
 
 ## Change the page title or search description
 
-The home page defaults are in `src/layouts/Layout.astro` (`title`, `SITE_DESCRIPTION`). The menu page passes its own in `src/pages/menu.astro`. The same title and description appear in link previews when someone shares the page.
+The home page defaults are in `src/layouts/Layout.astro` (`title`, `SITE_DESCRIPTION`). The menu and catering pages pass their own in `src/pages/menu.astro` and `src/pages/catering.astro`. The same title and description appear in link previews when someone shares the page.
 
 ## Update the link-preview image
 

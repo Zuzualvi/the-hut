@@ -2,7 +2,7 @@
 // Find Us: address, hours, contact links and the street map.
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
-import { ADDRESS, PHONE, HOURS, ORDER_URL, MAPS_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from '../../data/site';
+import { ADDRESS, PHONE, HOURS, MAPS_URL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from '../../data/site';
 
 import scallop from '../../assets/art/findus/scallop.svg';
 import mapBlob from '../../assets/art/findus/map-blob.svg';
@@ -44,7 +44,7 @@ import mapBlob from '../../assets/art/findus/map-blob.svg';
       </dl>
 
       <div data-reveal class="ctas order-4 flex flex-col gap-4 sm:flex-row lg:order-none">
-        <PillButton href={ORDER_URL} variant="ink" size="xl" external class="sm:min-w-[213px]">Order Now</PillButton>
+        <PillButton order variant="ink" size="xl" class="sm:min-w-[213px]">Order Now</PillButton>
         <PillButton href={MAPS_URL} size="xl" external class="sm:min-w-[213px]">Directions</PillButton>
       </div>
     </div>

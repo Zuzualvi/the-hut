@@ -8,7 +8,7 @@ import marqueeDrips from '../../data/drips/marquee-drips.json';
 import pillSparkle from '../../assets/art/menu/sparkle-pill.svg';
 import bgSparkle from '../../assets/art/menu/bg-sparkle.svg';
 import owlMark from '../../assets/art/menu/owl-mark.svg';
-import { MENU_CATEGORIES, FAN_FAVES, ORDER_URL } from '../../data/site';
+import { MENU_CATEGORIES, FAN_FAVES } from '../../data/site';
 
 // Background sparkles: [left, top, size] in the 1440×2172 desktop design.
 // Positioned as percentages so they spread across any screen size.
@@ -54,20 +54,21 @@ const sparkles: [number, number, number][] = [
         Every sub gets toasted.
       </StackedText>
       <p data-reveal class="max-w-[700px] text-[clamp(17px,1.4vw,20px)] leading-normal text-brown">
-        Then brushed with our house garlic butter &amp; parmesan. Subs, steaks, kati rolls, cozy classics and munchies —
+        Then brushed with our house garlic butter &amp; parmesan. Subs, steaks, kati rolls and munchies —
         if you can crave it at 1AM, it’s on here.
       </p>
     </header>
 
-    <div class="grid w-full grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-16">
+    <!-- Flex, not grid, so a short last row sits centered. -->
+    <div class="cards flex w-full flex-wrap justify-center gap-x-6 gap-y-10 lg:gap-y-16">
       {
         MENU_CATEGORIES.map((c, i) => (
-          <MenuCard delay={(i % 3) * 0.09} title={c.title} price={c.price} cta={c.cta} href={c.href}>
+          <MenuCard delay={(i % 3) * 0.09} title={c.title} price={c.price} cta={c.cta} href={c.href} class="card-slot">
             <MenuArt art={c.art} />
           </MenuCard>
         ))
       }
-      <MenuCard title="Can’t Decide?" price="Hit the button" cta="Order Now" href={ORDER_URL} external tone="mustard" delay={0.18}>
+      <MenuCard title="Can’t Decide?" price="Hit the button" cta="Order Now" order tone="mustard" delay={0.18} class="card-slot">
         <div class="relative h-[190px] w-[200px] overflow-hidden">
           <img src={owlMark.src} alt="" width="190" height="173" class="owl absolute top-[6px] left-[5px]" />
         </div>
@@ -82,3 +83,20 @@ const sparkles: [number, number, number][] = [
     </div>
   </div>
 </section>
+
+<style>
+  /* One, two or three cards per row, matching the old grid's columns. */
+  .cards :global(.card-slot) {
+    width: 100%;
+  }
+  @media (min-width: 640px) {
+    .cards :global(.card-slot) {
+      width: calc((100% - 24px) / 2);
+    }
+  }
+  @media (min-width: 1024px) {
+    .cards :global(.card-slot) {
+      width: calc((100% - 48px) / 3);
+    }
+  }
+</style>

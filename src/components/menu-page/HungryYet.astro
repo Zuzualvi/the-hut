@@ -3,7 +3,7 @@
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
 import scallop from '../../assets/art/findus/scallop.svg';
-import { ADDRESS, HOURS, ORDER_URL, MAPS_URL } from '../../data/site';
+import { ADDRESS, HOURS, MAPS_URL } from '../../data/site';
 ---
 
 <section class="hungry relative overflow-hidden bg-mustard px-5 text-center">
@@ -12,7 +12,7 @@ import { ADDRESS, HOURS, ORDER_URL, MAPS_URL } from '../../data/site';
   <div class="relative mx-auto flex max-w-[900px] flex-col items-center gap-[18px] md:gap-6" data-reveal-group>
     <StackedText data-reveal designSize={92} layers={9} class="title text-green">Hungry yet?</StackedText>
     <p data-reveal class="text-[16px] leading-normal text-ink md:text-[21px]">
-      Order ahead on DoorDash or pull up to {ADDRESS.street}, {ADDRESS.city}.
+      Order ahead for pickup or delivery, or pull up to {ADDRESS.street}, {ADDRESS.city}.
     </p>
     <ul data-reveal class="flex flex-col items-center gap-1 font-label text-[15px] uppercase tracking-[0.45px] text-ink md:flex-row md:gap-3.5 md:text-[17px]">
       {
@@ -25,7 +25,7 @@ import { ADDRESS, HOURS, ORDER_URL, MAPS_URL } from '../../data/site';
       }
     </ul>
     <div data-reveal class="ctas flex w-full flex-col gap-3.5 pt-2 md:w-auto md:flex-row md:gap-[18px] md:pt-3.5">
-      <PillButton href={ORDER_URL} variant="ink" size="lg" external>Order on DoorDash</PillButton>
+      <PillButton order variant="ink" size="lg">Order Now</PillButton>
       <PillButton href={MAPS_URL} size="lg" external>Get Directions</PillButton>
     </div>
   </div>

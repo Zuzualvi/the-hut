@@ -1,19 +1,18 @@
 ---
-// Classics + Munchies lists and the Drinks & Chips strip.
+// Munchies (one big list, two columns on desktop) and the Drinks & Chips strip.
 import StackedText from '../StackedText.astro';
 import DripBand from '../DripBand.astro';
 import navDrips from '../../data/drips/nav-drips.json';
 import sunburst from '../../assets/art/hero/sunburst.svg';
 import sparkleMustard from '../../assets/art/hero/sparkle-mustard.svg';
 import sparkleCreamSm from '../../assets/art/hero/sparkle-cream-sm.svg';
-import { CLASSICS, MUNCHIES, DRINKS } from '../../data/site';
+import { MUNCHIES, DRINKS } from '../../data/site';
 
 // A `desc` array shows one line per entry.
 type Item = { name: string; price: string; desc?: string | string[] };
-const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
-  { id: 'classics', title: 'Classics', sub: 'Cozy classics', items: CLASSICS },
-  { id: 'munchies', title: 'Munchies', sub: 'Sides & snacks', items: MUNCHIES },
-];
+const items: Item[] = MUNCHIES;
+// Desktop: fill the left column first, then the right.
+const rows = Math.ceil(items.length / 2);
 ---
 
 <section class="classics relative overflow-hidden bg-green px-5 md:px-[clamp(20px,8.3vw,120px)]">
@@ -23,33 +22,33 @@ const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
   <DripBand data={navDrips} class="z-10" />
 
   <div class="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-12 md:gap-14">
-    <div class="grid gap-10 lg:grid-cols-2 lg:gap-12">
-      {
-        lists.map((l) => (
-          <div id={l.id} class="flex scroll-mt-24 flex-col gap-6" data-reveal-group>
-            <div class="flex flex-col gap-1.5">
-              <StackedText data-reveal designSize={40} layers={5} class="title text-cream">{l.title}</StackedText>
-              <p data-reveal class="font-label text-[13px] uppercase tracking-[0.52px] text-mustard md:text-[16px]">{l.sub}</p>
-            </div>
-            <ul data-reveal class="list flex flex-1 flex-col gap-5 rounded-[30px] border-4 border-ink bg-paper md:gap-[26px] md:rounded-[36px]">
-              {l.items.map((it) => (
-                <li class="flex flex-col gap-1">
-                  <div class="flex items-baseline gap-2.5 md:gap-3.5">
-                    <h3 class="font-display text-[20px] leading-[1.2] text-green min-[400px]:text-[22px] md:text-[30px]">{it.name}</h3>
-                    <span class="leader text-brown" aria-hidden="true" />
-                    <p class="shrink-0 font-label text-[17px] text-brown min-[400px]:text-[18px] md:text-[24px]">{it.price}</p>
-                  </div>
-                  {it.desc && (
-                    <p class="max-w-[440px] text-[15px] leading-normal text-brown md:text-[18px]">
-                      {[it.desc].flat().map((line, i) => (i ? [<br />, line] : line))}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+    <div id="munchies" class="flex scroll-mt-24 flex-col gap-6" data-reveal-group>
+      <div class="flex flex-col gap-1.5">
+        <StackedText data-reveal designSize={40} layers={5} class="title text-cream">Munchies</StackedText>
+        <p data-reveal class="font-label text-[13px] uppercase tracking-[0.52px] text-mustard md:text-[16px]">Sides, snacks &amp; cozy classics</p>
+      </div>
+      <ul
+        data-reveal
+        class="list grid gap-5 rounded-[30px] border-4 border-ink bg-paper md:gap-[26px] md:rounded-[36px] lg:grid-flow-col lg:grid-cols-2 lg:gap-x-16"
+        style={`--rows:${rows}`}
+      >
+        {
+          items.map((it) => (
+            <li class="flex flex-col gap-1">
+              <div class="flex items-baseline gap-2.5 md:gap-3.5">
+                <h3 class="font-display text-[20px] leading-[1.2] text-green min-[400px]:text-[22px] md:text-[30px]">{it.name}</h3>
+                <span class="leader text-brown" aria-hidden="true" />
+                <p class="shrink-0 font-label text-[17px] text-brown min-[400px]:text-[18px] md:text-[24px]">{it.price}</p>
+              </div>
+              {it.desc && (
+                <p class="max-w-[440px] text-[15px] leading-normal text-brown md:text-[18px]">
+                  {[it.desc].flat().map((line, i) => (i ? [<br />, line] : line))}
+                </p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
     </div>
 
     <div id="drinks" data-reveal class="drinks scroll-mt-24 rounded-[30px] border-4 border-ink bg-mustard text-ink md:rounded-[36px]">
@@ -94,6 +93,11 @@ const lists: { id: string; title: string; sub: string; items: Item[] }[] = [
   .drinks {
     padding: 22px 24px 24px;
     box-shadow: 8px 8px 0 var(--color-ink);
+  }
+  @media (min-width: 1024px) {
+    .list {
+      grid-template-rows: repeat(var(--rows), auto);
+    }
   }
   @media (min-width: 768px) {
     .list {

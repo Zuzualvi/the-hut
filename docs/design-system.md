@@ -19,10 +19,10 @@ Defined as Tailwind theme tokens in `src/styles/global.css`. Use them as utiliti
 | `ink` | `#121210` | Page background, nav, outlines and keylines, hard shadows, dark sections (Specials, Rolls & Steaks) |
 | `cream` | `#f3e9d2` | Light sections (home Menu, Toasted Subs), headlines on dark or green backgrounds, light cards and buttons |
 | `mustard` | `#e0ae2e` | The accent: Order buttons, small uppercase labels on dark backgrounds, sparkles, Find Us / Hungry Yet sections, the Drinks strip |
-| `green` | `#3d5541` | Green sections (Hero, Our Vibe, Classics & Munchies, menu hero), item names on light cards |
+| `green` | `#3d5541` | Green sections (Hero, Our Vibe, Munchies, menu and catering heroes), item names on light cards |
 | `green-deep` | `#2a3b2d` | Darker green inside illustrations |
 | `brown` | `#2b1a10` | Body text on light backgrounds, headline extrusion depth, the marquee band |
-| `paper` | `#fff9ec` | Menu list cards (Classics, Munchies) |
+| `paper` | `#fff9ec` | Menu list cards (Munchies) |
 | `bread`, `meat`, `rim` | `#b7782f`, `#4a2c1a`, `#7a4a2a` | Food illustrations only |
 | `stone`, `ash` | `#c9bfa6`, `#7f7a6e` | Muted text in the footer |
 
@@ -50,10 +50,11 @@ Typical sizes (phone → desktop):
 | Component | Where | Use it for |
 |---|---|---|
 | `StackedText` | `src/components/StackedText.astro` | Extruded retro headlines: one element plus a stacked text-shadow. Props: `designSize` (font px at full desktop size), `layers` (depth; about 1 per 10px), `outline` (adds an ink keyline for big titles on dark backgrounds), `as` (tag). Never duplicate text elements to fake the extrusion. |
-| `PillButton` | `src/components/PillButton.astro` | Every button-style link. Rounded pill, 3px ink border, Titan One uppercase, hard 6px ink shadow that presses in on hover. `variant`: `cream`, `mustard` (primary), `ink`. `size`: `md`, `lg`, `xl`. `external` opens in a new tab. |
-| Cards | e.g. `menu-page/RollsSteaks.astro`, `ClassicsMunchies.astro` | `border-4 border-ink`, `rounded-[30px] md:rounded-[36px]`, hard offset shadow (`8px 8px 0` → `12px 12px 0` on desktop) in `ink`, `green` or `mustard`. Fill: `cream`, `paper`, `mustard` or `green`. |
+| `PillButton` | `src/components/PillButton.astro` | Every button-style link. Rounded pill, 3px ink border, Titan One uppercase, hard 6px ink shadow that presses in on hover. `variant`: `cream`, `mustard` (primary), `ink`. `size`: `md`, `lg`, `xl`. `external` opens in a new tab. `order` makes it a button that opens the order popup instead of a link. |
+| `OrderPopup` | `src/components/OrderPopup.astro` (included by `Nav`) | The "Pickup or delivery?" card every Order button opens: Pickup first in mustard, then one cream button per delivery app. Uses the browser's popover, so it works without JavaScript and closes on Escape or an outside tap. Any button or link with `popovertarget="order-popup"` opens it. |
+| Cards | e.g. `menu-page/RollsSteaks.astro`, `ClassicsMunchies.astro`, `OrderPopup.astro` | `border-4 border-ink`, `rounded-[30px] md:rounded-[36px]`, hard offset shadow (`8px 8px 0` → `12px 12px 0` on desktop) in `ink`, `green` or `mustard`. Fill: `cream`, `paper`, `mustard` or `green`. |
 | Leader rows | `.leader` in `global.css` | Menu rows: name, a dotted leader that fills the gap, then the price, like the in-store board. Row is `flex items-baseline`; the leader is `<span class="leader" aria-hidden="true" />`. |
-| Tags and chips | e.g. "Your choice of" chips in `RollsSteaks.astro` | `rounded-full border-3 border-ink`, Titan One uppercase, 13–15px. |
+| Tags and chips | e.g. the style chip on each sub in `SubsSection.astro` | `rounded-full border-3 border-ink`, Titan One uppercase, 13–15px. |
 | `DripBand` | `src/components/DripBand.astro` + `src/data/drips/*.json` | The drippy top edge of a section, in the color of the section above so it looks like that section is dripping down. Bands: `nav-drips` (ink), `hero-drips` (green), `marquee-drips` (brown), `menu-drips` (cream), `gold-drips` (mustard). Each drip stretches slightly on scroll (`src/scripts/drips.ts`). |
 | Scallop edge | `src/assets/art/findus/scallop.svg` | Wavy top edge used on mustard sections (Find Us, Hungry Yet), as `<img class="edge-art" data-reveal="drip">`. |
 | `HalalStamp` | `src/components/HalalStamp.astro` + `src/assets/art/badges/halal.svg` | The generic halal badge (Arabic "halal" in a ring). `variant="sticker"`: ink badge on a cream disc with a hard shadow, for busy art (the hero). `variant="line"` (default): the badge alone in the current text color, e.g. `text-mustard` in the footer. Size it with the wrapper; tilt with `rotate`. Don't redraw or restyle the mark itself. |
@@ -83,7 +84,7 @@ Typical sizes (phone → desktop):
 
 - **Tone:** late-night, playful, a little cheeky. Short punchy lines ("Hungry yet?", "Got Munchies?", "Built for late nights.").
 - **Names:** subs are named after cannabis strains (Fire OG, Grandaddy Purp, White Widow, Pineapple Express). Keep the wink subtle and never explicit.
-- **Facts to keep consistent:** 100% halal (the halal stamp appears in the hero and the footer), open till 1AM Fri & Sat, Rowan-grown, order on DoorDash.
+- **Facts to keep consistent:** 100% halal (the halal stamp appears in the hero and the footer), open till 1AM Fri & Sat, Rowan-grown, order online for pickup (Toast) or delivery (DoorDash, Grubhub, Uber Eats).
 - **Formatting:**
   - Menu prices have no `$` ("12.99"). Specials and the size guide use `$`.
   - Two prices are written "5.99 / 12.99".

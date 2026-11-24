@@ -2,7 +2,7 @@
 // Specials.
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
-import { SPECIALS, ORDER_URL } from '../../data/site';
+import { SPECIALS } from '../../data/site';
 
 import DripBand from '../DripBand.astro';
 import menuDrips from '../../data/drips/menu-drips.json';
@@ -68,7 +68,7 @@ const tones = {
                 <p class:list={['mt-2 text-[16px] leading-[1.7]', t.body]}>{s.body}</p>
                 <div class="mt-auto flex items-center justify-between gap-3 pt-4">
                   <p class:list={['font-display text-[clamp(40px,3.6vw,52px)] leading-none whitespace-nowrap', t.title]}>{s.price}</p>
-                  <PillButton href={ORDER_URL} external>Order</PillButton>
+                  <PillButton order>Order</PillButton>
                 </div>
                 {i === 2 && (
                   <div class="burst absolute" aria-hidden="true">

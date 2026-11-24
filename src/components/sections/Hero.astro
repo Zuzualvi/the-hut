@@ -5,7 +5,7 @@ import Art from '../Art.astro';
 import StackedText from '../StackedText.astro';
 import PillButton from '../PillButton.astro';
 import HalalStamp from '../HalalStamp.astro';
-import { ORDER_URL, MENU_URL } from '../../data/site';
+import { MENU_URL } from '../../data/site';
 
 import DripBand from '../DripBand.astro';
 import navDrips from '../../data/drips/nav-drips.json';
@@ -91,8 +91,8 @@ import tagline from '../../assets/art/hero/tagline.svg';
       </p>
 
       <div class="ctas relative" data-reveal>
-        <PillButton href={ORDER_URL} variant="mustard" size="xl" external>Order Now</PillButton>
-        <PillButton href={MENU_URL} size="xl">Peep the Menu</PillButton>
+        <PillButton order variant="mustard" size="xl">Order Now</PillButton>
+        <PillButton href={MENU_URL} size="xl">Menu</PillButton>
         <img src={sparkleCreamSm.src} alt="" aria-hidden="true" class="twinkle cta-sparkle absolute" />
       </div>
     </div>

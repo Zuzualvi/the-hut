@@ -1,0 +1,21 @@
+---
+// Catering page (coming soon).
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import ComingSoon from '../components/catering/ComingSoon.astro';
+import HungryYet from '../components/menu-page/HungryYet.astro';
+import Footer from '../components/sections/Footer.astro';
+import { PHONE } from '../data/site';
+---
+
+<Layout
+  title="Catering — The Hut · Glassboro, NJ"
+  description={`Catering from The Hut in Glassboro is coming soon. Feeding a crowd now? Call ${PHONE.display} to set up an order for your group.`}
+>
+  <Nav current="Catering" />
+  <main id="top">
+    <ComingSoon />
+    <HungryYet />
+  </main>
+  <Footer />
+</Layout>

@@ -1,18 +1,27 @@
 // Single source of truth for links and menu content. Edit prices here.
 
-export const ORDER_URL =
-  'https://www.doordash.com/store/the-hut-glassboro-51518273/120066347/?pickup=true';
+// Online ordering. Every Order button opens the order popup (`OrderPopup.astro`) with these choices.
+export const ORDER = {
+  pickup: 'https://order.toasttab.com/online/709-n-main-st',
+  delivery: [
+    { label: 'DoorDash', href: 'https://www.doordash.com/store/the-hut-glassboro-51518273/120066347/' },
+    { label: 'Grubhub', href: 'https://www.grubhub.com/restaurant/the-hut-709-north-main-street-glassboro/15840728' },
+    { label: 'Uber Eats', href: 'https://www.ubereats.com/store-browse-uuid/1d3e2e70-93ae-5501-b37c-09df178250f5?diningMode=DELIVERY' },
+  ],
+};
 
 // Internal links carry Astro's base path so they keep working if the site moves under a subpath.
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
 export const HOME_URL = `${BASE}/`;
 export const MENU_URL = `${BASE}/menu/`;
+export const CATERING_URL = `${BASE}/catering/`;
 
 export const NAV_LINKS = [
   { label: 'Menu', href: MENU_URL },
   { label: 'Specials', href: `${HOME_URL}#specials` },
   { label: 'Our Vibe', href: `${HOME_URL}#our-vibe` },
   { label: 'Find Us', href: `${HOME_URL}#find-us` },
+  { label: 'Catering', href: CATERING_URL },
 ];
 
 export type MenuArt = 'subs' | 'steaks' | 'rolls' | 'classics' | 'munchies';
@@ -68,7 +77,7 @@ export const SPECIALS = [
     tilt: -2,
   },
   {
-    tag: 'Students · Vets · Local workers',
+    tag: 'Students · VA · Local workers',
     title: 'Show Ya ID',
     body: 'Rowan students, veterans and local employees: flash your ID at the counter for 10% off any whole sub.',
     price: '10% off',
@@ -76,10 +85,10 @@ export const SPECIALS = [
     tilt: 2,
   },
   {
-    tag: 'Cheesesteak combo',
-    title: 'Dinner Special',
-    body: 'Any cheesesteak with a drink and fries.',
-    price: '$14.99',
+    tag: 'Sub, fries & brownie',
+    title: 'The Owl Box',
+    body: 'Any half toasted sub, fries and a brownie.',
+    price: '$13.99',
     tone: 'green',
     tilt: -1.5,
   },
@@ -112,17 +121,11 @@ export const SUB_GROUPS = [
       { name: 'Pineapple Express', style: 'Teriyaki', desc: 'Pepper jack, pineapple, green bell peppers' },
     ]),
   },
-  {
-    title: 'Turkey & Veggie',
-    items: withFaves([
-      { name: 'Turkey Trainwreck', style: 'Turkey', desc: 'Provolone, mayo, beef bacon' },
-      { name: 'Green Crack', style: 'Veggie', desc: 'Feta cheese, guacamole, spring mix, cucumbers, mushrooms, olives, green pepper' },
-    ]),
-  },
 ];
 
 export const KATI_ROLLS = [
-  { name: 'Chicken or Paneer', price: '6.99', desc: 'Paratha, red onions, white sauce, mint chutney', choices: ['Chicken', 'Paneer'] },
+  { name: 'Chicken', price: '6.99', desc: 'Paratha, red onions, white sauce, mint chutney' },
+  { name: 'Paneer', price: '6.99', desc: 'Paratha, red onions, white sauce, mint chutney' },
 ];
 
 export const CHEESESTEAKS = [
@@ -130,17 +133,14 @@ export const CHEESESTEAKS = [
   { name: 'Chicken', price: '12.99', desc: 'American, grilled onions, buffalo sauce' },
 ];
 
-export const CLASSICS = [
+export const MUNCHIES = [
   { name: 'Grilled Cheese', price: '4.99' },
   { name: 'Tomato Soup', price: '2.99' },
   { name: 'Grilled PB&J', price: '2.99' },
   { name: 'Chicken Nuggets', price: '5.99', desc: '6 pieces' },
-];
-
-export const MUNCHIES = [
   { name: 'Not’so Nachos', price: '5.99 / 12.99', desc: 'Doritos, colby jack, jalapeño, red onions, black olives, hot sauce, ranch' },
   { name: 'Fries / Tots', price: '3.99', desc: ['Add cajun', 'Add cheese +2.00'] },
-  { name: 'Mac & Cheese Bites', price: '5.99' },
+  { name: 'Mac & Cheese Balls', price: '8.99', desc: '2 pieces' },
   { name: 'Mozzarella Sticks', price: '3.99' },
   { name: 'Brownies', price: '1.99' },
 ];
@@ -171,6 +171,5 @@ export const MENU_CATEGORIES: {
   { title: 'Toasted Subs', price: `${SUB_PRICES.half} half · ${SUB_PRICES.full} whole`, cta: 'View Subs', art: 'subs', href: `${MENU_URL}#subs` },
   { title: 'Cheesesteaks', price: priceLabel(CHEESESTEAKS), cta: 'View Steaks', art: 'steaks', href: `${MENU_URL}#steaks` },
   { title: 'Kati Rolls', price: priceLabel(KATI_ROLLS), cta: 'View Rolls', art: 'rolls', href: `${MENU_URL}#rolls` },
-  { title: 'Cozy Classics', price: priceLabel(CLASSICS), cta: 'View Classics', art: 'classics', href: `${MENU_URL}#classics` },
   { title: 'Munchies', price: priceLabel(MUNCHIES), cta: 'View Munchies', art: 'munchies', href: `${MENU_URL}#munchies` },
 ];
