@@ -82,7 +82,7 @@ Typical sizes (phone → desktop):
 
 ## Copy voice
 
-- **Tone:** late-night, playful, a little cheeky. Short punchy lines ("Hungry yet?", "Got Munchies?", "Built for late nights.").
+- **Tone:** late-night, playful, a little cheeky. Short punchy lines ("Hungry yet?", "Got Munchies?", "Built for the community.").
 - **Names:** subs are named after cannabis strains (Fire OG, Grandaddy Purp, White Widow, Pineapple Express). Keep the wink subtle and never explicit.
 - **Facts to keep consistent:** 100% halal (the halal stamp appears in the hero and the footer), open till 1AM Fri & Sat, Rowan-grown, order online for pickup (Toast) or delivery (DoorDash, Grubhub, Uber Eats).
 - **Formatting:**
