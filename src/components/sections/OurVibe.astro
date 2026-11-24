@@ -23,7 +23,7 @@ const badges = [
   <div class="checks h-[72px]" aria-hidden="true"></div>
   <img src={rays.src} alt="" aria-hidden="true" class="rays absolute block max-w-none" />
 
-  <div class="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 lg:grid-cols-[520px_minmax(0,590px)] lg:gap-[90px] lg:px-0">
+  <div class="vibe-grid relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 lg:px-8 xl:px-0">
     <div class="photo relative mx-auto" aria-hidden="true" data-reveal>
       <Art src={smokeB.src} x={146} y={-44} w={68} h={168} unit="--pu" class="smoke" />
       <Art src={smokeA.src} x={316} y={-74} w={68} h={188} unit="--pu" class="smoke" />
@@ -101,8 +101,15 @@ const badges = [
     height: calc(var(--h) * var(--bs));
     transform: translateY(calc(var(--dy) * var(--bs)));
   }
+  /* Desktop: photo and text side by side. On laptops (1024–1240px) the photo and the gap shrink
+     with the screen so the text column, the heading and the badges keep a margin from the edge. */
   @media (min-width: 1024px) {
+    .vibe-grid {
+      grid-template-columns: min(520px, 40vw) minmax(0, 590px);
+      column-gap: clamp(40px, 6.25vw, 90px);
+    }
     .vibe :global(.photo) {
+      --pu: min(1px, calc(40vw / 520));
       margin-left: 0;
     }
   }
