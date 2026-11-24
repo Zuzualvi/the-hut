@@ -34,7 +34,7 @@ const { title, price, cta, href, order = false, tone = 'green', delay = 0, exter
   <p class:list={['font-label text-[17px] uppercase tracking-[0.34px]', tone === 'green' ? 'text-mustard' : 'text-ink']}>
     {price}
   </p>
-  <PillButton href={href} order={order} external={external}>{cta}</PillButton>
+  <PillButton href={href} order={order} placement={order ? 'menu_cards' : undefined} external={external}>{cta}</PillButton>
 
   <img src={sparkleLg.src} alt="" width="34" height="34" class="card-sparkle absolute top-[-20px] right-5" />
   <img src={sparkleSm.src} alt="" width="20" height="20" class="card-sparkle absolute top-[10px] right-[60px]" />

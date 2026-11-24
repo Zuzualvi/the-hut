@@ -15,7 +15,7 @@ import { ORDER } from '../data/site';
   <StackedText as="h2" id="order-popup-title" designSize={40} layers={5} class="title pr-12 text-green">Pickup or delivery?</StackedText>
 
   <div class="flex flex-col gap-2.5">
-    <PillButton href={ORDER.pickup} external variant="mustard" size="xl" class="w-full">Pickup</PillButton>
+    <PillButton href={ORDER.pickup} external variant="mustard" size="xl" class="w-full" data-track="order_choice" data-method="pickup" data-app="Toast">Pickup</PillButton>
     <p class="text-center text-[15px] leading-normal md:text-[16px]">Order ahead, grab it at the counter.</p>
   </div>
 
@@ -25,7 +25,7 @@ import { ORDER } from '../data/site';
       {
         ORDER.delivery.map((d) => (
           <li>
-            <PillButton href={d.href} external size="lg" class="w-full">{d.label}</PillButton>
+            <PillButton href={d.href} external size="lg" class="w-full" data-track="order_choice" data-method="delivery" data-app={d.label}>{d.label}</PillButton>
           </li>
         ))
       }

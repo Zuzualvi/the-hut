@@ -2,7 +2,7 @@
 // Footer: logo, tagline, links, and the shop's address and phone (on every page, for visitors and search engines).
 import Art from '../Art.astro';
 import HalalStamp from '../HalalStamp.astro';
-import { NAV_LINKS, INSTAGRAM_URL, ADDRESS, PHONE, MAPS_URL } from '../../data/site';
+import { NAV_LINKS, INSTAGRAM_URL, ADDRESS, PHONE, MAPS_URL, PRIVACY_URL } from '../../data/site';
 
 import DripBand from '../DripBand.astro';
 import goldDrips from '../../data/drips/gold-drips.json';
@@ -33,18 +33,18 @@ import tagline from '../../assets/art/footer/tagline.svg';
           </li>
         ))
       }
-      <li><button type="button" popovertarget="order-popup" class="cursor-pointer uppercase hover:text-mustard">Order Online</button></li>
+      <li><button type="button" popovertarget="order-popup" data-track="order_open" data-placement="footer" class="cursor-pointer uppercase hover:text-mustard">Order Online</button></li>
       <li><a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="hover:text-mustard">Instagram</a></li>
     </ul>
   </nav>
 
   <address class="nap not-italic text-stone">
-    <a href={MAPS_URL} target="_blank" rel="noopener" class="hover:text-mustard">The Hut · {ADDRESS.street}, {ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}</a>
+    <a href={MAPS_URL} target="_blank" rel="noopener" data-track="directions_click" data-placement="footer" class="hover:text-mustard">The Hut · {ADDRESS.street}, {ADDRESS.city}, {ADDRESS.region} {ADDRESS.zip}</a>
     <span class="max-md:hidden" aria-hidden="true"> · </span>
-    <a href={`tel:${PHONE.tel}`} class="hover:text-mustard">{PHONE.display}</a>
+    <a href={`tel:${PHONE.tel}`} data-track="call_click" data-placement="footer" class="hover:text-mustard">{PHONE.display}</a>
   </address>
 
-  <p class="legal text-ash">© 2026 The Hut Glassboro · 100% Halal · Pickup &amp; Delivery</p>
+  <p class="legal text-ash">© 2026 The Hut Glassboro · 100% Halal · Pickup &amp; Delivery · <a href={PRIVACY_URL} class="underline-offset-4 hover:text-mustard hover:underline">Privacy</a></p>
 
   <div class="checks" aria-hidden="true"></div>
 </footer>

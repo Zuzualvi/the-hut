@@ -1,15 +1,18 @@
 ---
 interface Props {
+  [attr: `data-${string}`]: string | undefined;
   href?: string;
   /** Opens the order popup (pickup or delivery) instead of following a link. */
   order?: boolean;
+  /** Where this Order button sits (e.g. "hero"), reported to Analytics with each tap. */
+  placement?: string;
   variant?: 'cream' | 'mustard' | 'ink';
   size?: 'md' | 'lg' | 'xl';
   external?: boolean;
   class?: string;
 }
 
-const { href, order = false, variant = 'cream', size = 'md', external = false, class: className = '' } = Astro.props;
+const { href, order = false, placement, variant = 'cream', size = 'md', external = false, class: className = '', ...data } = Astro.props;
 
 const variants = {
   cream: 'bg-cream text-ink',
@@ -31,11 +34,11 @@ const classes = [
 
 {
   order ? (
-    <button type="button" popovertarget="order-popup" class:list={classes}>
+    <button type="button" popovertarget="order-popup" class:list={classes} data-track="order_open" data-placement={placement} {...data}>
       <slot />
     </button>
   ) : (
-    <a href={href} class:list={classes} {...(external && { target: '_blank', rel: 'noopener' })}>
+    <a href={href} class:list={classes} {...(external && { target: '_blank', rel: 'noopener' })} {...data}>
       <slot />
     </a>
   )
